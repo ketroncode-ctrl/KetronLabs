@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ketron Labs — Building intelligent tools for developers. Creators of Ketron Code Editor and Ovius Browser.">
+<title>Ketron Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080810;--bg2:#0f0f1a;
+  --cyan:#00e5ff;--violet:#7c3aed;
+  --cyan-dim:rgba(0,229,255,.12);--violet-dim:rgba(124,58,237,.12);
+  --border:rgba(255,255,255,.08);--text:#f0f0ff;--muted:#7a7a9a;--card:rgba(255,255,255,.03);
+}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;cursor:auto}
+
+/* Particles */
+#pcv{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* BG orbs */
+.bg-mesh{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(110px)}
+.orb1{width:700px;height:700px;background:var(--cyan);top:-250px;left:-150px;opacity:.15;animation:none}
+.orb2{width:600px;height:600px;background:var(--violet);bottom:-200px;right:-200px;opacity:.15;animation:none}
+.orb3{width:350px;height:350px;background:#ff006e;top:40%;left:42%;opacity:.07;animation:none}
+
+/* Noise */
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* Nav */
+nav{position:fixed;top:0;width:100%;z-index:500;padding:1.3rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,16,.6);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:.4s}
+nav.scrolled{padding:.85rem 3rem;background:rgba(8,8,16,.96);box-shadow:0 4px 40px rgba(0,229,255,.06)}
+.nav-logo{display:flex;align-items:center;gap:.7rem}
+.nav-logo img{height:42px;width:auto;filter:drop-shadow(0 0 8px rgba(0,229,255,.25))}
+.nav-logo-text{font-family:inherit;font-weight:700;font-size:1.05rem;letter-spacing:0}
+.nav-logo-text span{color:var(--cyan)}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.86rem;font-weight:500;transition:.25s;position:relative;padding:.3rem 0;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:.3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-action{border:1px solid rgba(0,229,255,.2)!important;padding:.28rem .8rem!important;border-radius:20px;color:var(--cyan)!important;font-size:.8rem!important;transition:.3s!important}
+.nav-action:hover{background:var(--cyan-dim)!important;border-color:var(--cyan)!important}
+.nav-action::after{display:none!important}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1.2rem;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);border-radius:30px;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:2rem}
+.hero-title{font-family:inherit;font-size:clamp(2.4rem,5vw,4.2rem);font-weight:700;line-height:1.1;letter-spacing:0;margin-bottom:1.4rem}
+.word{display:inline-block;opacity:1;transform:none}
+.gword{background:linear-gradient(110deg,var(--cyan),#a78bfa 50%,var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200%}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:540px;margin:0 auto 2.8rem;font-weight:300;line-height:1.8;opacity:1;transform:none}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:1;transform:none}
+.scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:1}
+.scroll-line{width:1px;height:46px;background:linear-gradient(180deg,var(--cyan),transparent)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.88rem 2rem;border-radius:10px;font-size:.92rem;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:inherit;position:relative;overflow:hidden}
+.btn::after{display:none}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#fff;box-shadow:0 4px 28px rgba(0,229,255,.22)}
+.btn-primary:hover{box-shadow:0 4px 28px rgba(0,229,255,.22)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 20px rgba(0,229,255,.05)}
+.btn-violet{background:linear-gradient(135deg,var(--violet),#9333ea);color:#fff;box-shadow:0 4px 28px rgba(124,58,237,.22)}
+.btn-violet:hover{box-shadow:0 4px 28px rgba(124,58,237,.22)}
+
+/* Section */
+section{padding:7rem 2rem;position:relative;z-index:2}
+.container{max-width:1360px;margin:0 auto}
+.section-label{font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.9rem;font-family:inherit}
+.section-title{font-family:inherit;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:0;line-height:1.2;margin-bottom:1rem}
+.section-desc{color:var(--muted);font-size:1rem;font-weight:300;line-height:1.75}
+
+/* Reveal */
+.rv,.rvl,.rvr,.rvs{opacity:1;transform:none;transition:none!important}
+.vis{opacity:1!important;transform:none!important}
+.d1,.d2,.d3,.d4,.d5{transition-delay:0s}
+
+/* Glow divider */
+.gdiv{height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent);opacity:.3;position:relative;z-index:2}
+
+/* Products */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:4rem;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:0 40px 100px rgba(0,0,0,.4)}
+.pcard{background:var(--card);padding:3.5rem;position:relative;overflow:hidden;transition:.5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.pcard::before{content:'';position:absolute;inset:0;opacity:0;transition:.5s}
+.pcard:first-child::before{background:radial-gradient(ellipse at 20% 20%,rgba(0,229,255,.1),transparent 65%)}
+.pcard:last-child::before{background:radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.13),transparent 65%)}
+.pcard:hover::before{opacity:1}
+.pcard:first-child{border-right:1px solid var(--border)}
+.pcard:hover{transform:translateY(-5px)}
+.pcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;opacity:0;transition:.5s;transform:scaleX(0);transform-origin:left}
+.pcard:first-child::after{background:linear-gradient(90deg,var(--cyan),transparent)}
+.pcard:last-child::after{background:linear-gradient(90deg,var(--violet),transparent)}
+.pcard:hover::after{opacity:1;transform:scaleX(1)}
+.pbadge{display:inline-flex;align-items:center;gap:.4rem;padding:.32rem .85rem;border-radius:20px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.4rem;width:fit-content}
+.bc{background:var(--cyan-dim);color:var(--cyan);border:1px solid rgba(0,229,255,.2)}
+.bv{background:var(--violet-dim);color:#a78bfa;border:1px solid rgba(124,58,237,.25)}
+.plogo{height:50px;width:auto;margin-bottom:1.4rem;object-fit:contain;transition:.45s;filter:drop-shadow(0 4px 12px rgba(0,229,255,.2))}
+.plovio{filter:drop-shadow(0 4px 12px rgba(124,58,237,.3))}
+.pcard:hover .plogo{transform:scale(1.07);filter:drop-shadow(0 8px 22px rgba(0,229,255,.45))}
+.pcard:hover .plovio{filter:drop-shadow(0 8px 22px rgba(124,58,237,.55))}
+.pcard h3{font-family:inherit;font-size:1.4rem;font-weight:700;letter-spacing:0;margin-bottom:.8rem}
+.pcard p{color:var(--muted);line-height:1.75;font-size:.96rem;margin-bottom:1.8rem;font-weight:300}
+.pfeats{display:flex;flex-direction:column;gap:.52rem;margin-bottom:2.2rem;flex:1}
+.pfeat{display:flex;align-items:center;gap:.7rem;font-size:.85rem;color:var(--muted);transition:.3s;padding:.15rem 0}
+.pfeat:hover{color:var(--text);transform:translateX(4px)}
+.fdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.fdc{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
+.fdv{background:#a78bfa;box-shadow:0 0 6px #a78bfa}
+.plink{display:inline-flex;align-items:center;gap:.5rem;font-size:.87rem;font-weight:600;text-decoration:none;transition:.3s;margin-top:.5rem;cursor:pointer}
+.plc{color:var(--cyan)}.plc:hover{gap:.95rem;text-shadow:0 0 10px var(--cyan)}
+.plv{color:#a78bfa}.plv:hover{gap:.95rem;text-shadow:0 0 10px #a78bfa}
+
+/* Code editor */
+.editor-wrap{margin-top:5rem;border-radius:18px;overflow:hidden;border:1px solid var(--border);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(0,229,255,.04)}
+.editor-bar{background:#0b0b1b;padding:.88rem 1.3rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border)}
+.dots{display:flex;gap:.45rem}
+.dot{width:12px;height:12px;border-radius:50%}
+.dr{background:#ff5f57}.dy{background:#febc2e}.dg{background:#28c840}
+.efname{color:var(--muted);font-size:.8rem;font-family:monospace;flex:1;text-align:center}
+.editor-body{background:#060616;padding:1.8rem 2rem 2rem 0;display:flex;overflow-x:auto}
+.lnums{padding:0 1.2rem;display:flex;flex-direction:column;color:#232340;font-family:monospace;font-size:.87rem;user-select:none;min-width:3rem;text-align:right;line-height:1.95}
+.clines{flex:1}
+.cl{font-family:monospace;font-size:.87rem;line-height:1.95;white-space:pre;opacity:1;animation:none}
+@keyframes ca{to{opacity:1}}
+.kw{color:#c678dd}.fn{color:#61afef}.str{color:#98c379}.cm{color:#4a5060;font-style:italic}.op{color:#56b6c2}.var{color:#e5c07b}
+
+.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.showcase-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:1.5rem;overflow:hidden}
+.demo-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.3rem}
+.demo-badge{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.35rem .85rem;font-size:.78rem;font-weight:700;text-transform:uppercase;background:rgba(0,229,255,.12);color:var(--cyan)}
+.demo-badge.violet{background:rgba(124,58,237,.12);color:#a78bfa}
+.demo-header h3{margin:.15rem 0 0;font-size:1.22rem;font-weight:700}
+.demo-status{color:var(--muted);font-size:.82rem;font-weight:500}
+.demo-window{border-radius:18px;overflow:hidden;background:#05060f;border:1px solid rgba(255,255,255,.08);box-shadow:0 25px 80px rgba(0,0,0,.25)}
+.window-bar{display:flex;align-items:center;gap:.65rem;padding:.9rem 1rem;background:#0e1122;border-bottom:1px solid rgba(255,255,255,.06)}
+.window-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.window-dot.red{background:#ff5f57}
+.window-dot.yellow{background:#f6c84c}
+.window-dot.green{background:#28c840}
+.window-title{color:#cbd5ff;font-size:.88rem;font-weight:600;margin-left:.7rem}
+.tab-bar{display:flex;gap:.6rem;padding:.85rem 1rem;background:#090a15;border-bottom:1px solid rgba(255,255,255,.06)}
+.tab{padding:.55rem 1rem;border-radius:999px;background:rgba(255,255,255,.03);color:var(--muted);font-size:.82rem;cursor:default}
+.tab.active{background:rgba(255,255,255,.08);color:#fff}
+.code-content{padding:1rem 1.1rem;background:#061021;overflow-x:auto;min-height:240px;}
+.code-content pre{margin:0;font-family:monospace;font-size:.84rem;line-height:1.75;color:#d8dee9}
+.code-content .keyword{color:#7dd3fc}
+.code-content .function{color:#93c5fd}
+.code-content .variable{color:#facc15}
+.code-content .property{color:#38bdf8}
+.code-content .string{color:#34d399}
+.code-content .comment{color:#94a3b8;font-style:italic}
+.editor-footer{display:flex;justify-content:space-between;padding:1rem 1.1rem;background:#090a15;color:var(--muted);font-size:.82rem;border-top:1px solid rgba(255,255,255,.06)}
+.browser-window .browser-toolbar{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;background:#090a15;border-bottom:1px solid rgba(255,255,255,.06)}
+.browser-tab{padding:.6rem 1rem;border-radius:999px;background:rgba(255,255,255,.03);color:var(--muted);font-size:.82rem}
+.browser-tab.active{background:rgba(255,255,255,.08);color:#fff}
+.browser-content{padding:1rem 1rem 1.3rem;background:#06081a}
+.browser-address{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:999px;color:#e2e8f0;padding:.8rem 1rem;font-size:.86rem;margin-bottom:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.browser-card{padding:1.2rem;background:rgba(255,255,255,.04);border-radius:18px;margin-bottom:1rem}
+.browser-card h4{margin:0 0 .4rem;font-size:1.05rem;font-weight:700}
+.browser-card p{margin:0;color:var(--muted);line-height:1.7;font-size:.92rem}
+.browser-cards{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.browser-mini-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;color:#e2e8f0;font-size:.88rem}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:18px;overflow:hidden;margin-top:4rem}
+.sbox{background:var(--bg2);padding:2.8rem;text-align:center;position:relative;overflow:hidden;transition:.4s}
+.sbox::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,.07),transparent 70%);opacity:0;transition:.4s}
+.sbox:hover::before{opacity:1}
+.sbox:hover{background:#101025}
+.snum{font-family:inherit;font-size:3.2rem;font-weight:800;background:linear-gradient(110deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.4rem;line-height:1}
+.slabel{color:var(--muted);font-size:.86rem;font-weight:300;letter-spacing:.05em}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4.5rem}
+.apts{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.apt{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:14px;transition:.4s;position:relative;overflow:hidden}
+.apt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet));transform:scaleY(0);transition:.4s;transform-origin:top}
+.apt:hover::before{transform:scaleY(1)}
+.apt:hover{border-color:rgba(0,229,255,.2);background:rgba(0,229,255,.035)}
+.apt-icon{font-size:1.25rem;flex-shrink:0;margin-top:.1rem}
+.apt h4{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.apt p{color:var(--muted);font-size:.85rem;line-height:1.65;margin:0}
+.about-img img{width:100%;border-radius:18px;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.about-img img:hover{transform:none;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.aph{width:100%;height:360px;background:linear-gradient(135deg,var(--cyan-dim),var(--violet-dim));border:2px dashed var(--border);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:1rem}
+
+/* Team */
+.people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem;margin-top:4rem}
+.person-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.4rem;transition:.5s;position:relative;overflow:hidden}
+.person-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,.06),transparent 60%);opacity:0;transition:.5s}
+.person-card:hover::before{opacity:1}
+.person-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--violet));transform:scaleX(0);transition:.5s;transform-origin:left}
+.person-card:hover::after{transform:scaleX(1)}
+.person-card:hover{border-color:rgba(0,229,255,.2);transform:none;box-shadow:0 20px 40px rgba(0,229,255,.05)}
+.pavatar{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-bottom:1.2rem}
+.person-card:hover .pavatar{border-color:var(--cyan);box-shadow:0 0 12px rgba(0,229,255,.2)}
+.paph{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--cyan-dim),var(--violet-dim));border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.2rem}
+.pname{font-family:inherit;font-size:1.12rem;font-weight:700;margin-bottom:.2rem;letter-spacing:0}
+.prole{font-size:.75rem;color:var(--cyan);font-weight:600;margin-bottom:1rem;letter-spacing:.07em;text-transform:uppercase}
+.pbio{color:var(--muted);font-size:.87rem;line-height:1.7;font-weight:300;margin-bottom:1.2rem}
+.pquote{padding:.9rem 1.1rem;background:rgba(0,229,255,.04);border-left:2px solid var(--cyan);border-radius:0 8px 8px 0;color:var(--muted);font-size:.82rem;font-style:italic;line-height:1.6}
+
+/* Download */
+.dl-cards{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
+.dlcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.8rem;transition:.5s;position:relative;overflow:hidden}
+.dlcard::before{content:'';position:absolute;top:-60%;right:-60%;width:240px;height:240px;border-radius:50%;opacity:0;transition:.6s}
+.dlc::before{background:radial-gradient(circle,rgba(0,229,255,.14),transparent)}
+.dlv::before{background:radial-gradient(circle,rgba(124,58,237,.16),transparent)}
+.dlcard:hover::before{opacity:1;top:-60%;right:-60%}
+.dlcard:hover{transform:none}
+.dlc:hover{border-color:rgba(0,229,255,.35);box-shadow:0 28px 65px rgba(0,229,255,.05)}
+.dlv:hover{border-color:rgba(124,58,237,.35);box-shadow:0 28px 65px rgba(124,58,237,.05)}
+.dlh{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.8rem}
+/* Ketron logo in download card */
+.dl-klogo{width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,229,255,.25))}
+.dl-klogo:hover,.dlcard:hover .dl-klogo{transform:none;filter:drop-shadow(0 4px 12px rgba(0,229,255,.25))}
+.dl-ologo{width:56px;height:56px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(124,58,237,.3))}
+.dlcard:hover .dl-ologo{transform:none;filter:drop-shadow(0 4px 12px rgba(124,58,237,.3))}
+.dl-logo-ph{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+.dlph-c{background:var(--cyan-dim);border:1px solid rgba(0,229,255,.2)}
+.dlph-v{background:var(--violet-dim);border:1px solid rgba(124,58,237,.25)}
+.dlinfo h3{font-family:inherit;font-size:1.28rem;font-weight:700;letter-spacing:0;margin-bottom:.2rem}
+.dlver{font-size:.78rem;font-weight:600;letter-spacing:.06em}
+.dlver-c{color:var(--cyan)}.dlver-v{color:#a78bfa}
+.dldesc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1.8rem;font-weight:300}
+.dlmeta{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:2rem}
+.dltag{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:.3rem;padding:.28rem .65rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px}
+.dtvc{color:var(--cyan);font-weight:600}.dtvv{color:#a78bfa;font-weight:600}
+
+/* Modals */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);z-index:2000;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.mbox{background:linear-gradient(135deg,#0c0c1c,#11112a);border:1px solid rgba(0,229,255,.14);border-radius:22px;padding:2.4rem;max-width:520px;width:92%;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 40px 100px rgba(0,229,255,.18);animation:min .4s cubic-bezier(.16,1,.3,1)}
+@keyframes min{from{opacity:0;transform:scale(.9)translateY(30px)}to{opacity:1;transform:none}}
+.mbox::-webkit-scrollbar{width:5px}
+.mbox::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:10px}
+.mclose{position:absolute;top:1.3rem;right:1.3rem;width:34px;height:34px;border:none;background:rgba(255,255,255,.06);border-radius:50%;color:var(--muted);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mclose:hover{background:var(--cyan);color:#000;transform:rotate(90deg)}
+.mtitle{font-family:inherit;font-size:1.5rem;font-weight:700;background:linear-gradient(110deg,var(--cyan),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.msub{color:var(--muted);font-size:.83rem;margin-bottom:1.6rem}
+.fg{margin-bottom:.88rem}
+.fg label{display:block;margin-bottom:.3rem;color:var(--text);font-weight:600;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{width:100%;padding:.62rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.87rem;font-family:inherit;outline:none}
+.fg select{cursor:auto;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2300e5ff' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;background-color:rgba(255,255,255,.04)}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--cyan);background:rgba(0,229,255,.06);box-shadow:0 0 0 3px rgba(0,229,255,.1)}
+.fg textarea{resize:vertical;min-height:76px}
+.fsub{width:100%;padding:.84rem 1.5rem;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;margin-top:.5rem;font-family:inherit;position:relative;overflow:hidden}
+.fsub:hover{transform:none;box-shadow:0 10px 35px rgba(0,229,255,.18)}
+.fsub:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:4rem 2rem 2rem;position:relative;z-index:2}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent)}
+.footer-inner{max-width:none;width:100%;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-brand p{color:var(--muted);font-size:.87rem;line-height:1.75;max-width:270px;font-weight:300;margin-top:.8rem}
+.footer-col h5{font-family:inherit;font-size:.82rem;font-weight:700;margin-bottom:1.2rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.65rem}
+.footer-col a{color:var(--muted);text-decoration:none;font-size:.84rem;transition:.25s;display:inline-block;cursor:pointer}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{max-width:none;width:100%;margin:2.5rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy,.footer-made{color:var(--muted);font-size:.78rem}
+.footer-made span{color:var(--cyan)}
+
+/* Responsive */
+@media(max-width:960px){
+  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr}
+  .pcard:first-child{border-right:none;border-bottom:1px solid var(--border)}
+  .stats-row{grid-template-columns:1fr}
+  nav{padding:1rem 1.5rem}
+  nav.scrolled{padding:.8rem 1.5rem}
+  .nav-links{gap:.9rem}
+  .nav-links li:nth-child(n+5){display:none}
+}
+@media(max-width:600px){
+  .nav-links li:nth-child(n+3){display:none}
+  .people-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-mesh">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-logo">
+    <img src="ketronlabwithoutbg.png" alt="Ketron Labs" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Ketron <span>Labs</span></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#" id="bugLink" class="nav-action">🐛 Report Bug</a></li>
+    <li><a href="#" id="featLink" class="nav-action">✨ Request Feature</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">✦ Software Innovation Studio · Made in India</div>
+  <h1 class="hero-title">
+    <span class="word" style="animation-delay:.1s">Tools&nbsp;</span><span class="word" style="animation-delay:.22s">built&nbsp;</span><span class="word" style="animation-delay:.34s">for</span><br>
+    <span class="word gword" style="animation-delay:.48s">Developers.</span>
+  </h1>
+  <p class="hero-sub">Ketron Labs builds lightweight, intelligent software — a modern code editor and a privacy-first browser — crafted for everyone who loves to create.</p>
+  <div class="hero-cta">
+    <a href="#products" class="btn btn-primary">Explore Products →</a>
+    <a href="#download" class="btn btn-ghost">Download Free</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- Products -->
+<section id="products">
+  <div class="container">
+    <p class="section-label rv">Our Products</p>
+    <h2 class="section-title rv d1">Two tools. One vision.</h2>
+    <p class="section-desc rv d2">Built from scratch with simplicity and power in mind.</p>
+
+    <div class="products-grid">
+      <div class="pcard rvl">
+        <span class="pbadge bc">💻 Code Editor</span>
+        <img src="ketron2.png" alt="Ketron Code Editor" class="plogo" onerror="this.style.display='none'">
+        <h3>Ketron Code Editor</h3>
+        <p>A lightweight, AI-powered IDE for Python, HTML, CSS, and JavaScript. Designed to make coding intuitive at every level.</p>
+        <div class="pfeats">
+          <div class="pfeat"><div class="fdot fdc"></div>Blazing fast — launches in seconds, runs on low-end hardware</div>
+          <div class="pfeat"><div class="fdot fdc"></div>AI error detection &amp; smart code suggestions as you type</div>
+          <div class="pfeat"><div class="fdot fdc"></div>Real-time local network collaboration with built-in chat</div>
+          <div class="pfeat"><div class="fdot fdc"></div>Deep Python, HTML, CSS &amp; JavaScript language support</div>
+          <div class="pfeat"><div class="fdot fdc"></div>Clean dark UI with syntax highlighting and custom themes</div>
+        </div>
+        <a href="#download" class="plink plc">Download Ketron Editor →</a>
+      </div>
+
+      <div class="pcard rvr">
+        <span class="pbadge bv">🌐 Browser</span>
+        <img src="no_bg.png" alt="Ovius Browser" class="plogo plovio" onerror="this.style.display='none'">
+        <h3>Ovius Browser</h3>
+        <p>A privacy-first, full-featured browser built on Qt WebEngine. Puts you in control with ad blocking, profiles, and custom search.</p>
+        <div class="pfeats">
+          <div class="pfeat"><div class="fdot fdv"></div>Built-in ad &amp; tracker blocker — browse without noise</div>
+          <div class="pfeat"><div class="fdot fdv"></div>Multi-profile support with guest &amp; incognito modes</div>
+          <div class="pfeat"><div class="fdot fdv"></div>Ovius Search with image results &amp; knowledge panels</div>
+          <div class="pfeat"><div class="fdot fdv"></div>Bookmarks, history, downloads &amp; full tab management</div>
+          <div class="pfeat"><div class="fdot fdv"></div>Pulse visual editor for file:// and localhost pages</div>
+        </div>
+        <a href="#download" class="plink plv">Download Ovius →</a>
+      </div>
+    </div>
+
+    <!-- Editor mock -->
+    <div class="editor-wrap rv d2">
+      <div class="editor-bar">
+        <div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div>
+        <span class="efname">main.py — Ketron Code Editor</span>
+        <span></span>
+      </div>
+      <div class="editor-body">
+        <div class="lnums"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div></div>
+        <div class="clines">
+          <div class="cl" style="animation-delay:.1s"><span class="cm"># Ketron Code Editor — AI-powered, lightweight IDE</span></div>
+          <div class="cl" style="animation-delay:.26s"><span class="kw">from</span> <span class="var">ketron</span> <span class="kw">import</span> <span class="fn">Editor</span>, <span class="fn">AIAssist</span>, <span class="fn">Collab</span></div>
+          <div class="cl" style="animation-delay:.42s"></div>
+          <div class="cl" style="animation-delay:.58s"><span class="fn">editor</span> <span class="op">=</span> <span class="fn">Editor</span><span class="op">(</span></div>
+          <div class="cl" style="animation-delay:.74s">    theme<span class="op">=</span><span class="str">"midnight_dark"</span>,</div>
+          <div class="cl" style="animation-delay:.9s">    ai<span class="op">=</span><span class="fn">AIAssist</span><span class="op">(</span>mode<span class="op">=</span><span class="str">"smart"</span><span class="op">)</span>,    <span class="cm"># catches errors live</span></div>
+          <div class="cl" style="animation-delay:1.06s">    collab<span class="op">=</span><span class="fn">Collab</span><span class="op">(</span>network<span class="op">=</span><span class="str">"local"</span><span class="op">)</span>,</div>
+          <div class="cl" style="animation-delay:1.22s">    languages<span class="op">=</span>[<span class="str">"python"</span>, <span class="str">"html"</span>, <span class="str">"css"</span>, <span class="str">"js"</span>]</div>
+          <div class="cl" style="animation-delay:1.38s"><span class="op">)</span></div>
+          <div class="cl" style="animation-delay:1.54s"><span class="fn">editor</span><span class="op">.</span><span class="fn">run</span><span class="op">()</span>    <span class="cm"># 🚀 Start coding!</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gdiv"></div>
+
+    <!-- Showcase -->
+    <section id="showcase">
+      <div class="container">
+        <p class="section-label rv">Showcase</p>
+        <h2 class="section-title rv d1">KC Editor and Ovius Browser in action.</h2>
+        <p class="section-desc rv d2">A live preview of the editor workspace and browser interface, built with HTML, CSS, and JavaScript.</p>
+
+        <div class="showcase-grid">
+          <div class="showcase-card rvl">
+            <div class="demo-header">
+              <div>
+                <span class="demo-badge">KC Editor</span>
+                <h3>Code workspace</h3>
+              </div>
+              <div class="demo-status">Live preview</div>
+            </div>
+            <div class="demo-window editor-window">
+              <div class="window-bar">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+                <span class="window-title">main.py</span>
+              </div>
+              <div class="tab-bar">
+                <div class="tab active">main.py</div>
+                <div class="tab">styles.css</div>
+                <div class="tab">index.html</div>
+              </div>
+              <div class="code-content">
+                <pre><code><span class="keyword">from</span> <span class="string">ketron</span> <span class="keyword">import</span> <span class="function">Editor</span>, <span class="function">AIAssist</span>
+
+<span class="comment"># Smart editing, linting, and live preview</span>
+
+<span class="variable">editor</span> = <span class="function">Editor</span>(
+  <span class="property">theme</span>=<span class="string">"midnight_dark"</span>,
+  <span class="property">files</span>=[<span class="string">"main.py"</span>, <span class="string">"index.html"</span>],
+  <span class="property">ai</span>=<span class="function">AIAssist</span>()
+)
+
+<span class="variable">editor</span>.<span class="function">run</span>()
+</code></pre>
+              </div>
+              <div class="editor-footer">
+                <span>Python · HTML · CSS · JS</span>
+                <span>Auto-save enabled</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="showcase-card rvr">
+            <div class="demo-header">
+              <div>
+                <span class="demo-badge violet">Ovius Browser</span>
+                <h3>Browser interface</h3>
+              </div>
+              <div class="demo-status">Private mode</div>
+            </div>
+            <div class="demo-window browser-window">
+              <div class="window-bar">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+                <span class="window-title">Ovius Browser</span>
+              </div>
+              <div class="browser-toolbar">
+                <span class="browser-tab active">Ovius Search</span>
+                <span class="browser-tab">Localhost</span>
+                <span class="browser-tab">Docs</span>
+              </div>
+              <div class="browser-content">
+                <div class="browser-address">https://oviussearch.com</div>
+                <div class="browser-card">
+                  <h4>Search smarter.</h4>
+                  <p>Private search, built-in tracker blocking, and fast page loads.</p>
+                </div>
+                <div class="browser-cards">
+                  <div class="browser-mini-card"><strong>Ad Block</strong><span>Enabled</span></div>
+                  <div class="browser-mini-card"><strong>Profiles</strong><span>3 active</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<div class="gdiv"></div>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <p class="section-label rv">About Ketron Labs</p>
+    <div class="about-grid">
+      <div class="rvl">
+        <h2 class="section-title">Building the future of developer tools.</h2>
+        <p class="section-desc" style="margin-bottom:0">Ketron Labs is a one-person innovation studio focused on making powerful software that feels simple. Every product is lightweight, thoughtful, and free.</p>
+        <div class="apts">
+          <div class="apt rv d1"><span class="apt-icon">🎯</span><div><h4>Mission</h4><p>To empower every developer with tools that are fast, intelligent, and delightfully easy to use.</p></div></div>
+          <div class="apt rv d2"><span class="apt-icon">🌟</span><div><h4>Vision</h4><p>To redefine coding through AI — making development intuitive, private, and accessible for everyone.</p></div></div>
+          <div class="apt rv d3"><span class="apt-icon">🚀</span><div><h4>Promise</h4><p>Fast. Reliable. Always evolving. Driven by innovation and simplicity.</p></div></div>
+        </div>
+      </div>
+      <div class="about-img rvr">
+        <img src="kc.png" alt="Ketron Code Editor" onerror="this.parentElement.innerHTML='<div class=aph><span style=font-size:3.5rem>💻</span><p>Ketron Code Editor</p></div>'">
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="sbox rv d1"><span class="snum">2</span><span class="slabel">Products Shipped</span></div>
+      <div class="sbox rv d2"><span class="snum">4+</span><span class="slabel">Languages Supported</span></div>
+      <div class="sbox rv d3"><span class="snum">100%</span><span class="slabel">Free &amp; Open to Use</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- Team -->
+<section id="team">
+  <div class="container">
+    <p class="section-label rv">The People</p>
+    <h2 class="section-title rv d1">Behind Ketron Labs</h2>
+    <p class="section-desc rv d2">Built by a young developer, guided by experienced mentors.</p>
+    <div class="people-grid">
+      <div class="person-card rv d1">
+        <img src="me.png" alt="Rithish S" class="pavatar" onerror="this.outerHTML='<div class=paph>👤</div>'">
+        <div class="pname">Rithish S</div>
+        <div class="prole">Founder &amp; Lead Developer</div>
+        <p class="pbio">A 15-year-old developer from India and founder of Ketron Labs. Driven by passion for coding, Rithish built both Ketron Code Editor and Ovius Browser to make programming lightweight, intuitive, and accessible for everyone.</p>
+        <div class="pquote">"To create tools that make coding effortless — especially for beginners."</div>
+      </div>
+      <div class="person-card rv d2">
+        <img src="Dr.jagathish.png" alt="Dr. Jagadish Kumar" class="pavatar" onerror="this.outerHTML='<div class=paph>🎓</div>'">
+        <div class="pname">Dr. Jagadish Kumar</div>
+        <div class="prole">Mentor · Assistant Professor · Coding Guide</div>
+        <p class="pbio">Assistant Professor at SRM University and dedicated coding guide at Immanuel Matriculation Higher Secondary School. With deep expertise in computer science, he nurtures young talent and shapes future developers.</p>
+        <div class="pquote">"True education is about lighting a fire, not filling a vessel."</div>
+      </div>
+      <div class="person-card rv d3">
+        <img src="Dr.Theo.png" alt="Dr. Theodore Immanuel" class="pavatar" onerror="this.outerHTML='<div class=paph>🏫</div>'">
+        <div class="pname">Dr. Theodore Immanuel</div>
+        <div class="prole">Chief Supporter · CEO · Educational Visionary</div>
+        <p class="pbio">CEO of Immanuel Matriculation Higher Secondary School. His unwavering support has been instrumental to Ketron Labs — giving students the freedom to explore and build remarkable things.</p>
+        <div class="pquote">"Education should not limit dreams but expand horizons."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<!-- Download -->
+<section id="download">
+  <div class="container">
+    <p class="section-label rv">Get Started</p>
+    <h2 class="section-title rv d1">Download for free.</h2>
+    <p class="section-desc rv d2">Both products are completely free. No accounts, no subscriptions.</p>
+
+    <div class="dl-cards">
+      <!-- Ketron Code Editor -->
+      <div class="dlcard dlc rvl">
+        <div class="dlh">
+          <img src="ketron2.png" alt="Ketron Code Editor" class="dl-klogo" onerror="this.outerHTML='<div class=&quot;dl-logo-ph dlph-c&quot;>💻</div>'">
+          <div class="dlinfo">
+            <h3>Ketron Code Editor</h3>
+            <div class="dlver dlver-c">v1.0.0 · Windows</div>
+          </div>
+        </div>
+        <p class="dldesc">Lightweight AI-powered IDE for Python, HTML, CSS and JavaScript. Runs on any PC — even low-end systems.</p>
+        <div class="dlmeta">
+          <span class="dltag">🖥️ <span class="dtvc">Windows 10/11</span></span>
+          <span class="dltag">📦 <span class="dtvc">.exe installer</span></span>
+          <span class="dltag">⚖️ ~42 MB</span>
+          <span class="dltag">✅ <span class="dtvc">Free</span></span>
+        </div>
+        <button class="btn btn-primary" onclick="dlKetron(this)">↓ &nbsp;Download Ketron Editor</button>
+      </div>
+
+      <!-- Ovius Browser -->
+      <div class="dlcard dlv rvr">
+        <div class="dlh">
+          <img src="no_bg.png" alt="Ovius Browser" class="dl-ologo" onerror="this.outerHTML='<div class=&quot;dl-logo-ph dlph-v&quot;>🌐</div>'">
+          <div class="dlinfo">
+            <h3>Ovius Browser</h3>
+            <div class="dlver dlver-v">v1.0.0 · Windows</div>
+          </div>
+        </div>
+        <p class="dldesc">Privacy-first browser with built-in ad blocking, multi-profile support, and the Ovius Search experience.</p>
+        <div class="dlmeta">
+          <span class="dltag">🖥️ <span class="dtvv">Windows 10/11</span></span>
+          <span class="dltag">📦 <span class="dtvv">.exe installer</span></span>
+          <span class="dltag">✅ <span class="dtvv">Free</span></span>
+        </div>
+        <button class="btn btn-violet" onclick="dlOvius(this)">↓ &nbsp;Download Ovius Browser</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <img src="ketronlabwithoutbg.png" alt="Ketron Labs" style="height:36px" onerror="this.style.display='none'">
+        <span class="nav-logo-text">Ketron <span>Labs</span></span>
+      </div>
+      <p>Building lightweight, intelligent software tools for developers at every level. Made in India.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="#products">Ketron Code Editor</a></li>
+        <li><a href="#products">Ovius Browser</a></li>
+        <li><a href="#download">Downloads</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="mailto:ketroncode@gmail.com">Contact</a></li>
+        <li><a href="#" id="bugLink2">Report a Bug</a></li>
+        <li><a href="#" id="featLink2">Request Feature</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Ketron Labs. All rights reserved.</span>
+    <span class="footer-made">Made with <span>♥</span> in India by Rithish S</span>
+  </div>
+</footer>
+
+<!-- Bug Modal -->
+<div class="modal-overlay" id="bugModal">
+  <div class="mbox">
+    <button class="mclose" onclick="closeM('bugModal')">&times;</button>
+    <div class="mtitle">🐛 Report a Bug</div>
+    <p class="msub">Help us improve by reporting any bugs you encounter</p>
+    <form id="bugForm">
+      <div class="fg"><label>Your Name *</label><input type="text" id="bugName" required placeholder="John Doe"></div>
+      <div class="fg"><label>Your Email *</label><input type="email" id="bugEmail" required placeholder="you@example.com"></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="bugPhone" placeholder="+91 98765 43210"></div>
+      <div class="fg"><label>Product *</label><select id="bugProduct" required><option value="">Select product</option><option>Ketron Code Editor</option><option>Ovius Browser</option></select></div>
+      <div class="fg"><label>Bug Title *</label><input type="text" id="bugTitle" required placeholder="Brief description of the bug"></div>
+      <div class="fg"><label>How did you discover it? *</label><select id="bugDiscovery" required><option value="">Select an option</option><option>During normal use</option><option>While testing</option><option>After specific action</option><option>Other</option></select></div>
+      <div class="fg"><label>Bug Description *</label><textarea id="bugDescription" required placeholder="Describe the bug in detail..."></textarea></div>
+      <div class="fg"><label>Steps to Reproduce *</label><textarea id="bugSteps" required placeholder="1. Open the app&#10;2. Click on...&#10;3. Notice that..."></textarea></div>
+      <div class="fg"><label>Suggested Solution (Optional)</label><textarea id="bugSolution" placeholder="Any fix ideas?"></textarea></div>
+      <button type="submit" class="fsub">Submit Bug Report</button>
+    </form>
+  </div>
+</div>
+
+<!-- Feature Modal -->
+<div class="modal-overlay" id="featureModal">
+  <div class="mbox">
+    <button class="mclose" onclick="closeM('featureModal')">&times;</button>
+    <div class="mtitle">✨ Request a Feature</div>
+    <p class="msub">Share your ideas to help us make Ketron even better</p>
+    <form id="featureForm">
+      <div class="fg"><label>Your Name *</label><input type="text" id="featureName" required placeholder="John Doe"></div>
+      <div class="fg"><label>Your Email *</label><input type="email" id="featureEmail" required placeholder="you@example.com"></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" id="featurePhone" placeholder="+91 98765 43210"></div>
+      <div class="fg"><label>Product *</label><select id="featureProduct" required><option value="">Select product</option><option>Ketron Code Editor</option><option>Ovius Browser</option></select></div>
+      <div class="fg"><label>Feature Title *</label><input type="text" id="featureTitle" required placeholder="Brief, descriptive title"></div>
+      <div class="fg"><label>Category *</label><select id="featureCategory" required><option value="">Select category</option><option>UI/UX Improvement</option><option>Performance</option><option>New Feature</option><option>Integration</option><option>Documentation</option><option>Other</option></select></div>
+      <div class="fg"><label>Priority *</label><select id="featurePriority" required><option value="">Select priority</option><option>Low — Nice to have</option><option>Medium — Would improve experience</option><option>High — Important for workflow</option><option>Critical — Blocking usage</option></select></div>
+      <div class="fg"><label>Feature Description *</label><textarea id="featureDescription" required placeholder="Describe the feature in detail..."></textarea></div>
+      <div class="fg"><label>Benefits &amp; Use Cases *</label><textarea id="featureBenefits" required placeholder="How would this help you and others?"></textarea></div>
+      <button type="submit" class="fsub">Submit Feature Request</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('QCeARRyCoWPUaW5_v');
+
+/* ── Modals ── */
+function openM(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden';}
+function closeM(id){document.getElementById(id).classList.remove('active');document.body.style.overflow='';}
+document.addEventListener('click',e=>{if(e.target.classList.contains('modal-overlay'))closeM(e.target.id);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('bugModal');closeM('featureModal');}});
+[['bugLink','bugLink2','bugModal'],['featLink','featLink2','featureModal']].forEach(([a,b,m])=>{
+  [a,b].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',e=>{e.preventDefault();openM(m);});});
+});
+
+/* ── Toast ── */
+function toast(ic,ti,ms){
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:24px;right:24px;background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#fff;padding:1rem 1.5rem;border-radius:14px;box-shadow:0 10px 40px rgba(0,229,255,.35);z-index:3000;font-family:inherit;max-width:370px;display:flex;align-items:center;gap:1rem;cursor:auto;opacity:0;transform:none;transition:none';
+  t.innerHTML=`<span style="font-size:1.8rem">${ic}</span><div><strong style="display:block;margin-bottom:.15rem">${ti}</strong><span style="font-size:.86rem;opacity:.9">${ms}</span></div>`;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='1';t.style.transform='translateY(0)';},10);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(10px)';setTimeout(()=>t.remove(),400);},4200);
+}
+
+/* ── Bug form ── */
+document.getElementById('bugForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.fsub'),orig=btn.textContent;
+  btn.textContent='Sending…';btn.disabled=true;
+  try{
+    await emailjs.send('service_ld12d5p','template_xj57lvv',{from_name:bugName.value,from_email:bugEmail.value,phone:bugPhone.value||'N/A',product:bugProduct.value,bug_title:bugTitle.value,discovery_method:bugDiscovery.value,bug_description:bugDescription.value,steps_to_reproduce:bugSteps.value,suggested_solution:bugSolution.value||'None',to_email:'ketroncode@gmail.com'});
+    closeM('bugModal');this.reset();toast('🐛','Bug Report Submitted!','Thanks! We\'ll review it soon.');
+  }catch(err){alert('Error sending. Email: ketroncode@gmail.com');}
+  finally{btn.textContent=orig;btn.disabled=false;}
+});
+
+/* ── Feature form ── */
+document.getElementById('featureForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.fsub'),orig=btn.textContent;
+  btn.textContent='Sending…';btn.disabled=true;
+  try{
+    await emailjs.send('service_ld12d5p','template_qvcwu39',{from_name:featureName.value,from_email:featureEmail.value,phone:featurePhone.value||'N/A',product:featureProduct.value,feature_title:featureTitle.value,category:featureCategory.value,priority:featurePriority.value,feature_description:featureDescription.value,benefits_use_cases:featureBenefits.value,to_email:'ketroncode@gmail.com'});
+    closeM('featureModal');this.reset();toast('✨','Feature Request Submitted!','Thanks! We\'ll review it soon.');
+  }catch(err){alert('Error sending. Email: ketroncode@gmail.com');}
+  finally{btn.textContent=orig;btn.disabled=false;}
+});
+
+/* ── Downloads ── */
+function dlKetron(btn){
+  const orig=btn.innerHTML; btn.innerHTML='⏳ &nbsp;Opening...'; btn.disabled=true;
+  const url = 'https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.O.O';
+  window.open(url, '_blank');
+  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;},1200);
+}
+function dlOvius(btn){
+  const orig=btn.innerHTML; btn.innerHTML='⏳ &nbsp;Opening...'; btn.disabled=true;
+  const url = 'https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.0.0';
+  window.open(url, '_blank');
+  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;},1200);
+}
+
+/* ── Showcase animation ── */
+(function(){
+  const lines=document.querySelectorAll('.code-content code span');
+  let current=0;
+  if(!lines.length) return;
+  setInterval(()=>{
+    lines.forEach((line,i)=>{line.style.opacity=i===current?1:.55});
+    current=(current+1)%lines.length;
+  },2400);
+})();
+
+</script>
+</body>
+</html>
