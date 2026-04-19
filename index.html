@@ -332,7 +332,7 @@ section{padding:7rem 2rem;position:relative;z-index:2}
 /* ── Footer ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2rem 2rem;position:relative;z-index:2}
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet2),transparent)}
-.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
 .footer-brand p{color:var(--muted);font-family:var(--ff-mono);font-size:.8rem;line-height:1.75;max-width:260px;margin-top:.8rem}
 .footer-col h5{font-family:var(--ff-mono);font-size:.7rem;font-weight:400;margin-bottom:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);opacity:.8}
 .footer-col ul{list-style:none}
@@ -342,10 +342,15 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 .footer-bottom{max-width:1300px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-copy,.footer-made{color:var(--muted);font-family:var(--ff-mono);font-size:.72rem}
 .footer-made span{color:var(--cyan)}
+.footer-social-link{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem .9rem;background:rgba(0,255,225,.02);border:1px solid rgba(0,255,225,.08);border-radius:3px;color:var(--muted);text-decoration:none;font-family:var(--ff-mono);font-size:.78rem;transition:.3s;margin-top:.3rem}
+.footer-social-link:hover{color:var(--cyan);border-color:rgba(0,255,225,.3);background:rgba(0,255,225,.06);box-shadow:0 0 14px rgba(0,255,225,.08);transform:translateX(3px)}
+.footer-social-link svg{flex-shrink:0;transition:.3s}
+.footer-social-link:hover svg{filter:drop-shadow(0 0 6px rgba(0,255,225,.5))}
 
 /* ── Responsive ── */
 @media(max-width:960px){
-  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr}
+  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
   .pcard:first-child{border-right:none;border-bottom:1px solid var(--border)}
   .stats-row{grid-template-columns:1fr}
   nav{padding:1rem 1.5rem}
@@ -714,6 +719,17 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
         <li><a href="#" id="bugLink2">Report a Bug</a></li>
         <li><a href="#" id="featLink2">Request Feature</a></li>
       </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a class="footer-social-link" href="https://www.instagram.com/ketronlabs/" target="_blank" rel="noopener noreferrer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+        </svg>
+        @ketronlabs
+      </a>
     </div>
   </div>
   <div class="footer-bottom">
