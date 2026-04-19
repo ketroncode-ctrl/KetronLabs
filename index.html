@@ -44,8 +44,11 @@
 }
 
 html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;cursor:crosshair}
-a,button{cursor:pointer}
+body{font-family:var(--ff-body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;cursor:none}
+*{cursor:none!important}
+
+/* ── Katana Cursor ── */
+#cur-canvas{position:fixed;inset:0;pointer-events:none;z-index:99999;}
 
 /* ── Grid Background ── */
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -332,7 +335,7 @@ section{padding:7rem 2rem;position:relative;z-index:2}
 /* ── Footer ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2rem 2rem;position:relative;z-index:2}
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet2),transparent)}
-.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
 .footer-brand p{color:var(--muted);font-family:var(--ff-mono);font-size:.8rem;line-height:1.75;max-width:260px;margin-top:.8rem}
 .footer-col h5{font-family:var(--ff-mono);font-size:.7rem;font-weight:400;margin-bottom:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);opacity:.8}
 .footer-col ul{list-style:none}
@@ -342,15 +345,10 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 .footer-bottom{max-width:1300px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .footer-copy,.footer-made{color:var(--muted);font-family:var(--ff-mono);font-size:.72rem}
 .footer-made span{color:var(--cyan)}
-.footer-social-link{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem .9rem;background:rgba(0,255,225,.02);border:1px solid rgba(0,255,225,.08);border-radius:3px;color:var(--muted);text-decoration:none;font-family:var(--ff-mono);font-size:.78rem;transition:.3s;margin-top:.3rem}
-.footer-social-link:hover{color:var(--cyan);border-color:rgba(0,255,225,.3);background:rgba(0,255,225,.06);box-shadow:0 0 14px rgba(0,255,225,.08);transform:translateX(3px)}
-.footer-social-link svg{flex-shrink:0;transition:.3s}
-.footer-social-link:hover svg{filter:drop-shadow(0 0 6px rgba(0,255,225,.5))}
 
 /* ── Responsive ── */
 @media(max-width:960px){
-  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr 1fr}
-  .footer-brand{grid-column:1/-1}
+  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr}
   .pcard:first-child{border-right:none;border-bottom:1px solid var(--border)}
   .stats-row{grid-template-columns:1fr}
   nav{padding:1rem 1.5rem}
@@ -368,6 +366,9 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
 </style>
 </head>
 <body>
+
+<!-- Custom Cursor Canvas -->
+<canvas id="cur-canvas"></canvas>
 
 <div class="grid-bg"></div>
 <div class="bg-mesh">
@@ -720,17 +721,6 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;back
         <li><a href="#" id="featLink2">Request Feature</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h5>Connect</h5>
-      <a class="footer-social-link" href="https://www.instagram.com/ketronlabs/" target="_blank" rel="noopener noreferrer">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-          <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-          <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
-        </svg>
-        @ketronlabs
-      </a>
-    </div>
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Ketron Labs. All rights reserved.</span>
@@ -913,7 +903,273 @@ function dlOvius(btn){
   setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;},1200);
 }
 
-/* ── Showcase code animation ── */
+/* ── Katana Cursor ── */
+(function(){
+  const canvas = document.getElementById('cur-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let mx = -400, my = -400;
+  let px = -400, py = -400; // previous position
+  let bx = -400, by = -400; // blade pos (lerped)
+  let angle  = 0;
+  let targetAngle = 0;
+  let speed  = 0;
+  let isHover = false;
+  let isClick = false;
+
+  // Ink stroke trail
+  const STROKES = 28;
+  const strokes = Array.from({length: STROKES}, () => ({
+    x: -400, y: -400, angle: 0, life: 0, len: 0, width: 0
+  }));
+  let strokeIdx = 0;
+  let strokeTimer = 0;
+
+  // Kanji / rune sparks on click
+  const GLYPHS = ['斬','刃','光','力','速','剣','∆','//','{}','</>','01','λ'];
+  const glyphParticles = [];
+
+  function lerp(a, b, t){ return a + (b - a) * t; }
+  function angleLerp(a, b, t){
+    let d = b - a;
+    while(d > Math.PI)  d -= Math.PI * 2;
+    while(d < -Math.PI) d += Math.PI * 2;
+    return a + d * t;
+  }
+
+  document.addEventListener('mousemove', e => {
+    px = mx; py = my;
+    mx = e.clientX; my = e.clientY;
+    const dx = mx - px, dy = my - py;
+    speed = Math.sqrt(dx*dx + dy*dy);
+    if(speed > 1.5) targetAngle = Math.atan2(dy, dx);
+  });
+
+  // Hover
+  const hoverSel = 'a,button,.btn,.pcard,.dlcard,.person-card,.apt,.nav-links a';
+  document.querySelectorAll(hoverSel).forEach(el => {
+    el.addEventListener('mouseenter', () => isHover = true);
+    el.addEventListener('mouseleave', () => isHover = false);
+  });
+
+  // Click — glyph burst
+  document.addEventListener('mousedown', () => {
+    isClick = true;
+    for(let i = 0; i < 10; i++){
+      const ang = Math.random() * Math.PI * 2;
+      const spd = 2 + Math.random() * 5;
+      glyphParticles.push({
+        x: bx, y: by,
+        vx: Math.cos(ang) * spd,
+        vy: Math.sin(ang) * spd - 1,
+        life: 1,
+        decay: 0.025 + Math.random() * 0.03,
+        glyph: GLYPHS[Math.floor(Math.random() * GLYPHS.length)],
+        size: 11 + Math.random() * 10,
+        rot: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.15,
+        color: Math.random() > 0.5 ? '0,255,225' : '255,255,255'
+      });
+    }
+    // Big slash arc
+    slashArcs.push({ x: bx, y: by, angle: angle, life: 1, radius: 5 });
+  });
+  document.addEventListener('mouseup', () => isClick = false);
+
+  // Slash arc (click effect)
+  const slashArcs = [];
+
+  let t = 0;
+
+  function drawBlade(x, y, ang, hov, spd){
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(ang);
+
+    const bladeLen = hov ? 38 : Math.min(22 + spd * 0.8, 42);
+    const bladeW   = hov ? 2.5 : 1.8;
+    const shimmer  = 0.7 + 0.3 * Math.sin(t * 6);
+
+    // Glow behind blade
+    ctx.shadowColor = '#00ffe1';
+    ctx.shadowBlur  = hov ? 18 : 10;
+
+    // Main blade body — tapered
+    const grad = ctx.createLinearGradient(-bladeLen * 0.1, 0, bladeLen, 0);
+    grad.addColorStop(0,   `rgba(0,255,225,0)`);
+    grad.addColorStop(0.15,'rgba(0,255,225,${shimmer})'
+      .replace('${shimmer}', shimmer.toFixed(2)));
+    grad.addColorStop(0.5, `rgba(200,255,250,${shimmer})`);
+    grad.addColorStop(0.85,`rgba(0,255,225,0.9)`);
+    grad.addColorStop(1,   `rgba(255,255,255,1)`);
+
+    ctx.beginPath();
+    ctx.moveTo(-bladeLen * 0.12, 0);
+    ctx.lineTo(bladeLen * 0.7,  -bladeW);
+    ctx.lineTo(bladeLen,          0);
+    ctx.lineTo(bladeLen * 0.7,   bladeW);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Edge highlight — razor line
+    ctx.beginPath();
+    ctx.moveTo(bladeLen * 0.2, -bladeW * 0.3);
+    ctx.lineTo(bladeLen,        0);
+    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+    ctx.lineWidth   = 0.6;
+    ctx.shadowBlur  = 4;
+    ctx.stroke();
+
+    // Guard (tsuba) — small crosspiece
+    ctx.beginPath();
+    ctx.rect(-bladeLen * 0.12 - 2, -5, 4, 10);
+    const guardGrad = ctx.createLinearGradient(0, -5, 0, 5);
+    guardGrad.addColorStop(0,   'rgba(0,255,225,0.2)');
+    guardGrad.addColorStop(0.5, 'rgba(0,255,225,0.7)');
+    guardGrad.addColorStop(1,   'rgba(0,255,225,0.2)');
+    ctx.fillStyle = guardGrad;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+
+    // Handle — wrapped grip
+    for(let i = 0; i < 4; i++){
+      const hx = -bladeLen * 0.12 - 8 - i * 5;
+      ctx.beginPath();
+      ctx.moveTo(hx, -3);
+      ctx.lineTo(hx + 2, -3);
+      ctx.lineTo(hx + 2,  3);
+      ctx.lineTo(hx,  3);
+      ctx.fillStyle = i % 2 === 0
+        ? 'rgba(0,255,225,0.25)'
+        : 'rgba(0,255,225,0.12)';
+      ctx.shadowBlur = 0;
+      ctx.fill();
+    }
+
+    // Tip sparkle
+    if(hov || spd > 8){
+      ctx.beginPath();
+      ctx.arc(bladeLen, 0, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowBlur  = 20;
+      ctx.shadowColor = '#00ffe1';
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  function drawInkStrokes(){
+    strokes.forEach(s => {
+      if(s.life <= 0) return;
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      ctx.rotate(s.angle);
+      const a = s.life * 0.45;
+      const g = ctx.createLinearGradient(0, 0, s.len, 0);
+      g.addColorStop(0,   `rgba(0,255,225,${a})`);
+      g.addColorStop(0.6, `rgba(0,255,225,${a * 0.4})`);
+      g.addColorStop(1,   `rgba(0,255,225,0)`);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(s.len, 0);
+      ctx.strokeStyle = g;
+      ctx.lineWidth   = s.width * s.life;
+      ctx.lineCap     = 'round';
+      ctx.shadowColor = '#00ffe1';
+      ctx.shadowBlur  = 4 * s.life;
+      ctx.stroke();
+      ctx.restore();
+      s.life -= 0.035;
+    });
+  }
+
+  function drawSlashArcs(){
+    for(let i = slashArcs.length - 1; i >= 0; i--){
+      const s = slashArcs[i];
+      ctx.save();
+      ctx.translate(s.x, s.y);
+      const r = s.radius + (1 - s.life) * 55;
+      const sweep = Math.PI * 0.7;
+      ctx.beginPath();
+      ctx.arc(0, 0, r, s.angle - sweep / 2, s.angle + sweep / 2);
+      ctx.strokeStyle = `rgba(0,255,225,${s.life * 0.6})`;
+      ctx.lineWidth   = s.life * 3;
+      ctx.shadowColor = '#00ffe1';
+      ctx.shadowBlur  = 12 * s.life;
+      ctx.stroke();
+      ctx.restore();
+      s.life -= 0.04;
+      if(s.life <= 0) slashArcs.splice(i, 1);
+    }
+  }
+
+  function drawGlyphs(){
+    for(let i = glyphParticles.length - 1; i >= 0; i--){
+      const g = glyphParticles[i];
+      g.x  += g.vx;
+      g.y  += g.vy;
+      g.vy += 0.08;
+      g.rot += g.rotSpeed;
+      g.life -= g.decay;
+      if(g.life <= 0){ glyphParticles.splice(i, 1); continue; }
+      ctx.save();
+      ctx.translate(g.x, g.y);
+      ctx.rotate(g.rot);
+      ctx.globalAlpha = g.life;
+      ctx.font        = `${g.size}px "Share Tech Mono", monospace`;
+      ctx.fillStyle   = `rgba(${g.color},${g.life})`;
+      ctx.shadowColor = `rgba(${g.color},0.8)`;
+      ctx.shadowBlur  = 10;
+      ctx.textAlign   = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(g.glyph, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.016;
+
+    // Snap blade to mouse fast
+    bx = lerp(bx, mx, 0.35);
+    by = lerp(by, my, 0.35);
+
+    // Rotate smoothly toward movement direction
+    angle = angleLerp(angle, targetAngle, 0.18);
+
+    // Drop ink stroke
+    strokeTimer++;
+    if(strokeTimer > 2 && speed > 3){
+      strokeTimer = 0;
+      strokes[strokeIdx % STROKES] = {
+        x: bx, y: by,
+        angle: angle + Math.PI, // behind blade
+        life: 0.9,
+        len: Math.min(speed * 2.2, 55),
+        width: Math.min(speed * 0.25, 3)
+      };
+      strokeIdx++;
+    }
+
+    drawInkStrokes();
+    drawSlashArcs();
+    drawBlade(bx, by, angle, isHover, speed);
+    drawGlyphs();
+
+    // Decay speed
+    speed = lerp(speed, 0, 0.12);
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
 (function(){
   const lines=document.querySelectorAll('.code-content code span');
   let current=0;
