@@ -1,767 +1,3500 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ketron Labs — Ketron Code Editor &amp; Ovius Browser | Free Developer Tools</title>
-<meta name="description" content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — an AI-powered IDE for Python, HTML, CSS &amp; JS — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
-<meta name="keywords" content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron, code editor for beginners">
-<meta name="author" content="Rithish S — Ketron Labs">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#00ffe1">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ketron Labs — Free Developer Tools | Ketron Code Editor &amp; Ovius Browser">
-<meta property="og:description" content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers at every level. Made in India by Ketron Labs.">
-<meta property="og:image" content="favicon.png">
-<meta property="og:url" content="https://ketronlabs.com">
-<meta property="og:site_name" content="Ketron Labs">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ketron Labs — Ketron Code Editor &amp; Ovius Browser">
-<meta name="twitter:description" content="Free, lightweight developer tools — AI-powered code editor and privacy-first browser. Download now from Ketron Labs.">
-<meta name="twitter:image" content="favicon.png">
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#020408;--bg2:#040810;--bg3:#06101a;
-  --cyan:#00ffe1;--cyan2:#00bcd4;--violet:#7c3aed;--violet2:#a855f7;
-  --green:#39ff14;--amber:#ffb300;
-  --cyan-dim:rgba(0,255,225,.08);--violet-dim:rgba(124,58,237,.1);
-  --border:rgba(0,255,225,.1);--border2:rgba(0,255,225,.05);
-  --text:#e0f7fa;--muted:#4a7a8a;--card:rgba(0,255,225,.02);
-  --glow:0 0 20px rgba(0,255,225,.15);
-  --ff-display:'Orbitron',monospace;
-  --ff-body:'Rajdhani',sans-serif;
-  --ff-mono:'Share Tech Mono',monospace;
-}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
-.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(0,255,225,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,225,.03) 1px,transparent 1px);
-  background-size:40px 40px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 20%,transparent 100%)}
-body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);
-  animation:scanMove 8s linear infinite;opacity:.4}
-@keyframes scanMove{0%{background-position:0 0}100%{background-position:0 40px}}
-.bg-mesh{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(120px)}
-.orb1{width:800px;height:800px;background:radial-gradient(circle,rgba(0,255,225,.12),transparent);top:-300px;left:-200px}
-.orb2{width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.12),transparent);bottom:-200px;right:-200px}
-.orb3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,188,212,.06),transparent);top:40%;left:40%}
-body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.corner{position:absolute;width:24px;height:24px;pointer-events:none;z-index:10}
-.corner-tl{top:0;left:0;border-top:2px solid var(--cyan);border-left:2px solid var(--cyan)}
-.corner-tr{top:0;right:0;border-top:2px solid var(--cyan);border-right:2px solid var(--cyan)}
-.corner-bl{bottom:0;left:0;border-bottom:2px solid var(--cyan);border-left:2px solid var(--cyan)}
-.corner-br{bottom:0;right:0;border-bottom:2px solid var(--cyan);border-right:2px solid var(--cyan)}
-nav{position:fixed;top:0;width:100%;z-index:500;padding:1.1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;
-  background:rgba(2,4,8,.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:.4s}
-nav.scrolled{padding:.75rem 2.5rem;background:rgba(2,4,8,.95);box-shadow:0 1px 0 rgba(0,255,225,.08),0 4px 30px rgba(0,255,225,.04)}
-.nav-logo{display:flex;align-items:center;gap:.7rem}
-.nav-logo img{height:38px;width:auto;filter:drop-shadow(0 0 8px rgba(0,255,225,.3))}
-.nav-logo-text{font-family:var(--ff-display);font-weight:700;font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text)}
-.nav-logo-text span{color:var(--cyan)}
-.nav-status{display:flex;align-items:center;gap:.4rem;font-family:var(--ff-mono);font-size:.65rem;color:var(--cyan);opacity:.7;margin-left:.4rem}
-.nav-status::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:600;font-family:var(--ff-mono);letter-spacing:.06em;text-transform:uppercase;transition:.25s;position:relative;padding:.25rem 0}
-.nav-links a::before{content:'[';opacity:0;margin-right:2px;color:var(--cyan);transition:.2s}
-.nav-links a::after{content:']';opacity:0;margin-left:2px;color:var(--cyan);transition:.2s;display:inline}
-.nav-links a:hover{color:var(--cyan)}
-.nav-links a:hover::before,.nav-links a:hover::after{opacity:1}
-.nav-action{border:1px solid rgba(0,255,225,.25)!important;padding:.24rem .75rem!important;border-radius:3px;color:var(--cyan)!important;transition:.3s!important;background:rgba(0,255,225,.04)!important}
-.nav-action:hover{background:rgba(0,255,225,.12)!important;border-color:var(--cyan)!important;box-shadow:var(--glow)!important}
-.nav-action::before,.nav-action::after{display:none!important}
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:2}
-.hero-sys{font-family:var(--ff-mono);font-size:.7rem;color:var(--muted);letter-spacing:.12em;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;justify-content:center}
-.hero-sys::before{content:'▶';color:var(--cyan);font-size:.6rem}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.35rem 1.1rem;background:rgba(0,255,225,.05);border:1px solid rgba(0,255,225,.18);border-radius:2px;font-family:var(--ff-mono);font-size:.7rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:2rem;position:relative}
-.hero-badge::before,.hero-badge::after{content:'◆';font-size:.5rem;opacity:.5}
-.hero-title{font-family:var(--ff-display);font-size:clamp(2.2rem,5vw,4.4rem);font-weight:900;line-height:1.05;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1.4rem}
-.gword{color:var(--cyan);text-shadow:0 0 30px rgba(0,255,225,.4),0 0 60px rgba(0,255,225,.15);filter:drop-shadow(0 0 20px rgba(0,255,225,.3))}
-.type-cursor{display:inline-block;color:var(--cyan);font-weight:100;margin-left:2px;animation:cursorBlink .75s step-end infinite;text-shadow:0 0 14px var(--cyan)}
-@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin:0 auto 2.8rem;font-weight:400;line-height:1.8;font-family:var(--ff-mono)}
-.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--muted);font-family:var(--ff-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
-.scroll-line{width:1px;height:46px;background:linear-gradient(180deg,var(--cyan),transparent)}
-.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.82rem 1.8rem;border-radius:3px;font-size:.82rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:var(--ff-mono);position:relative;overflow:hidden;letter-spacing:.06em;text-transform:uppercase;transition:.3s}
-.btn::after{display:none}
-.btn-primary{background:transparent;color:var(--cyan);border:1px solid var(--cyan);transition:.3s}
-.btn-primary:hover{background:rgba(0,255,225,.1);box-shadow:0 0 20px rgba(0,255,225,.2),inset 0 0 20px rgba(0,255,225,.05)}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border2)}
-.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 15px rgba(0,255,225,.08)}
-.btn-violet{background:transparent;color:var(--violet2);border:1px solid rgba(168,85,247,.4)}
-.btn-violet:hover{background:rgba(124,58,237,.12);box-shadow:0 0 20px rgba(124,58,237,.2)}
-section{padding:7rem 2rem;position:relative;z-index:2}
-.container{max-width:1300px;margin:0 auto}
-.section-label{font-family:var(--ff-mono);font-size:.68rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem}
-.section-label::before{content:'//';opacity:.5}
-.section-title{font-family:var(--ff-display);font-size:clamp(1.5rem,3vw,2.4rem);font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1.15;margin-bottom:1rem}
-.section-desc{color:var(--muted);font-size:.95rem;font-weight:400;line-height:1.75;font-family:var(--ff-mono)}
-.rv{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.rvl{opacity:0;transform:translateX(-32px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.rvr{opacity:0;transform:translateX(32px);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.rvs{opacity:0;transform:scale(.94);transition:opacity .65s cubic-bezier(.16,1,.3,1),transform .65s cubic-bezier(.16,1,.3,1)}
-.vis{opacity:1!important;transform:none!important}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
-.gdiv{height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent);opacity:.2;position:relative;z-index:2}
-.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:4rem;background:var(--border);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
-.pcard{background:var(--bg2);padding:3.2rem;position:relative;overflow:hidden;transition:.5s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
-.pcard .corner{width:14px;height:14px}
-.pcard .corner-tl{top:14px;left:14px}.pcard .corner-tr{top:14px;right:14px}
-.pcard .corner-bl{bottom:14px;left:14px}.pcard .corner-br{bottom:14px;right:14px}
-.pcard::before{content:'';position:absolute;inset:0;opacity:0;transition:.5s}
-.pcard:first-child::before{background:radial-gradient(ellipse at 20% 20%,rgba(0,255,225,.07),transparent 65%)}
-.pcard:last-child::before{background:radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.1),transparent 65%)}
-.pcard:hover::before{opacity:1}
-.pcard:first-child{border-right:1px solid var(--border)}
-.pcard:hover{transform:translateY(-3px)}
-.pcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;opacity:0;transition:.5s;transform:scaleX(0);transform-origin:left}
-.pcard:first-child::after{background:linear-gradient(90deg,var(--cyan),transparent)}
-.pcard:last-child::after{background:linear-gradient(90deg,var(--violet2),transparent)}
-.pcard:hover::after{opacity:1;transform:scaleX(1)}
-.pbadge{display:inline-flex;align-items:center;gap:.4rem;padding:.28rem .8rem;border-radius:2px;font-family:var(--ff-mono);font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.4rem;width:fit-content}
-.bc{background:rgba(0,255,225,.06);color:var(--cyan);border:1px solid rgba(0,255,225,.2)}
-.bv{background:var(--violet-dim);color:var(--violet2);border:1px solid rgba(124,58,237,.25)}
-.plogo{height:48px;width:auto;margin-bottom:1.4rem;object-fit:contain;transition:.45s;filter:drop-shadow(0 4px 12px rgba(0,255,225,.2))}
-.plovio{filter:drop-shadow(0 4px 12px rgba(124,58,237,.3))}
-.pcard:hover .plogo{transform:scale(1.07);filter:drop-shadow(0 8px 22px rgba(0,255,225,.5))}
-.pcard:hover .plovio{filter:drop-shadow(0 8px 22px rgba(124,58,237,.6))}
-.pcard h3{font-family:var(--ff-display);font-size:1.25rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem}
-.pcard p{color:var(--muted);line-height:1.75;font-size:.9rem;margin-bottom:1.8rem;font-family:var(--ff-mono)}
-.pfeats{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;flex:1}
-.pfeat{display:flex;align-items:center;gap:.7rem;font-family:var(--ff-mono);font-size:.8rem;color:var(--muted);transition:.3s;padding:.12rem 0}
-.pfeat:hover{color:var(--text);transform:translateX(4px)}
-.pfeat::before{content:'>';font-size:.7rem;flex-shrink:0}
-.fdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.fdc{background:var(--cyan);box-shadow:0 0 6px var(--cyan)}
-.fdv{background:var(--violet2);box-shadow:0 0 6px var(--violet2)}
-.plink{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--ff-mono);font-size:.8rem;font-weight:400;text-decoration:none;transition:.3s;margin-top:.5rem;letter-spacing:.06em}
-.plc{color:var(--cyan)}.plc:hover{gap:.9rem;text-shadow:0 0 10px var(--cyan)}
-.plv{color:var(--violet2)}.plv:hover{gap:.9rem;text-shadow:0 0 10px var(--violet2)}
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:4px;overflow:hidden;margin-top:4rem;border:1px solid var(--border)}
-.sbox{background:var(--bg2);padding:2.6rem;text-align:center;position:relative;overflow:hidden;transition:.4s}
-.sbox::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:.4s}
-.sbox:hover::after{transform:scaleX(1)}
-.sbox:hover{background:var(--bg3)}
-.snum{font-family:var(--ff-display);font-size:3rem;font-weight:900;color:var(--cyan);text-shadow:0 0 20px rgba(0,255,225,.35);display:block;margin-bottom:.4rem;line-height:1;letter-spacing:.05em}
-.slabel{color:var(--muted);font-family:var(--ff-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
-.editor-wrap{margin-top:5rem;border-radius:4px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(0,255,225,.04),0 0 60px rgba(0,255,225,.04)}
-.editor-bar{background:#030810;padding:.85rem 1.2rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border)}
-.dots{display:flex;gap:.45rem}
-.dot{width:11px;height:11px;border-radius:50%}
-.dr{background:#ff5f57}.dy{background:#febc2e}.dg{background:#28c840}
-.efname{color:var(--muted);font-size:.78rem;font-family:var(--ff-mono);flex:1;text-align:center;letter-spacing:.06em}
-.editor-body{background:#020610;padding:1.6rem 1.8rem 2rem 0;display:flex;overflow-x:auto}
-.lnums{padding:0 1rem;display:flex;flex-direction:column;color:#1a2a3a;font-family:var(--ff-mono);font-size:.84rem;user-select:none;min-width:3rem;text-align:right;line-height:1.95}
-.clines{flex:1}
-.cl{font-family:var(--ff-mono);font-size:.84rem;line-height:1.95;white-space:pre;opacity:0;animation:lineIn .3s forwards}
-@keyframes lineIn{to{opacity:1}}
-.kw{color:#c678dd}.fn{color:#61afef}.str{color:#98c379}.cm{color:#3d4a60;font-style:italic}.op{color:#56b6c2}.var{color:#e5c07b}
-.showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
-.showcase-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.5rem;overflow:hidden;position:relative}
-.showcase-card .corner{width:12px;height:12px}
-.showcase-card .corner-tl{top:8px;left:8px}.showcase-card .corner-tr{top:8px;right:8px}
-.showcase-card .corner-bl{bottom:8px;left:8px}.showcase-card .corner-br{bottom:8px;right:8px}
-.demo-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.2rem}
-.demo-badge{display:inline-flex;align-items:center;gap:.5rem;border-radius:2px;padding:.28rem .75rem;font-family:var(--ff-mono);font-size:.68rem;font-weight:400;text-transform:uppercase;letter-spacing:.1em;background:rgba(0,255,225,.07);color:var(--cyan);border:1px solid rgba(0,255,225,.15)}
-.demo-badge.violet{background:rgba(124,58,237,.08);color:var(--violet2);border-color:rgba(124,58,237,.2)}
-.demo-header h3{font-family:var(--ff-display);font-size:1.1rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:.12rem 0 0}
-.demo-status{color:var(--muted);font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.08em}
-.demo-window{border-radius:4px;overflow:hidden;background:#05060f;border:1px solid rgba(0,255,225,.08);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.window-bar{display:flex;align-items:center;gap:.65rem;padding:.85rem 1rem;background:#030810;border-bottom:1px solid rgba(0,255,225,.06)}
-.window-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
-.window-dot.red{background:#ff5f57}.window-dot.yellow{background:#f6c84c}.window-dot.green{background:#28c840}
-.window-title{color:#7a9db0;font-family:var(--ff-mono);font-size:.8rem;margin-left:.5rem;letter-spacing:.06em}
-.tab-bar{display:flex;gap:.5rem;padding:.8rem 1rem;background:#040911;border-bottom:1px solid rgba(0,255,225,.05)}
-.tab{padding:.45rem .9rem;border-radius:2px;background:rgba(255,255,255,.02);color:var(--muted);font-family:var(--ff-mono);font-size:.75rem}
-.tab.active{background:rgba(0,255,225,.08);color:var(--cyan);border:1px solid rgba(0,255,225,.15)}
-.code-content{padding:1rem 1.1rem;background:#030911;overflow-x:auto;min-height:200px}
-.code-content pre{margin:0;font-family:var(--ff-mono);font-size:.8rem;line-height:1.8;color:#d8dee9}
-.code-content .keyword{color:#7dd3fc}.code-content .function{color:#93c5fd}.code-content .variable{color:#facc15}
-.code-content .property{color:#38bdf8}.code-content .string{color:#34d399}.code-content .comment{color:#4a6070;font-style:italic}
-.editor-footer{display:flex;justify-content:space-between;padding:.85rem 1.1rem;background:#040911;color:var(--muted);font-family:var(--ff-mono);font-size:.72rem;border-top:1px solid rgba(0,255,225,.05)}
-.browser-window .browser-toolbar{display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem;background:#040911;border-bottom:1px solid rgba(0,255,225,.05)}
-.browser-tab{padding:.5rem .9rem;border-radius:2px;background:rgba(255,255,255,.02);color:var(--muted);font-family:var(--ff-mono);font-size:.75rem}
-.browser-tab.active{background:rgba(124,58,237,.1);color:var(--violet2);border:1px solid rgba(124,58,237,.2)}
-.browser-content{padding:1rem 1rem 1.2rem;background:#04050f}
-.browser-address{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,255,225,.1);border-radius:2px;color:#e2e8f0;padding:.7rem 1rem;font-family:var(--ff-mono);font-size:.8rem;margin-bottom:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.browser-card{padding:1.1rem;background:rgba(255,255,255,.03);border-radius:4px;margin-bottom:.9rem;border:1px solid rgba(255,255,255,.05)}
-.browser-card h4{margin:0 0 .35rem;font-family:var(--ff-mono);font-size:.95rem;font-weight:400;color:var(--text)}
-.browser-card p{margin:0;color:var(--muted);line-height:1.65;font-family:var(--ff-mono);font-size:.8rem}
-.browser-cards{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.browser-mini-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:.75rem .9rem;display:flex;justify-content:space-between;align-items:center;font-family:var(--ff-mono);font-size:.8rem;color:#e2e8f0}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:4.5rem}
-.apts{display:flex;flex-direction:column;gap:.9rem;margin-top:2rem}
-.apt{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.3rem;background:var(--card);border:1px solid var(--border2);border-radius:3px;transition:.4s;position:relative;overflow:hidden}
-.apt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--violet));transform:scaleY(0);transition:.4s;transform-origin:top}
-.apt:hover::before{transform:scaleY(1)}
-.apt:hover{border-color:rgba(0,255,225,.2);background:rgba(0,255,225,.025)}
-.apt-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
-.apt h4{font-family:var(--ff-mono);font-size:.8rem;font-weight:400;margin-bottom:.2rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase}
-.apt p{color:var(--muted);font-family:var(--ff-mono);font-size:.82rem;line-height:1.65;margin:0}
-.about-img img{width:100%;border-radius:4px;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(0,255,225,.04)}
-.aph{width:100%;height:340px;background:linear-gradient(135deg,var(--cyan-dim),var(--violet-dim));border:1px dashed var(--border);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);gap:.8rem;font-family:var(--ff-mono);font-size:.8rem}
-.people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:4rem}
-.person-card{background:var(--card);border:1px solid var(--border2);border-radius:3px;padding:2.2rem;transition:.5s;position:relative;overflow:hidden}
-.person-card .corner{width:12px;height:12px}
-.person-card .corner-tl{top:10px;left:10px}.person-card .corner-tr{top:10px;right:10px}
-.person-card .corner-bl{bottom:10px;left:10px}.person-card .corner-br{bottom:10px;right:10px}
-.person-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,255,225,.05),transparent 60%);opacity:0;transition:.5s}
-.person-card:hover::before{opacity:1}
-.person-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transform:scaleX(0);transition:.5s;transform-origin:center}
-.person-card:hover::after{transform:scaleX(1)}
-.person-card:hover{border-color:rgba(0,255,225,.2);box-shadow:0 20px 40px rgba(0,255,225,.04)}
-.pavatar{width:68px;height:68px;border-radius:3px;object-fit:cover;border:1px solid var(--border);margin-bottom:1.2rem;filter:grayscale(.3)}
-.person-card:hover .pavatar{border-color:var(--cyan);box-shadow:0 0 16px rgba(0,255,225,.2);filter:grayscale(0)}
-.paph{width:68px;height:68px;border-radius:3px;background:linear-gradient(135deg,var(--cyan-dim),var(--violet-dim));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem}
-.pname{font-family:var(--ff-display);font-size:1rem;font-weight:700;margin-bottom:.2rem;letter-spacing:.08em;text-transform:uppercase}
-.prole{font-family:var(--ff-mono);font-size:.68rem;color:var(--cyan);margin-bottom:.9rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
-.pbio{color:var(--muted);font-family:var(--ff-mono);font-size:.8rem;line-height:1.7;margin-bottom:1rem}
-.pquote{padding:.8rem 1rem;background:rgba(0,255,225,.03);border-left:2px solid rgba(0,255,225,.3);color:var(--muted);font-family:var(--ff-mono);font-size:.76rem;font-style:italic;line-height:1.6}
-.dl-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
-.dlcard{background:var(--card);border:1px solid var(--border2);border-radius:3px;padding:2.6rem;transition:.5s;position:relative;overflow:hidden}
-.dlcard .corner{width:14px;height:14px}
-.dlcard .corner-tl{top:12px;left:12px}.dlcard .corner-tr{top:12px;right:12px}
-.dlcard .corner-bl{bottom:12px;left:12px}.dlcard .corner-br{bottom:12px;right:12px}
-.dlcard::before{content:'';position:absolute;top:-60%;right:-60%;width:260px;height:260px;border-radius:50%;opacity:0;transition:.6s}
-.dlc::before{background:radial-gradient(circle,rgba(0,255,225,.1),transparent)}
-.dlv::before{background:radial-gradient(circle,rgba(124,58,237,.12),transparent)}
-.dlcard:hover::before{opacity:1}
-.dlc:hover{border-color:rgba(0,255,225,.3);box-shadow:0 28px 65px rgba(0,255,225,.04),0 0 0 1px rgba(0,255,225,.06)}
-.dlv:hover{border-color:rgba(124,58,237,.3);box-shadow:0 28px 65px rgba(124,58,237,.04),0 0 0 1px rgba(124,58,237,.06)}
-.dlh{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.6rem}
-.dl-klogo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,255,225,.25))}
-.dl-ologo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(124,58,237,.3))}
-.dl-logo-ph{width:52px;height:52px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
-.dlph-c{background:rgba(0,255,225,.06);border:1px solid rgba(0,255,225,.15)}
-.dlph-v{background:var(--violet-dim);border:1px solid rgba(124,58,237,.2)}
-.dlinfo h3{font-family:var(--ff-display);font-size:1.15rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem}
-.dlver{font-family:var(--ff-mono);font-size:.7rem;font-weight:400;letter-spacing:.08em}
-.dlver-c{color:var(--cyan)}.dlver-v{color:var(--violet2)}
-.dldesc{color:var(--muted);font-family:var(--ff-mono);font-size:.84rem;line-height:1.7;margin-bottom:1.6rem}
-.dlmeta{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem}
-.dltag{font-family:var(--ff-mono);font-size:.68rem;color:var(--muted);display:flex;align-items:center;gap:.3rem;padding:.22rem .6rem;background:rgba(255,255,255,.03);border:1px solid var(--border2);border-radius:2px}
-.dtvc{color:var(--cyan)}.dtvv{color:var(--violet2)}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(14px);z-index:2000;justify-content:center;align-items:center}
-.modal-overlay.active{display:flex}
-.mbox{background:linear-gradient(135deg,#05080f,#080d1a);border:1px solid rgba(0,255,225,.15);border-radius:4px;padding:2.2rem;max-width:520px;width:92%;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 40px 100px rgba(0,255,225,.12);animation:min .4s cubic-bezier(.16,1,.3,1)}
-@keyframes min{from{opacity:0;transform:scale(.92)translateY(24px)}to{opacity:1;transform:none}}
-.mbox::-webkit-scrollbar{width:4px}
-.mbox::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px}
-.mclose{position:absolute;top:1.2rem;right:1.2rem;width:32px;height:32px;border:1px solid var(--border);background:rgba(0,255,225,.04);border-radius:2px;color:var(--muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;font-family:var(--ff-mono)}
-.mclose:hover{background:var(--cyan);color:#000;border-color:var(--cyan)}
-.mtitle{font-family:var(--ff-display);font-size:1.4rem;font-weight:800;color:var(--cyan);text-shadow:0 0 20px rgba(0,255,225,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
-.msub{color:var(--muted);font-family:var(--ff-mono);font-size:.8rem;margin-bottom:1.5rem}
-.fg{margin-bottom:.85rem}
-.fg label{display:block;margin-bottom:.28rem;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);opacity:.8}
-.fg input,.fg textarea,.fg select{width:100%;padding:.58rem .9rem;background:rgba(0,255,225,.02);border:1px solid var(--border2);border-radius:2px;color:var(--text);font-family:var(--ff-mono);font-size:.84rem;outline:none;transition:.3s}
-.fg select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2300ffe1' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;background-color:rgba(0,255,225,.02)}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--cyan);background:rgba(0,255,225,.04);box-shadow:0 0 0 2px rgba(0,255,225,.08)}
-.fg textarea{resize:vertical;min-height:72px}
-.fsub{width:100%;padding:.82rem 1.5rem;background:transparent;color:var(--cyan);border:1px solid var(--cyan);border-radius:2px;font-family:var(--ff-mono);font-size:.88rem;font-weight:400;cursor:pointer;margin-top:.5rem;letter-spacing:.1em;text-transform:uppercase;transition:.3s}
-.fsub:hover{background:rgba(0,255,225,.1);box-shadow:0 0 20px rgba(0,255,225,.15)}
-.fsub:disabled{opacity:.5;cursor:not-allowed}
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2rem 2rem;position:relative;z-index:2}
-footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet2),transparent)}
-.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
-.footer-brand p{color:var(--muted);font-family:var(--ff-mono);font-size:.8rem;line-height:1.75;max-width:260px;margin-top:.8rem}
-.footer-col h5{font-family:var(--ff-mono);font-size:.7rem;font-weight:400;margin-bottom:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);opacity:.8}
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:.55rem}
-.footer-col a{color:var(--muted);text-decoration:none;font-family:var(--ff-mono);font-size:.78rem;transition:.25s}
-.footer-col a:hover{color:var(--cyan)}
-.footer-bottom{max-width:1300px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-copy,.footer-made{color:var(--muted);font-family:var(--ff-mono);font-size:.72rem}
-.footer-made span{color:var(--cyan)}
-@media(max-width:960px){
-  .products-grid,.about-grid,.dl-cards,.footer-inner{grid-template-columns:1fr}
-  .pcard:first-child{border-right:none;border-bottom:1px solid var(--border)}
-  .stats-row{grid-template-columns:1fr}
-  nav{padding:1rem 1.5rem}
-  nav.scrolled{padding:.8rem 1.5rem}
-  .nav-links{gap:.8rem}
-  .nav-links li:nth-child(n+5){display:none}
-  .showcase-grid{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  .nav-links li:nth-child(n+3){display:none}
-  .people-grid{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;text-align:center}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Ketron Labs — Ketron Code Editor &amp; Ovius Browser | Free Developer Tools</title>
+  <meta name="description"
+    content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — an AI-powered IDE for Python, HTML, CSS &amp; JS — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
+  <meta name="keywords"
+    content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron, code editor for beginners">
+  <meta name="author" content="Rithish S — Ketron Labs">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#3B82F6">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ketron Labs — Free Developer Tools | Ketron Code Editor &amp; Ovius Browser">
+  <meta property="og:description"
+    content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers at every level. Made in India by Ketron Labs.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://ketronlabs.com">
+  <meta property="og:site_name" content="Ketron Labs">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ketron Labs — Ketron Code Editor &amp; Ovius Browser">
+  <meta name="twitter:description"
+    content="Free, lightweight developer tools — AI-powered code editor and privacy-first browser. Download now from Ketron Labs.">
+  <meta name="twitter:image" content="favicon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colors */
+      --bg: #000000;
+      --bg-secondary: #090909;
+      --card: #111111;
+      --border: #222222;
+      --border-glow: rgba(59, 130, 246, 0.15);
+      --text-primary: #FFFFFF;
+      --text-secondary: #B5B5B5;
+      --accent-blue: #3B82F6;
+      --accent-cyan: #00D9FF;
+      --glow-blue: 0 0 25px rgba(59, 130, 246, 0.35);
+      --glow-cyan: 0 0 25px rgba(0, 217, 255, 0.35);
+
+      /* Fonts */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* UI Sizes */
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a,
+    button {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── DECORATIVE BACKGROUNDS ── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      animation: gridShift 40s linear infinite;
+    }
+
+    @keyframes gridShift {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 60px 60px;
+      }
+    }
+
+    .aurora-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.08;
+      mix-blend-mode: screen;
+    }
+
+    .aurora-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+      top: -200px;
+      left: -200px;
+      animation: floatBlob1 25s ease-in-out infinite alternate;
+    }
+
+    .aurora-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      bottom: -150px;
+      right: -150px;
+      animation: floatBlob2 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBlob1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(150px, 100px) scale(1.2);
+      }
+    }
+
+    @keyframes floatBlob2 {
+      0% {
+        transform: translate(0, 0) scale(1.1);
+      }
+
+      100% {
+        transform: translate(-100px, -120px) scale(0.9);
+      }
+    }
+
+    /* ── CUSTOM INTERACTIVE CURSOR ── */
+    #custom-cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    #custom-cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0, 217, 255, 0.25);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, border-color 0.3s;
+    }
+
+    @media (pointer: coarse) {
+
+      #custom-cursor,
+      #custom-cursor-follower {
+        display: none !important;
+      }
+    }
+
+    /* ── SCROLL REVEAL CLASS ── */
+    .rv,
+    .rvl,
+    .rvr,
+    .rvs {
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .rv {
+      transform: translateY(30px);
+    }
+
+    .rvl {
+      transform: translateX(-40px);
+    }
+
+    .rvr {
+      transform: translateX(40px);
+    }
+
+    .rvs {
+      transform: scale(0.95);
+    }
+
+    .vis {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ── FLOATING NAVIGATION BAR ── */
+    nav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(9, 9, 9, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    nav.scrolled {
+      top: 12px;
+      padding: 10px 20px;
+      border-color: rgba(59, 130, 246, 0.25);
+      background: rgba(4, 4, 4, 0.85);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .nav-logo img {
+      height: 26px;
+      width: auto;
+      border-radius: 5px;
+      filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+    }
+
+    .nav-logo span {
+      color: var(--accent-cyan);
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      margin-left: 5px;
+    }
+
+    .nav-status::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: pulseGreen 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGreen {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a.active {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav-action {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+
+    .btn-nav-action.bug {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #F87171;
+    }
+
+    .btn-nav-action.bug:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #EF4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-nav-action.feature {
+      background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: var(--accent-cyan);
+    }
+
+    .btn-nav-action.feature:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent-blue);
+      box-shadow: var(--glow-blue);
+      color: #FFFFFF;
+    }
+
+    /* Mobile Nav Toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 24px;
+      justify-content: center;
+      background: none;
+      border: none;
+      z-index: 1002;
+    }
+
+    .nav-toggle span {
+      width: 100%;
+      height: 2px;
+      background: #FFFFFF;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ── GENERAL COMPONENT STYLES ── */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 120px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-label::before {
+      content: '//';
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      color: transparent;
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── BUTTON SYSTEMS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #2563EB;
+      box-shadow: 0 4px 25px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-cyan {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .btn-cyan:hover {
+      background: rgba(0, 217, 255, 0.08);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-purple {
+      background: transparent;
+      border: 1px solid #A855F7;
+      color: #C084FC;
+    }
+
+    .btn-purple:hover {
+      background: rgba(168, 85, 247, 0.08);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ── CONIC GRADIENT CARD BORDER ── */
+    .premium-card {
+      position: relative;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg,
+          transparent 30%,
+          var(--accent-blue) 45%,
+          var(--accent-cyan) 60%,
+          transparent 70%);
+      animation: rotateBorder 8s linear infinite;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .premium-card:hover {
+      border-color: transparent;
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .premium-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-content-wrap {
+      position: relative;
+      background: var(--card);
+      border-radius: 15px;
+      /* inset from premium-card's 16px */
+      width: calc(100%);
+      height: calc(100%);
+      z-index: 2;
+      padding: 40px;
+    }
+
+    @keyframes rotateBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── CINEMATIC HERO SECTION ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    .hero-canvas-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-system-status {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-system-status::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulseCyan 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseCyan {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.4);
+        opacity: 0.3;
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .gword {
+      color: transparent;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.2));
+    }
+
+    .type-cursor {
+      color: var(--accent-cyan);
+      font-weight: 100;
+      animation: cursorBlink 0.8s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 580px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* 3D Mockup Visual */
+    .hero-right-wrap {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .hero-showcase-wrapper {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.08);
+      animation: floatMockup 6s ease-in-out infinite;
+      transition: transform 0.1s ease;
+    }
+
+    @keyframes floatMockup {
+
+      0%,
+      100% {
+        transform: translateY(0) rotateX(1deg) rotateY(1deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotateX(-1deg) rotateY(-1deg);
+      }
+    }
+
+    .mockup-header {
+      background: #060606;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mockup-dot.red {
+      background: #EF4444;
+    }
+
+    .mockup-dot.yellow {
+      background: #F59E0B;
+    }
+
+    .mockup-dot.green {
+      background: #10B981;
+    }
+
+    .mockup-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+      text-align: center;
+      margin-right: 36px;
+      letter-spacing: 0.05em;
+    }
+
+    .mockup-body {
+      padding: 24px;
+      background: #020202;
+      min-height: 280px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #D8DEE9;
+    }
+
+    .mockup-body .kw {
+      color: #F472B6;
+    }
+
+    /* keyword */
+    .mockup-body .fn {
+      color: #60A5FA;
+    }
+
+    /* function */
+    .mockup-body .str {
+      color: #34D399;
+    }
+
+    /* string */
+    .mockup-body .var {
+      color: #FBBF24;
+    }
+
+    /* variable */
+    .mockup-body .comment {
+      color: #6B7280;
+      font-style: italic;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent-blue), transparent);
+    }
+
+    /* ── PRODUCT SHOWCASE SECTIONS ── */
+    .product-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .product-layout.reverse {
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-list {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .feature-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-blue);
+      flex-shrink: 0;
+    }
+
+    .feature-item.cyan .feature-icon-wrap {
+      background: rgba(0, 217, 255, 0.08);
+      border-color: rgba(0, 217, 255, 0.15);
+      color: var(--accent-cyan);
+    }
+
+    .feature-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .feature-text p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Product Showcase Card visual rendering */
+    .product-visual-panel {
+      perspective: 1000px;
+    }
+
+    .product-visual-wrap {
+      width: 100%;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-visual-wrap.glow-blue {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.08);
+    }
+
+    .product-visual-wrap.glow-cyan {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 217, 255, 0.08);
+    }
+
+    .product-visual-wrap .visual-content {
+      padding: 30px;
+    }
+
+    /* Workspace Simulator inside KC Editor */
+    .workspace-window {
+      background: #020202;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+    }
+
+    .workspace-tabs {
+      background: #060606;
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .workspace-tab {
+      padding: 10px 18px;
+      color: var(--text-secondary);
+      border-right: 1px solid var(--border);
+      background: #040404;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: default;
+    }
+
+    .workspace-tab.active {
+      color: var(--text-primary);
+      background: #020202;
+      border-top: 1px solid var(--accent-blue);
+    }
+
+    .workspace-code {
+      padding: 20px;
+      overflow-x: auto;
+      line-height: 1.8;
+      min-height: 200px;
+    }
+
+    /* Connect Collaboration Overlay Mock */
+    .collab-overlay {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(17, 17, 17, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      width: 220px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), var(--glow-cyan);
+      z-index: 10;
+      animation: floatCollab 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatCollab {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .collab-header {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .collab-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--text-primary);
+    }
+
+    .user-avatar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    /* Browser Shell mockup inside Ovius section */
+    .browser-window {
+      background: #020202;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .browser-toolbar {
+      background: #060606;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-address {
+      flex-grow: 1;
+      background: #0b0b0b;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .browser-view {
+      padding: 24px;
+      min-height: 200px;
+    }
+
+    .browser-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+    }
+
+    .browser-toggle-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .browser-status-pill {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+
+    .browser-status-pill strong {
+      color: var(--text-primary);
+    }
+
+    .browser-status-pill span {
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+    }
+
+    /* ── OVI MEMORY COMING SOON SECTION ── */
+    .ovi-memory-section {
+      background: linear-gradient(180deg, #000000 0%, #040404 100%);
+      overflow: hidden;
+    }
+
+    .om-logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .om-logo {
+      height: 72px;
+      width: auto;
+      filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+      animation: logoGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes logoGlow {
+      0% {
+        filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.3));
+      }
+
+      100% {
+        filter: drop-shadow(0 0 35px rgba(0, 217, 255, 0.5));
+      }
+    }
+
+    .coming-soon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #C084FC;
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      background: rgba(168, 85, 247, 0.08);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    /* Comparison grid */
+    .compare-container {
+      margin-top: 60px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .compare-card {
+      background: rgba(9, 9, 9, 0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      min-height: 320px;
+    }
+
+    .compare-card.premium-new {
+      background: rgba(168, 85, 247, 0.04);
+      border-color: rgba(168, 85, 247, 0.25);
+      box-shadow: 0 20px 50px rgba(168, 85, 247, 0.06);
+    }
+
+    .compare-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .premium-new .compare-title {
+      color: #D8B4FE;
+    }
+
+    .compare-title img {
+      height: 20px;
+      width: auto;
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .compare-list li {
+      font-size: 0.88rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .compare-list li span {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .compare-vs {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #000;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: bold;
+      color: var(--text-secondary);
+    }
+
+    /* Philosophy Card */
+    .philosophy-wrap {
+      margin-top: 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .philosophy-box {
+      max-width: 800px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      position: relative;
+    }
+
+    .philosophy-box p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .philosophy-quote {
+      font-family: var(--font-mono);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #A855F7;
+      border-left: 2px solid #A855F7;
+      padding-left: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Timeline Roadmap */
+    .roadmap-container {
+      margin-top: 80px;
+    }
+
+    .roadmap-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      position: relative;
+    }
+
+    .roadmap-line {
+      position: absolute;
+      top: 22px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(168, 85, 247, 0.3), rgba(0, 217, 255, 0.3));
+      z-index: 1;
+    }
+
+    .roadmap-step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .roadmap-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+      margin-bottom: 20px;
+      position: relative;
+      border: 2px solid #000;
+    }
+
+    .roadmap-step.active .roadmap-dot {
+      background: #A855F7;
+      box-shadow: 0 0 15px #A855F7;
+    }
+
+    .roadmap-step.next .roadmap-dot {
+      background: var(--accent-cyan);
+      box-shadow: 0 0 15px var(--accent-cyan);
+    }
+
+    .roadmap-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      width: 100%;
+      transition: border-color 0.3s;
+    }
+
+    .roadmap-step.active .roadmap-card {
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .roadmap-phase {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .active .roadmap-phase {
+      color: #C084FC;
+    }
+
+    .next .roadmap-phase {
+      color: var(--accent-cyan);
+    }
+
+    .roadmap-card h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .roadmap-card ul {
+      list-style: none;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .roadmap-card ul li {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .roadmap-card ul li::before {
+      content: '→';
+      color: var(--accent-cyan);
+    }
+
+    /* Notify Block */
+    .om-closing {
+      margin-top: 80px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.05) 0%, rgba(0, 0, 0, 0.8) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .om-closing-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .om-closing-title span {
+      background: linear-gradient(135deg, #C084FC 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .om-closing p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .om-closing-input-wrap {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+
+    .om-closing-input-wrap input {
+      flex-grow: 1;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .om-closing-input-wrap input:focus {
+      border-color: #A855F7;
+    }
+
+    /* ── ABOUT & STATS SECTION ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-cards-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-info-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .about-info-card:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .about-info-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .about-info-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .about-info-text p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .about-img-wrap {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Stats Grid Row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 60px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-box {
+      background: var(--bg-secondary);
+      padding: 30px;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .stat-box:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── TEAM SECTIONS ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .team-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .team-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-4px);
+    }
+
+    .team-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .team-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .team-avatar-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .team-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .team-avatar-ph {
+      font-size: 2rem;
+    }
+
+    .team-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 16px;
+    }
+
+    .team-bio {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .team-quote {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--text-secondary);
+      border-left: 2px solid var(--accent-blue);
+      padding-left: 12px;
+      line-height: 1.4;
+      background: rgba(255, 255, 255, 0.01);
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    /* ── DOWNLOADS SECTION ── */
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .download-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .download-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .download-card.editor-dl::after {
+      background: var(--accent-blue);
+    }
+
+    .download-card.browser-dl::after {
+      background: #A855F7;
+    }
+
+    .download-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .download-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .download-title-wrap h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .download-version {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      margin-top: 2px;
+    }
+
+    .editor-dl .download-version {
+      color: var(--accent-cyan);
+    }
+
+    .browser-dl .download-version {
+      color: #C084FC;
+    }
+
+    .download-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .download-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .download-tag {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── PREMIUM MODALS STYLING ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-box {
+      background: #090909;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 540px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-box::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .modal-box::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent-blue);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23B5B5B5' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* ── FOOTER STYLING ── */
+    footer {
+      background: #040404;
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand h4 span {
+      color: var(--accent-cyan);
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .footer-column h5 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-made-in span {
+      color: var(--accent-cyan);
+    }
+
+    /* ── TOAST NOTIFICATIONS ── */
+    .toast-notif {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #090909;
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3000;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), var(--glow-cyan);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-notif.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVENESS ── */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .hero-right-wrap {
+        order: -1;
+      }
+
+      .product-layout,
+      .product-layout.reverse {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .product-visual-panel {
+        order: -1;
+      }
+
+      .roadmap-timeline {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .roadmap-line {
+        display: none;
+      }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .compare-vs {
+        margin: 10px auto;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .download-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 20px;
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      /* Mobile Menu overlay state */
+      nav.mobile-active {
+        border-radius: var(--radius-lg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 24px;
+        background: #090909;
+      }
+
+      nav.mobile-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 16px;
+      }
+
+      nav.mobile-active .nav-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .philosophy-box {
+        padding: 30px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="grid-bg"></div>
-<div class="bg-mesh">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
-</div>
-
-<nav id="nav">
-  <div class="nav-logo">
-    <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
-    <span class="nav-logo-text">Ketron <span>Labs</span></span>
-    <span class="nav-status">ONLINE</span>
+  <!-- Background visual layers -->
+  <div class="grid-bg"></div>
+  <div class="aurora-container">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#products">Products</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#download">Download</a></li>
-    <li><a href="#" id="bugLink" class="nav-action">🐛 Bug</a></li>
-    <li><a href="#" id="featLink" class="nav-action">✨ Feature</a></li>
-  </ul>
-</nav>
 
-<section class="hero">
-  <div class="hero-sys">SYSTEM BOOT &nbsp;·&nbsp; KETRON_LABS v2.0 &nbsp;·&nbsp; INDIA</div>
-  <div class="hero-badge">✦ Software Innovation Studio · Made in India</div>
-  <h1 class="hero-title">
-    <span id="hero-static"></span><br>
-    <span class="gword" id="hero-typed"></span><span class="type-cursor">|</span>
-  </h1>
-  <p class="hero-sub">Ketron Labs builds lightweight, intelligent software — a modern code editor and a privacy-first browser — crafted for everyone who loves to create.</p>
-  <div class="hero-cta">
-    <a href="#products" class="btn btn-primary">▶ Explore Products</a>
-    <a href="#download" class="btn btn-ghost">↓ Download Free</a>
-  </div>
-  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
-</section>
+  <!-- Custom trailing cursor follower -->
+  <div id="custom-cursor"></div>
+  <div id="custom-cursor-follower"></div>
 
-<div class="gdiv"></div>
+  <!-- Floating Navigation Bar -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
+      Ketron <span>Labs</span>
+      <div class="nav-status">ONLINE</div>
+    </a>
 
-<section id="products">
-  <div class="container">
-    <p class="section-label rv">Our Products</p>
-    <h2 class="section-title rv d1">Two tools. One vision.</h2>
-    <p class="section-desc rv d2">Built from scratch with simplicity and power in mind.</p>
-    <div class="products-grid">
-      <div class="pcard rvl">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <span class="pbadge bc">💻 Code Editor</span>
-        <img src="ketron2.png" alt="Ketron Code Editor" class="plogo" onerror="this.style.display='none'">
-        <h3>Ketron Code Editor</h3>
-        <p>A lightweight, AI-powered IDE for Python, HTML, CSS, and JavaScript. Designed to make coding intuitive at every level.</p>
-        <div class="pfeats">
-          <div class="pfeat"><div class="fdot fdc"></div>Blazing fast — launches in seconds, runs on low-end hardware</div>
-          <div class="pfeat"><div class="fdot fdc"></div>AI error detection &amp; smart code suggestions as you type</div>
-          <div class="pfeat"><div class="fdot fdc"></div>Real-time local network collaboration with built-in chat</div>
-          <div class="pfeat"><div class="fdot fdc"></div>Deep Python, HTML, CSS &amp; JavaScript language support</div>
-          <div class="pfeat"><div class="fdot fdc"></div>Clean dark UI with syntax highlighting and custom themes</div>
-        </div>
-        <a href="#download" class="plink plc">Download Ketron Editor →</a>
-      </div>
-      <div class="pcard rvr">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <span class="pbadge bv">🌐 Browser</span>
-        <img src="no_bg.png" alt="Ovius Browser" class="plogo plovio" onerror="this.style.display='none'">
-        <h3>Ovius Browser</h3>
-        <p>A privacy-first, full-featured browser built on Qt WebEngine. Puts you in control with ad blocking, profiles, and custom search.</p>
-        <div class="pfeats">
-          <div class="pfeat"><div class="fdot fdv"></div>Built-in ad &amp; tracker blocker — browse without noise</div>
-          <div class="pfeat"><div class="fdot fdv"></div>Multi-profile support with guest &amp; incognito modes</div>
-          <div class="pfeat"><div class="fdot fdv"></div>Ovius Search with image results &amp; knowledge panels</div>
-          <div class="pfeat"><div class="fdot fdv"></div>Bookmarks, history, downloads &amp; full tab management</div>
-          <div class="pfeat"><div class="fdot fdv"></div>Pulse visual editor for file:// and localhost pages</div>
-        </div>
-        <a href="#download" class="plink plv">Download Ovius →</a>
-      </div>
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#ovi-memory">Ovi Memory</a></li>
+      <li><a href="#download">Download</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-nav-action bug" id="bugLink"> Bug</button>
+      <button class="btn-nav-action feature" id="featLink"> Feature</button>
     </div>
 
-    <div class="editor-wrap rv d2">
-      <div class="editor-bar">
-        <div class="dots"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div></div>
-        <span class="efname">main.py — Ketron Code Editor</span>
-        <span></span>
-      </div>
-      <div class="editor-body">
-        <div class="lnums"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div></div>
-        <div class="clines">
-          <div class="cl" style="animation-delay:.1s"><span class="cm"># Ketron Code Editor — AI-powered, lightweight IDE</span></div>
-          <div class="cl" style="animation-delay:.26s"><span class="kw">from</span> <span class="var">ketron</span> <span class="kw">import</span> <span class="fn">Editor</span>, <span class="fn">AIAssist</span>, <span class="fn">Collab</span></div>
-          <div class="cl" style="animation-delay:.42s"></div>
-          <div class="cl" style="animation-delay:.58s"><span class="fn">editor</span> <span class="op">=</span> <span class="fn">Editor</span><span class="op">(</span></div>
-          <div class="cl" style="animation-delay:.74s">    theme<span class="op">=</span><span class="str">"midnight_dark"</span>,</div>
-          <div class="cl" style="animation-delay:.9s">    ai<span class="op">=</span><span class="fn">AIAssist</span><span class="op">(</span>mode<span class="op">=</span><span class="str">"smart"</span><span class="op">)</span>,    <span class="cm"># catches errors live</span></div>
-          <div class="cl" style="animation-delay:1.06s">    collab<span class="op">=</span><span class="fn">Collab</span><span class="op">(</span>network<span class="op">=</span><span class="str">"local"</span><span class="op">)</span>,</div>
-          <div class="cl" style="animation-delay:1.22s">    languages<span class="op">=</span>[<span class="str">"python"</span>, <span class="str">"html"</span>, <span class="str">"css"</span>, <span class="str">"js"</span>]</div>
-          <div class="cl" style="animation-delay:1.38s"><span class="op">)</span></div>
-          <div class="cl" style="animation-delay:1.54s"><span class="fn">editor</span><span class="op">.</span><span class="fn">run</span><span class="op">()</span>    <span class="cm"># 🚀 Start coding!</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Cinematic Hero Section -->
+  <section class="hero">
+    <canvas class="hero-canvas-bg" id="hero-canvas"></canvas>
+
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left rv">
+          <div class="hero-system-status">SYSTEM BOOT · KETRON_LABS v2.0 · INDIA</div>
+          <h1 class="hero-title">
+            <span id="hero-static"></span><br>
+            <span class="gword" id="hero-typed"></span><span class="type-cursor">|</span>
+          </h1>
+          <p class="hero-subtitle">We build lightweight, highly-optimized developer tools and privacy-centric software
+            designed to streamline productivity without requiring high-end hardware.</p>
+          <div class="hero-ctas">
+            <a href="#products" class="btn btn-primary btn-magnetic">
+              Explore Products
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#download" class="btn btn-secondary">↓ Download Free</a>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="gdiv" style="margin-top:5rem"></div>
-
-    <section id="showcase" style="padding:4rem 0 0">
-      <div>
-        <p class="section-label rv">Showcase</p>
-        <h2 class="section-title rv d1">KC Editor and Ovius Browser in action.</h2>
-        <p class="section-desc rv d2">A live preview of the editor workspace and browser interface.</p>
-        <div class="showcase-grid">
-          <div class="showcase-card rvl">
-            <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-            <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-            <div class="demo-header">
-              <div><span class="demo-badge">KC Editor</span><h3>Code workspace</h3></div>
-              <div class="demo-status">// Live preview</div>
+        <div class="hero-right-wrap rv delay-2">
+          <div class="hero-showcase-wrapper" id="hero-showcase">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">ketron_connect.py</span>
             </div>
-            <div class="demo-window editor-window">
-              <div class="window-bar">
-                <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                <span class="window-title">main.py</span>
-              </div>
-              <div class="tab-bar">
-                <div class="tab active">main.py</div><div class="tab">styles.css</div><div class="tab">index.html</div>
-              </div>
-              <div class="code-content">
-                <pre><code><span class="keyword">from</span> <span class="string">ketron</span> <span class="keyword">import</span> <span class="function">Editor</span>, <span class="function">AIAssist</span>
-
-<span class="comment"># Smart editing, linting, and live preview</span>
-
-<span class="variable">editor</span> = <span class="function">Editor</span>(
-  <span class="property">theme</span>=<span class="string">"midnight_dark"</span>,
-  <span class="property">files</span>=[<span class="string">"main.py"</span>, <span class="string">"index.html"</span>],
-  <span class="property">ai</span>=<span class="function">AIAssist</span>()
-)
-
-<span class="variable">editor</span>.<span class="function">run</span>()
-</code></pre>
-              </div>
-              <div class="editor-footer"><span>Python · HTML · CSS · JS</span><span>Auto-save ON</span></div>
+            <div class="mockup-body" id="hero-mockup-code">
+              <!-- Autotyping text is injected here -->
             </div>
           </div>
-          <div class="showcase-card rvr">
-            <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-            <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-            <div class="demo-header">
-              <div><span class="demo-badge violet">Ovius Browser</span><h3>Browser interface</h3></div>
-              <div class="demo-status">// Private mode</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-indicator"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Products Section -->
+  <section id="products">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 80px;">
+        <div class="section-label rv" style="justify-content: center;">Our Products</div>
+        <h2 class="section-title rv delay-1">Build fast. <span>Browse private.</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">Two premium applications engineered from scratch to
+          bridge the gap between development and surfing.</p>
+      </div>
+
+      <!-- Product 1: KC Editor (Ketron Code Editor) -->
+      <div class="product-layout" style="margin-bottom: 120px;">
+        <div class="product-visual-panel rv lvr">
+          <div class="premium-card glow-blue">
+            <div class="card-content-wrap">
+              <div class="workspace-window">
+                <div class="workspace-tabs">
+                  <div class="workspace-tab active">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                    main.py
+                  </div>
+                  <div class="workspace-tab">index.html</div>
+                  <div class="workspace-tab">styles.css</div>
+                </div>
+                <div class="workspace-code" id="visual-editor-code">
+                  <!-- Coding lines anim -->
+                </div>
+              </div>
+
+              <!-- KC Connect overlay simulator -->
+              <div class="collab-overlay">
+                <div class="collab-header">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                  KC Connect
+                </div>
+                <div class="collab-user" style="margin-bottom: 6px;">
+                  <span class="user-avatar-dot"></span>
+                  <span>Rithish (Lead Dev)</span>
+                </div>
+                <div class="collab-user">
+                  <span class="user-avatar-dot" style="background:#3B82F6;"></span>
+                  <span>Developer #2</span>
+                </div>
+              </div>
             </div>
-            <div class="demo-window browser-window">
-              <div class="window-bar">
-                <span class="window-dot red"></span><span class="window-dot yellow"></span><span class="window-dot green"></span>
-                <span class="window-title">Ovius Browser</span>
+          </div>
+        </div>
+
+        <div class="product-details rv delay-1">
+          <div class="section-label">Lightweight IDE</div>
+          <h3 class="section-title">Ketron Code Editor</h3>
+          <p class="section-desc">KC Editor is a premium development environment optimized to launch in seconds and run
+            smoothly on systems with only 4 GB RAM. Write Python, HTML, CSS, and JS seamlessly.</p>
+
+          <div class="feature-list">
+            <div class="feature-item">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
               </div>
-              <div class="browser-toolbar">
-                <span class="browser-tab active">Ovius Search</span><span class="browser-tab">Localhost</span><span class="browser-tab">Docs</span>
+              <div class="feature-text">
+                <h4>Ultra Performance</h4>
+                <p>Engineered for speed. Minimal RAM footprint allows coding without slowdowns on entry-level computers.
+                </p>
               </div>
-              <div class="browser-content">
-                <div class="browser-address">https://oviussearch.com</div>
-                <div class="browser-card"><h4>Search smarter.</h4><p>Private search, built-in tracker blocking, and fast page loads.</p></div>
-                <div class="browser-cards">
-                  <div class="browser-mini-card"><strong>Ad Block</strong><span>Enabled</span></div>
-                  <div class="browser-mini-card"><strong>Profiles</strong><span>3 active</span></div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h4>Integrated AI Assistant</h4>
+                <p>Get smart code completions and real-time error corrections inline while you write code.</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h4>Real-Time Collaboration</h4>
+                <p>Collaborate locally through KC Connect. Code, chat, and debug projects synchronously with your team.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px;">
+            <a href="#download" class="btn btn-cyan">Get KC Editor</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2: Ovius Browser -->
+      <div class="product-layout reverse">
+        <div class="product-details rv delay-1">
+          <div class="section-label">Privacy Browser</div>
+          <h3 class="section-title">Ovius Browser</h3>
+          <p class="section-desc">A premium Qt WebEngine browser built with web creators in mind. Navigate privately,
+            block distractions automatically, and interact directly with markup.</p>
+
+          <div class="feature-list">
+            <div class="feature-item cyan">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h4>Privacy-First Engine</h4>
+                <p>Built-in ad blockers, cookie blockades, and anti-fingerprinting algorithms shield your surf trail.
+                </p>
+              </div>
+            </div>
+
+            <div class="feature-item cyan">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h4>Isolated Multi-Profiles</h4>
+                <p>Keep your dev profiles, guest sessions, and personal logins separate with independent sandboxed data
+                  blocks.</p>
+              </div>
+            </div>
+
+            <div class="feature-item cyan">
+              <div class="feature-icon-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h4>Ovius Pulse &amp; Search</h4>
+                <p>Directly modify website elements on file:// and localhost visually in the browser. Powered by native
+                  knowledge panels.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px;">
+            <a href="#download" class="btn btn-cyan">Get Ovius Browser</a>
+          </div>
+        </div>
+
+        <div class="product-visual-panel rv rvl">
+          <div class="premium-card glow-cyan">
+            <div class="card-content-wrap">
+              <div class="browser-window">
+                <div class="browser-toolbar">
+                  <span class="mockup-dot red"></span>
+                  <span class="mockup-dot yellow"></span>
+                  <span class="mockup-dot green"></span>
+                  <div class="browser-address">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    https://oviussearch.com
+                  </div>
+                </div>
+                <div class="browser-view">
+                  <div class="browser-card" style="margin-bottom: 12px;">
+                    <h4 style="font-family: var(--font-display); font-size: 0.9rem; color:#FFFFFF; margin-bottom: 4px;">
+                      Search Smarter.</h4>
+                    <p style="font-size: 0.75rem;">Ovius Search compiles knowledge boards and filters tracking variables
+                      instantly.</p>
+                  </div>
+
+                  <div class="browser-toggle-bar">
+                    <div class="browser-status-pill">
+                      <strong>Ad Shield</strong>
+                      <span id="adblock-status">ACTIVE</span>
+                    </div>
+                    <div class="browser-status-pill">
+                      <strong>Sandbox</strong>
+                      <span>SECURED</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-</section>
+    </div>
+  </section>
 
-<div class="gdiv"></div>
+  <div class="divider"></div>
 
-<section id="about">
-  <div class="container">
-    <p class="section-label rv">About Ketron Labs</p>
-    <div class="about-grid">
-      <div class="rvl">
-        <h2 class="section-title">Building the future of developer tools.</h2>
-        <p class="section-desc" style="margin-bottom:0">Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — an AI-powered IDE for Python, HTML, CSS &amp; JS — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.</p>
-        <div class="apts">
-          <div class="apt rv d1"><span class="apt-icon">🎯</span><div><h4>Mission</h4><p>To empower every developer with tools that are fast, intelligent, and delightfully easy to use.</p></div></div>
-          <div class="apt rv d2"><span class="apt-icon">🌟</span><div><h4>Vision</h4><p>To redefine coding through AI — making development intuitive, private, and accessible for everyone.</p></div></div>
-          <div class="apt rv d3"><span class="apt-icon">🚀</span><div><h4>Promise</h4><p>Fast. Reliable. Always evolving. Driven by innovation and simplicity.</p></div></div>
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-info rv lvr">
+          <div class="section-label">Our Philosophy</div>
+          <h2 class="section-title">Redefining the code workspace.</h2>
+          <p class="section-desc">Ketron Labs is a software startup founded in 2024. We focus on lightweight structures,
+            beautiful visual layouts, and integrated intelligences, making software accessible for developers using
+            low-spec hardware.</p>
+
+          <div class="about-cards-col">
+            <div class="about-info-card">
+              <div class="about-info-icon">🎯</div>
+              <div class="about-info-text">
+                <h4>Accessible Power</h4>
+                <p>We think powerful engineering shouldn't require expensive hardware. Our tools optimize compilation
+                  paths to preserve cycles.</p>
+              </div>
+            </div>
+
+            <div class="about-info-card">
+              <div class="about-info-icon">⚡</div>
+              <div class="about-info-text">
+                <h4>Streamlined UX</h4>
+                <p>Intuitive user flows, minimal styling noise, and quick hotkeys allow developers to spend more time
+                  shipping code.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-graphics rv rvl">
+          <div class="about-img-wrap">
+            <img src="kc.png" alt="Ketron Code Editor Preview" onerror="this.src='ketron-demo.png'">
+          </div>
         </div>
       </div>
-      <div class="about-img rvr">
-        <img src="kc.png" alt="Ketron Code Editor" onerror="this.parentElement.innerHTML='<div class=aph><span style=font-size:3.5rem>💻</span><p>Ketron Code Editor</p></div>'">
-      </div>
-    </div>
-    <div class="stats-row rv d2">
-      <div class="sbox"><span class="snum">2</span><span class="slabel">Products Shipped</span></div>
-      <div class="sbox"><span class="snum">4+</span><span class="slabel">Languages Supported</span></div>
-      <div class="sbox"><span class="snum">100%</span><span class="slabel">Free &amp; Open to Use</span></div>
-    </div>
-  </div>
-</section>
 
-<div class="gdiv"></div>
-
-<section id="team">
-  <div class="container">
-    <p class="section-label rv">The People</p>
-    <h2 class="section-title rv d1">Behind Ketron Labs</h2>
-    <p class="section-desc rv d2">Built by a young developer, guided by experienced mentors.</p>
-    <div class="people-grid">
-      <div class="person-card rv d1">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <img src="me.png" alt="Rithish S" class="pavatar" onerror="this.outerHTML='<div class=paph>👤</div>'">
-        <div class="pname">Rithish S</div>
-        <div class="prole">Founder &amp; Lead Developer</div>
-        <p class="pbio">A 15-year-old developer from India and founder of Ketron Labs. Driven by passion for coding, Rithish built both Ketron Code Editor and Ovius Browser to make programming lightweight, intuitive, and accessible for everyone.</p>
-        <div class="pquote">"To create tools that make coding effortless — especially for beginners."</div>
-      </div>
-      <div class="person-card rv d2">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <img src="Dr.jagathish.png" alt="Dr. Jagadish Kumar" class="pavatar" onerror="this.outerHTML='<div class=paph>🎓</div>'">
-        <div class="pname">Dr. Jagadish Kumar</div>
-        <div class="prole">Mentor · Assistant Professor · Coding Guide</div>
-        <p class="pbio">Assistant Professor at SRM University and dedicated coding guide at Immanuel Matriculation Higher Secondary School. With deep expertise in computer science, he nurtures young talent and shapes future developers.</p>
-        <div class="pquote">"True education is about lighting a fire, not filling a vessel."</div>
-      </div>
-      <div class="person-card rv d3">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <img src="Dr.Theo.png" alt="Dr. Theodore Immanuel" class="pavatar" onerror="this.outerHTML='<div class=paph>🏫</div>'">
-        <div class="pname">Dr. Theodore Immanuel</div>
-        <div class="prole">Chief Supporter · CEO · Educational Visionary</div>
-        <p class="pbio">CEO of Immanuel Matriculation Higher Secondary School. His unwavering support has been instrumental to Ketron Labs — giving students the freedom to explore and build remarkable things.</p>
-        <div class="pquote">"Education should not limit dreams but expand horizons."</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="gdiv"></div>
-
-<section id="download">
-  <div class="container">
-    <p class="section-label rv">Get Started</p>
-    <h2 class="section-title rv d1">Download for free.</h2>
-    <p class="section-desc rv d2">Both products are completely free. No accounts, no subscriptions.</p>
-    <div class="dl-cards">
-      <div class="dlcard dlc rvl">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <div class="dlh">
-          <img src="ketron2.png" alt="Ketron Code Editor" class="dl-klogo" onerror="this.outerHTML='<div class=&quot;dl-logo-ph dlph-c&quot;>💻</div>'">
-          <div class="dlinfo"><h3>Ketron Code Editor</h3><div class="dlver dlver-c">v1.0.0 · Windows</div></div>
+      <!-- Dynamic numeric stats -->
+      <div class="stats-row rv delay-2">
+        <div class="stat-box">
+          <span class="stat-num" data-val="2">0</span>
+          <span class="stat-label">Products Shipped</span>
         </div>
-        <p class="dldesc">Lightweight AI-powered IDE for Python, HTML, CSS and JavaScript. Runs on any PC — even low-end systems.</p>
-        <div class="dlmeta">
-          <span class="dltag">🖥️ <span class="dtvc">Windows 10/11</span></span>
-          <span class="dltag">📦 <span class="dtvc">.exe installer</span></span>
-          <span class="dltag">⚖️ ~42 MB</span>
-          <span class="dltag">✅ <span class="dtvc">Free</span></span>
+        <div class="stat-box">
+          <span class="stat-num" data-val="4">0</span>
+          <span class="stat-label">Core Languages</span>
         </div>
-        <button class="btn btn-primary" onclick="dlKetron(this)">↓ &nbsp;Download Ketron Editor</button>
-      </div>
-      <div class="dlcard dlv rvr">
-        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
-        <div class="dlh">
-          <img src="no_bg.png" alt="Ovius Browser" class="dl-ologo" onerror="this.outerHTML='<div class=&quot;dl-logo-ph dlph-v&quot;>🌐</div>'">
-          <div class="dlinfo"><h3>Ovius Browser</h3><div class="dlver dlver-v">v1.0.0 · Windows</div></div>
+        <div class="stat-box">
+          <span class="stat-num" data-val="100">0</span>
+          <span class="stat-label">% Free &amp; Open</span>
         </div>
-        <p class="dldesc">Privacy-first browser with built-in ad blocking, multi-profile support, and the Ovius Search experience.</p>
-        <div class="dlmeta">
-          <span class="dltag">🖥️ <span class="dtvv">Windows 10/11</span></span>
-          <span class="dltag">📦 <span class="dtvv">.exe installer</span></span>
-          <span class="dltag">✅ <span class="dtvv">Free</span></span>
-        </div>
-        <button class="btn btn-violet" onclick="dlOvius(this)">↓ &nbsp;Download Ovius Browser</button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="nav-logo">
-        <img src="favicon.png" alt="Ketron Labs" style="height:32px" onerror="this.style.display='none'">
-        <span class="nav-logo-text">Ketron <span>Labs</span></span>
+  <div class="divider"></div>
+
+  <!-- Team Section -->
+  <section id="team">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label rv" style="justify-content: center;">The Creators</div>
+        <h2 class="section-title rv delay-1">Engineered by youth. <span>Guided by experience.</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">Meet the team building the future of software
+          development environments.</p>
       </div>
-      <p>Building lightweight, intelligent software tools for developers at every level. Made in India.</p>
+
+      <div class="team-grid">
+        <!-- Rithish S -->
+        <div class="team-card rv delay-1">
+          <div class="team-avatar-wrap">
+            <img src="me.png" alt="Rithish S" onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>👤</div>'">
+          </div>
+          <h3 class="team-name">Rithish S</h3>
+          <div class="team-role">Founder &amp; Lead Architect</div>
+          <p class="team-bio">A 15-year-old software developer from India. Driven by his passion for coding, Rithish
+            built both Ketron Code Editor and Ovius Browser to make programming accessible and lightweight for
+            beginners.</p>
+          <div class="team-quote">"We want to remove complexity and hardware limits, letting creators focus purely on
+            logic."</div>
+        </div>
+
+        <!-- Dr. Jagadish Kumar -->
+        <div class="team-card rv delay-2">
+          <div class="team-avatar-wrap">
+            <img src="Dr.jagathish.png" alt="Dr. Jagadish Kumar"
+              onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>🎓</div>'">
+          </div>
+          <h3 class="team-name">Dr. Jagadish Kumar</h3>
+          <div class="team-role">Coding Mentor &amp; Assistant Professor</div>
+          <p class="team-bio">Assistant Professor at SRM University and coding guide at Immanuel School. With deep
+            computer science expertise, he mentors young innovators to turn concepts into software.</p>
+          <div class="team-quote">"True education isn't about filling a vessel, but lighting an innovative fire within."
+          </div>
+        </div>
+
+        <!-- Dr. Theodore Immanuel -->
+        <div class="team-card rv delay-3">
+          <div class="team-avatar-wrap">
+            <img src="Dr.Theo.png" alt="Dr. Theodore Immanuel"
+              onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>🏫</div>'">
+          </div>
+          <h3 class="team-name">Dr. Theodore Immanuel</h3>
+          <div class="team-role">CEO &amp; Educational Visionary</div>
+          <p class="team-bio">CEO of Immanuel Matriculation Higher Secondary School. His support has been the foundation
+            for Ketron Labs, providing students with spaces to build and experiment.</p>
+          <div class="team-quote">"Learning spaces should never restrict aspirations; they must expand horizons."</div>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h5>Products</h5>
-      <ul>
-        <li><a href="#products">Ketron Code Editor</a></li>
-        <li><a href="#products">Ovius Browser</a></li>
-        <li><a href="#download">Downloads</a></li>
-      </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Ovi Memory (Coming Soon) -->
+  <section id="ovi-memory" class="ovi-memory-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div style="display: block; margin-bottom: 28px;">
+          <div class="coming-soon-badge rv" style="margin: 0 auto;">
+            <span class="user-avatar-dot" style="background:#A855F7; box-shadow:0 0 8px #A855F7;"></span>
+            COMING SOON
+          </div>
+        </div>
+        <div class="rv delay-2"
+          style="display: inline-flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 24px; vertical-align: middle; width: 100%;">
+          <img src="ovmemlogo.png" alt="Ovi Memory" class="om-logo"
+            style="margin: 0; height: 96px; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.45));"
+            onerror="this.style.display='none'">
+          <h2 class="section-title"
+            style="margin: 0; padding: 0; line-height: 1; font-size: clamp(2.5rem, 5.5vw, 4.4rem); font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #FFFFFF 40%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));">
+            Ovi Memory</h2>
+        </div>
+        <p class="section-desc rv delay-3" style="margin: 0 auto;">Your unified, local-first database. Save, discover,
+          and interlink files, links, and text notes through visual nodes.</p>
+      </div>
+
+      <!-- Compare Grid -->
+      <div class="compare-container rv">
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3 class="compare-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              Fragmented Notes
+            </h3>
+            <ul class="compare-list">
+              <li>
+                <span class="red-x" style="color:#EF4444;">✕</span>
+                Links, notes, and attachments scattered across platforms.
+              </li>
+              <li>
+                <span class="red-x" style="color:#EF4444;">✕</span>
+                No automatic clustering or semantic searching.
+              </li>
+              <li>
+                <span class="red-x" style="color:#EF4444;">✕</span>
+                Slow extraction time, text queries fail on image files.
+              </li>
+              <li>
+                <span class="red-x" style="color:#EF4444;">✕</span>
+                Data siloed in corporate cloud servers.
+              </li>
+            </ul>
+          </div>
+
+          <div class="compare-vs">VS</div>
+
+          <div class="compare-card premium-new">
+            <h3 class="compare-title">
+              <img src="ovmemlogo.png" alt="" onerror="this.style.display='none'">
+              Ovi Memory
+            </h3>
+            <ul class="compare-list">
+              <li>
+                <span class="green-check" style="color:#A855F7;">✓</span>
+                Centralized knowledge vault indexing assets locally.
+              </li>
+              <li>
+                <span class="green-check" style="color:#A855F7;">✓</span>
+                AI discovers conceptual relationships and links nodes.
+              </li>
+              <li>
+                <span class="green-check" style="color:#A855F7;">✓</span>
+                Single-shortcut global lookup; indexes texts inside PNGs.
+              </li>
+              <li>
+                <span class="green-check" style="color:#A855F7;">✓</span>
+                Zero-knowledge encryption. You own your memory keys.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Philosophy quote block -->
+      <div class="philosophy-wrap rv delay-1">
+        <div class="philosophy-box">
+          <p>"We are overloaded with records, but have less access to connections. Ovi Memory transforms folders of
+            loose items into an associative network, acting as an extension of your own mind."</p>
+          <div class="philosophy-quote">
+            — The Ketron Philosophy on Knowledge Management
+          </div>
+        </div>
+      </div>
+
+      <!-- Roadmap Timeline -->
+      <div class="roadmap-container">
+        <div class="section-label rv" style="justify-content: center; margin-bottom: 40px;">Roadmap</div>
+        <div class="roadmap-timeline">
+          <div class="roadmap-line"></div>
+
+          <div class="roadmap-step active rv delay-1">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-card">
+              <div class="roadmap-phase">Phase 01 — Current</div>
+              <h4>Local Vault Core</h4>
+              <ul>
+                <li>Local vector search integration</li>
+                <li>Auto-categorization &amp; tags</li>
+                <li>Markdown document linking</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="roadmap-step next rv delay-2">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-card">
+              <div class="roadmap-phase">Phase 02 — Upcoming</div>
+              <h4>System Link</h4>
+              <ul>
+                <li>Sandboxed browser extensions</li>
+                <li>Cross-device vector sync</li>
+                <li>Collaborative vault workspaces</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="roadmap-step rv delay-3">
+            <div class="roadmap-dot"></div>
+            <div class="roadmap-card">
+              <div class="roadmap-phase">Phase 03 — Vision</div>
+              <h4>Cognitive Matrix</h4>
+              <ul>
+                <li>Proactive node recommendations</li>
+                <li>Automated synthesis graphs</li>
+                <li>Local LLM context mapping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notify Closing -->
+      <div class="om-closing rv">
+        <h3 class="om-closing-title">Be the first to explore <span>Ovi Memory.</span></h3>
+        <p>Subscribe to our announcement channel. No spam, only product updates.</p>
+        <div class="om-closing-input-wrap">
+          <input type="email" placeholder="name@domain.com" id="omEmail">
+          <button class="btn btn-primary" onclick="omNotify(this)">Keep me updated</button>
+        </div>
+      </div>
     </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#" id="bugLink2">Report a Bug</a></li>
-        <li><a href="#" id="featLink2">Request Feature</a></li>
-      </ul>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Download Section -->
+  <section id="download">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label rv" style="justify-content: center;">Get Started</div>
+        <h2 class="section-title rv delay-1">Download <span>Free.</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">No subscriptions, no accounts. Get the installer
+          packages directly from GitHub.</p>
+      </div>
+
+      <div class="download-grid">
+        <!-- Code Editor Download -->
+        <div class="download-card editor-dl rv lvr">
+          <div>
+            <div class="download-header">
+              <img src="ketron2.png" alt="KC Editor" class="download-logo"
+                onerror="this.outerHTML='<div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;>💻</div>'">
+              <div class="download-title-wrap">
+                <h3>Ketron Code Editor</h3>
+                <div class="download-version">v1.0.0 · Stable Release</div>
+              </div>
+            </div>
+            <p class="download-desc">Lightweight AI code workspace with offline auto-completions, built-in debugger
+              terminals, and KC Connect sync channels.</p>
+            <div class="download-meta">
+              <span class="download-tag">🖥️ Windows 10 / 11</span>
+              <span class="download-tag">📦 .exe Installer (~42MB)</span>
+              <span class="download-tag">✓ Checked Safe</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="dlKetron(this)">
+            Download for Windows
+          </button>
+        </div>
+
+        <!-- Browser Download -->
+        <div class="download-card browser-dl rv rvr">
+          <div>
+            <div class="download-header">
+              <img src="no_bg.png" alt="Ovius Browser" class="download-logo"
+                onerror="this.outerHTML='<div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;>🌐</div>'">
+              <div class="download-title-wrap">
+                <h3>Ovius Browser</h3>
+                <div class="download-version">v1.0.0 · Stable Release</div>
+              </div>
+            </div>
+            <p class="download-desc">Privacy-first Qt WebEngine shell built to block profiling metrics and track
+              variables. Native Ovius Search integrations.</p>
+            <div class="download-meta">
+              <span class="download-tag">🖥️ Windows 10 / 11</span>
+              <span class="download-tag">📦 .exe Installer</span>
+              <span class="download-tag">🛡️ Privacy Shielded</span>
+            </div>
+          </div>
+          <button class="btn btn-purple" style="width: 100%; justify-content: center;" onclick="dlOvius(this)">
+            Download for Windows
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PREMIUM MODALS ── -->
+  <!-- Bug Report Modal -->
+  <div class="modal-overlay" id="bugModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeM('bugModal')">✕</button>
+      <h3 class="modal-title">Report a Bug</h3>
+      <p class="modal-subtitle">Found an issue? Help us solve it. Provide detail and we'll fix it.</p>
+
+      <form id="bugForm">
+        <div class="form-group">
+          <label for="bugName">Your Name</label>
+          <input type="text" id="bugName" required placeholder="Rithish">
+        </div>
+        <div class="form-group">
+          <label for="bugEmail">Email Address</label>
+          <input type="email" id="bugEmail" required placeholder="name@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="bugPhone">Phone Number (Optional)</label>
+          <input type="tel" id="bugPhone" placeholder="+91 ...">
+        </div>
+        <div class="form-group">
+          <label for="bugProduct">Affected Product</label>
+          <select id="bugProduct" required>
+            <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
+            <option value="Ovius Browser">Ovius Browser</option>
+            <option value="Ovi Memory">Ovi Memory</option>
+            <option value="Website">Website / Infrastructure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bugTitle">Bug Title / Short Summary</label>
+          <input type="text" id="bugTitle" required placeholder="Editor crashes on file load">
+        </div>
+        <div class="form-group">
+          <label for="bugDiscovery">How did you find it?</label>
+          <input type="text" id="bugDiscovery" required placeholder="Opening large python scripts">
+        </div>
+        <div class="form-group">
+          <label for="bugDescription">Detailed Description</label>
+          <textarea id="bugDescription" required placeholder="Explain what happens..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bugSteps">Steps to Reproduce</label>
+          <textarea id="bugSteps" required placeholder="1. Open editor&#10;2. Drag file..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bugSolution">Suggested Solution (Optional)</label>
+          <textarea id="bugSolution" placeholder="Maybe increase stream buffers..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit Bug Report</button>
+      </form>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Ketron Labs. All rights reserved.</span>
-    <span class="footer-made">Made with <span>♥</span> in India by Rithish S</span>
+
+  <!-- Feature Request Modal -->
+  <div class="modal-overlay" id="featureModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeM('featureModal')">✕</button>
+      <h3 class="modal-title">Suggest a Feature</h3>
+      <p class="modal-subtitle">Share your ideas to improve the Ketron Labs software ecosystem.</p>
+
+      <form id="featureForm">
+        <div class="form-group">
+          <label for="featureName">Your Name</label>
+          <input type="text" id="featureName" required placeholder="Rithish">
+        </div>
+        <div class="form-group">
+          <label for="featureEmail">Email Address</label>
+          <input type="email" id="featureEmail" required placeholder="name@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="featurePhone">Phone Number (Optional)</label>
+          <input type="tel" id="featurePhone" placeholder="+91 ...">
+        </div>
+        <div class="form-group">
+          <label for="featureProduct">Target Product</label>
+          <select id="featureProduct" required>
+            <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
+            <option value="Ovius Browser">Ovius Browser</option>
+            <option value="Ovi Memory">Ovi Memory</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featureTitle">Feature Idea Title</label>
+          <input type="text" id="featureTitle" required placeholder="Add terminal custom themes">
+        </div>
+        <div class="form-group">
+          <label for="featureCategory">Category</label>
+          <select id="featureCategory" required>
+            <option value="UI/Aesthetics">UI / Aesthetics</option>
+            <option value="Performance">Performance Boost</option>
+            <option value="AI Integration">AI Integration</option>
+            <option value="New Core Tool">New Core Tool</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featurePriority">Priority Level</label>
+          <select id="featurePriority" required>
+            <option value="Low">Low (Nice to have)</option>
+            <option value="Medium">Medium (Improves flow)</option>
+            <option value="High">High (Critical update)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featureDescription">Feature Description</label>
+          <textarea id="featureDescription" required placeholder="Describe the idea in detail..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="featureBenefits">Expected Benefits &amp; Use Cases</label>
+          <textarea id="featureBenefits" required placeholder="How does this help developers?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
+      </form>
+    </div>
   </div>
-</footer>
 
-<!-- Bug Modal -->
-<div class="modal-overlay" id="bugModal">
-  <div class="mbox">
-    <button class="mclose" onclick="closeM('bugModal')">&times;</button>
-    <div class="mtitle">🐛 Report a Bug</div>
-    <p class="msub">Help us improve by reporting any bugs you encounter</p>
-    <form id="bugForm">
-      <div class="fg"><label>Your Name *</label><input type="text" id="bugName" required placeholder="John Doe"></div>
-      <div class="fg"><label>Your Email *</label><input type="email" id="bugEmail" required placeholder="you@example.com"></div>
-      <div class="fg"><label>Phone Number</label><input type="tel" id="bugPhone" placeholder="+91 98765 43210"></div>
-      <div class="fg"><label>Product *</label><select id="bugProduct" required><option value="">Select product</option><option>Ketron Code Editor</option><option>Ovius Browser</option></select></div>
-      <div class="fg"><label>Bug Title *</label><input type="text" id="bugTitle" required placeholder="Brief description of the bug"></div>
-      <div class="fg"><label>How did you discover it? *</label><select id="bugDiscovery" required><option value="">Select an option</option><option>During normal use</option><option>While testing</option><option>After specific action</option><option>Other</option></select></div>
-      <div class="fg"><label>Bug Description *</label><textarea id="bugDescription" required placeholder="Describe the bug in detail..."></textarea></div>
-      <div class="fg"><label>Steps to Reproduce *</label><textarea id="bugSteps" required placeholder="1. Open the app&#10;2. Click on...&#10;3. Notice that..."></textarea></div>
-      <div class="fg"><label>Suggested Solution (Optional)</label><textarea id="bugSolution" placeholder="Any fix ideas?"></textarea></div>
-      <button type="submit" class="fsub">Submit Bug Report</button>
-    </form>
+  <!-- Toast template -->
+  <div class="toast-notif" id="toastBox">
+    <div style="font-size: 1.5rem;" id="toastIcon">💡</div>
+    <div>
+      <h4 style="font-family: var(--font-display); font-size: 0.8rem; color:#FFFFFF; margin-bottom: 2px;"
+        id="toastTitle">Success</h4>
+      <p style="font-size: 0.72rem; color: var(--text-secondary);" id="toastMessage">Your form has been sent.</p>
+    </div>
   </div>
-</div>
 
-<!-- Feature Modal -->
-<div class="modal-overlay" id="featureModal">
-  <div class="mbox">
-    <button class="mclose" onclick="closeM('featureModal')">&times;</button>
-    <div class="mtitle">✨ Request a Feature</div>
-    <p class="msub">Share your ideas to help us make Ketron even better</p>
-    <form id="featureForm">
-      <div class="fg"><label>Your Name *</label><input type="text" id="featureName" required placeholder="John Doe"></div>
-      <div class="fg"><label>Your Email *</label><input type="email" id="featureEmail" required placeholder="you@example.com"></div>
-      <div class="fg"><label>Phone Number</label><input type="tel" id="featurePhone" placeholder="+91 98765 43210"></div>
-      <div class="fg"><label>Product *</label><select id="featureProduct" required><option value="">Select product</option><option>Ketron Code Editor</option><option>Ovius Browser</option></select></div>
-      <div class="fg"><label>Feature Title *</label><input type="text" id="featureTitle" required placeholder="Brief, descriptive title"></div>
-      <div class="fg"><label>Category *</label><select id="featureCategory" required><option value="">Select category</option><option>UI/UX Improvement</option><option>Performance</option><option>New Feature</option><option>Integration</option><option>Documentation</option><option>Other</option></select></div>
-      <div class="fg"><label>Priority *</label><select id="featurePriority" required><option value="">Select priority</option><option>Low — Nice to have</option><option>Medium — Would improve experience</option><option>High — Important for workflow</option><option>Critical — Blocking usage</option></select></div>
-      <div class="fg"><label>Feature Description *</label><textarea id="featureDescription" required placeholder="Describe the feature in detail..."></textarea></div>
-      <div class="fg"><label>Benefits &amp; Use Cases *</label><textarea id="featureBenefits" required placeholder="How would this help you and others?"></textarea></div>
-      <button type="submit" class="fsub">Submit Feature Request</button>
-    </form>
-  </div>
-</div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Ketron <span>Labs</span></h4>
+          <p>Building high-performance, lightweight, and privacy-first software ecosystems for creators and developers
+            worldwide.</p>
+        </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-emailjs.init('QCeARRyCoWPUaW5_v');
+        <div class="footer-column">
+          <h5>Ecosystem</h5>
+          <ul class="footer-links">
+            <li><a href="#products">KC Editor</a></li>
+            <li><a href="#products">Ovius Browser</a></li>
+            <li><a href="#ovi-memory">Ovi Memory</a></li>
+          </ul>
+        </div>
 
-(function(){
-  const staticEl=document.getElementById('hero-static');
-  const typedEl=document.getElementById('hero-typed');
-  const cursor=document.querySelector('.type-cursor');
-  const line1='Tools built for';
-  const words=['Developers.','Creators.','Builders.','Innovators.','Hackers.','Developers.'];
-  const SPEED_TYPE=68,SPEED_DELETE=38,PAUSE_AFTER=1800,PAUSE_BEFORE=320;
-  let wordIdx=0,charIdx=0,deleting=false,l1=0;
-  function typeStatic(){
-    if(l1<=line1.length){staticEl.textContent=line1.slice(0,l1);l1++;setTimeout(typeStatic,SPEED_TYPE);}
-    else{setTimeout(typeWord,PAUSE_BEFORE);}
-  }
-  function typeWord(){
-    const current=words[wordIdx];
-    if(!deleting){
-      typedEl.textContent=current.slice(0,charIdx+1);charIdx++;
-      if(charIdx===current.length){
-        deleting=true;
-        if(wordIdx===words.length-1){cursor.style.animation='none';cursor.style.opacity='0';return;}
-        setTimeout(typeWord,PAUSE_AFTER);return;
+        <div class="footer-column">
+          <h5>Connect</h5>
+          <ul class="footer-links">
+            <li><a href="#" id="bugLink2">Report a Bug</a></li>
+            <li><a href="#" id="featLink2">Request Feature</a></li>
+            <li><a href="#team">Our Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Ketron Labs. All rights reserved.</div>
+        <div class="footer-made-in">Made in <span>India</span> · Designed for Everyone</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- JavaScript Modules -->
+  <script>
+    // Initialize EmailJS
+    emailjs.init('QCeARRyCoWPUaW5_v');
+
+    /* ── SCROLL DETECTOR ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* ── NAV LINK ACTIVE STATES ── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop - 180;
+        if (window.scrollY >= top) {
+          current = s.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    /* ── SCROLL REVEALS (INTERSECTION OBSERVER) ── */
+    const revealElements = document.querySelectorAll('.rv, .rvl, .rvr, .rvs');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => io.observe(el));
+
+    /* ── MOBILE NAV MENU TOGGLE ── */
+    const navToggle = document.getElementById('navToggle');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('mobile-active');
+    });
+
+    /* ── DYNAMIC TYPING EFFECT (HERO) ── */
+    (function () {
+      const line1 = "Tools built for ";
+      const words = ['Developers.', 'Creators.', 'Builders.', 'Innovators.', 'Hackers.', 'Developers.'];
+      const staticEl = document.getElementById('hero-static');
+      const typedEl = document.getElementById('hero-typed');
+
+      const SPEED_TYPE = 80;
+      const SPEED_DELETE = 40;
+      const PAUSE_AFTER = 2000;
+      const PAUSE_BEFORE = 400;
+
+      let wordIdx = 0;
+      let charIdx = 0;
+      let deleting = false;
+      let staticCharIdx = 0;
+
+      function typeStatic() {
+        if (staticCharIdx < line1.length) {
+          staticEl.textContent += line1.charAt(staticCharIdx);
+          staticCharIdx++;
+          setTimeout(typeStatic, SPEED_TYPE);
+        } else {
+          setTimeout(typeWord, PAUSE_BEFORE);
+        }
       }
-    }else{
-      typedEl.textContent=current.slice(0,charIdx-1);charIdx--;
-      if(charIdx===0){deleting=false;wordIdx=(wordIdx+1)%words.length;setTimeout(typeWord,PAUSE_BEFORE);return;}
+
+      function typeWord() {
+        const currentWord = words[wordIdx];
+        if (!deleting) {
+          typedEl.textContent = currentWord.slice(0, charIdx + 1);
+          charIdx++;
+          if (charIdx === currentWord.length) {
+            deleting = true;
+            // Stop at the final "Developers." (last item in array)
+            if (wordIdx === words.length - 1) {
+              const cursor = document.querySelector('.type-cursor');
+              if (cursor) {
+                cursor.style.animation = 'none';
+                cursor.style.opacity = '0.4';
+              }
+              return;
+            }
+            setTimeout(typeWord, PAUSE_AFTER);
+            return;
+          }
+        } else {
+          typedEl.textContent = currentWord.slice(0, charIdx - 1);
+          charIdx--;
+          if (charIdx === 0) {
+            deleting = false;
+            wordIdx = (wordIdx + 1) % words.length;
+            setTimeout(typeWord, PAUSE_BEFORE);
+            return;
+          }
+        }
+        setTimeout(typeWord, deleting ? SPEED_DELETE : SPEED_TYPE);
+      }
+
+      typeStatic();
+    })();
+
+    /* ── HEROPATH CODE GENERATION SIMULATOR ── */
+    (function () {
+      const codeBlock = document.getElementById('hero-mockup-code');
+      const lines = [
+        '<span class="comment"># Connect to network sync...</span>',
+        '<span class="kw">import</span> <span class="var">ketron</span>',
+        '<span class="var">session</span> = <span class="var">ketron</span>.<span class="fn">Connect</span>()',
+        '<span class="var">session</span>.<span class="fn">join_lobby</span>(<span class="str">"kc_lobby_99"</span>)',
+        '<span class="var">session</span>.<span class="fn">enable_ai</span>()',
+        '<span class="comment"># Status: Synced in 0.08s</span>',
+        '<span class="var">session</span>.<span class="fn">start_collab</span>()'
+      ];
+
+      let currentLine = 0;
+      function printLines() {
+        if (currentLine < lines.length) {
+          const div = document.createElement('div');
+          div.innerHTML = lines[currentLine];
+          div.style.opacity = '0';
+          div.style.transform = 'translateY(5px)';
+          div.style.transition = 'all 0.4s ease';
+          codeBlock.appendChild(div);
+
+          // Trigger transition
+          setTimeout(() => {
+            div.style.opacity = '1';
+            div.style.transform = 'translateY(0)';
+          }, 50);
+
+          currentLine++;
+          setTimeout(printLines, 1000);
+        } else {
+          setTimeout(() => {
+            codeBlock.innerHTML = '';
+            currentLine = 0;
+            printLines();
+          }, 6000);
+        }
+      }
+      printLines();
+    })();
+
+    /* ── KC EDITOR WORKSPACE ANIMATION (PRODUCT VISUAL) ── */
+    (function () {
+      const visualCode = document.getElementById('visual-editor-code');
+      const lines = [
+        '<span class="kw">def</span> <span class="fn">analyze_leak</span>(stream):',
+        '    <span class="kw">if</span> stream.<span class="var">is_active</span>:',
+        '        <span class="var">suggestions</span> = AI.<span class="fn">detect</span>(stream)',
+        '        <span class="kw">return</span> <span class="var">suggestions</span>',
+        '    <span class="kw">else</span>:',
+        '        <span class="kw">return</span> <span class="kw">None</span>'
+      ];
+      let html = '';
+      lines.forEach((l, i) => {
+        html += `<div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: ${i * 150}ms;" class="code-line">${l}</div>`;
+      });
+      visualCode.innerHTML = html;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            visualCode.querySelectorAll('.code-line').forEach(el => el.classList.add('vis'));
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(visualCode);
+    })();
+
+    /* ── 3D MOUSE PARALLAX ON HERO SHOWCASE & PANELS ── */
+    (function () {
+      const showcase = document.getElementById('hero-showcase');
+      if (!showcase) return;
+      let raf;
+      document.addEventListener('mousemove', e => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const cx = window.innerWidth / 2;
+          const cy = window.innerHeight / 2;
+          const dx = (e.clientX - cx) / cx;
+          const dy = (e.clientY - cy) / cy;
+          showcase.style.transform = `rotateY(${dx * 12}deg) rotateX(${-dy * 10}deg) translateY(-5px)`;
+        });
+      });
+
+      document.addEventListener('mouseleave', () => {
+        showcase.style.transform = 'translateY(0) rotateX(1deg) rotateY(1deg)';
+      });
+    })();
+
+    /* ── MAGNETIC BUTTON MICRO-ANIMATION ── */
+    document.querySelectorAll('.btn-magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+
+    /* ── NUMERIC STATS COUNTER ANIMATION ── */
+    (function () {
+      const stats = document.querySelectorAll('.stat-num');
+      const speed = 200;
+
+      const startCounting = (el) => {
+        const target = +el.getAttribute('data-val');
+        const count = +el.innerText;
+        const inc = Math.max(1, target / speed);
+
+        if (count < target) {
+          el.innerText = Math.min(target, Math.ceil(count + inc));
+          if (target === 100 && count + inc >= 100) {
+            el.innerText = "100%";
+            return;
+          }
+          setTimeout(() => startCounting(el), 15);
+        } else {
+          el.innerText = target === 100 ? "100%" : target + (target === 4 ? "+" : "");
+        }
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            startCounting(e.target);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      stats.forEach(s => observer.observe(s));
+    })();
+
+    /* ── MODALS (OPEN / CLOSE) ── */
+    function openM(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
-    setTimeout(typeWord,deleting?SPEED_DELETE:SPEED_TYPE);
-  }
-  typeStatic();
-})();
 
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+    function closeM(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
-const revealEls=document.querySelectorAll('.rv,.rvl,.rvr,.rvs');
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}});
-},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-revealEls.forEach(el=>io.observe(el));
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeM(e.target.id);
+      }
+    });
 
-function openM(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden';}
-function closeM(id){document.getElementById(id).classList.remove('active');document.body.style.overflow='';}
-document.addEventListener('click',e=>{if(e.target.classList.contains('modal-overlay'))closeM(e.target.id);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM('bugModal');closeM('featureModal');}});
-[['bugLink','bugLink2','bugModal'],['featLink','featLink2','featureModal']].forEach(([a,b,m])=>{
-  [a,b].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',e=>{e.preventDefault();openM(m);});});
-});
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeM('bugModal');
+        closeM('featureModal');
+      }
+    });
 
-function toast(ic,ti,ms){
-  const t=document.createElement('div');
-  t.style.cssText='position:fixed;bottom:24px;right:24px;background:#030810;border:1px solid #00ffe1;color:#e0f7fa;padding:1rem 1.4rem;border-radius:3px;box-shadow:0 10px 40px rgba(0,255,225,.2);z-index:3000;font-family:"Share Tech Mono",monospace;max-width:360px;display:flex;align-items:center;gap:1rem;opacity:0;transform:translateY(12px);transition:all .3s';
-  t.innerHTML=`<span style="font-size:1.6rem">${ic}</span><div><strong style="display:block;margin-bottom:.15rem;color:#00ffe1;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase">${ti}</strong><span style="font-size:.78rem;opacity:.7">${ms}</span></div>`;
-  document.body.appendChild(t);
-  setTimeout(()=>{t.style.opacity='1';t.style.transform='translateY(0)';},10);
-  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(8px)';setTimeout(()=>t.remove(),400);},4200);
-}
+    // Binding links to modals
+    const modalPairs = [
+      ['bugLink', 'bugLink2', 'bugModal'],
+      ['featLink', 'featLink2', 'featureModal']
+    ];
 
-document.getElementById('bugForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const btn=this.querySelector('.fsub'),orig=btn.textContent;
-  btn.textContent='Sending…';btn.disabled=true;
-  try{
-    await emailjs.send('service_ld12d5p','template_xj57lvv',{from_name:bugName.value,from_email:bugEmail.value,phone:bugPhone.value||'N/A',product:bugProduct.value,bug_title:bugTitle.value,discovery_method:bugDiscovery.value,bug_description:bugDescription.value,steps_to_reproduce:bugSteps.value,suggested_solution:bugSolution.value||'None',to_email:'ketroncode@gmail.com'});
-    closeM('bugModal');this.reset();toast('🐛','Bug Report Submitted!','Thanks! We\'ll review it soon.');
-  }catch(err){alert('Error sending. Email: ketroncode@gmail.com');}
-  finally{btn.textContent=orig;btn.disabled=false;}
-});
+    modalPairs.forEach(([btnA, btnB, mId]) => {
+      const a = document.getElementById(btnA);
+      const b = document.getElementById(btnB);
+      if (a) a.addEventListener('click', (e) => { e.preventDefault(); openM(mId); });
+      if (b) b.addEventListener('click', (e) => { e.preventDefault(); openM(mId); });
+    });
 
-document.getElementById('featureForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const btn=this.querySelector('.fsub'),orig=btn.textContent;
-  btn.textContent='Sending…';btn.disabled=true;
-  try{
-    await emailjs.send('service_ld12d5p','template_qvcwu39',{from_name:featureName.value,from_email:featureEmail.value,phone:featurePhone.value||'N/A',product:featureProduct.value,feature_title:featureTitle.value,category:featureCategory.value,priority:featurePriority.value,feature_description:featureDescription.value,benefits_use_cases:featureBenefits.value,to_email:'ketroncode@gmail.com'});
-    closeM('featureModal');this.reset();toast('✨','Feature Request Submitted!','Thanks! We\'ll review it soon.');
-  }catch(err){alert('Error sending. Email: ketroncode@gmail.com');}
-  finally{btn.textContent=orig;btn.disabled=false;}
-});
+    /* ── TOAST MESSAGE SYSTEM ── */
+    const toastBox = document.getElementById('toastBox');
+    const toastIcon = document.getElementById('toastIcon');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMessage = document.getElementById('toastMessage');
 
-function dlKetron(btn){
-  const orig=btn.innerHTML;btn.innerHTML='⏳ &nbsp;Opening...';btn.disabled=true;
-  window.open('https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.O.O','_blank');
-  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;},1200);
-}
-function dlOvius(btn){
-  const orig=btn.innerHTML;btn.innerHTML='⏳ &nbsp;Opening...';btn.disabled=true;
-  window.open('https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.0.0','_blank');
-  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;},1200);
-}
+    function triggerToast(icon, title, message) {
+      toastIcon.textContent = icon;
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
 
-(function(){
-  const lines=document.querySelectorAll('.code-content code span');
-  let current=0;
-  if(!lines.length)return;
-  lines.forEach(l=>l.style.opacity='0');
-  setInterval(()=>{
-    if(current<lines.length){lines[current].style.opacity='1';lines[current].style.transition='opacity .2s';current++;}
-    else{lines.forEach(l=>l.style.opacity='0');current=0;}
-  },120);
-})();
-</script>
+      toastBox.classList.add('active');
+      setTimeout(() => {
+        toastBox.classList.remove('active');
+      }, 4000);
+    }
+
+    /* ── EMAILJS FORM SUBMISSIONS ── */
+    // Bug Report
+    document.getElementById('bugForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await emailjs.send('service_ld12d5p', 'template_xj57lvv', {
+          from_name: document.getElementById('bugName').value,
+          from_email: document.getElementById('bugEmail').value,
+          phone: document.getElementById('bugPhone').value || 'N/A',
+          product: document.getElementById('bugProduct').value,
+          bug_title: document.getElementById('bugTitle').value,
+          discovery_method: document.getElementById('bugDiscovery').value,
+          bug_description: document.getElementById('bugDescription').value,
+          steps_to_reproduce: document.getElementById('bugSteps').value,
+          suggested_solution: document.getElementById('bugSolution').value || 'None',
+          to_email: 'ketroncode@gmail.com'
+        });
+
+        closeM('bugModal');
+        this.reset();
+        triggerToast('🐛', 'Bug Report Submitted', "Thanks! We'll review the report soon.");
+      } catch (err) {
+        alert('Could not send bug report. Direct Contact: ketroncode@gmail.com');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    // Feature Request
+    document.getElementById('featureForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await emailjs.send('service_ld12d5p', 'template_qvcwu39', {
+          from_name: document.getElementById('featureName').value,
+          from_email: document.getElementById('featureEmail').value,
+          phone: document.getElementById('featurePhone').value || 'N/A',
+          product: document.getElementById('featureProduct').value,
+          feature_title: document.getElementById('featureTitle').value,
+          category: document.getElementById('featureCategory').value,
+          priority: document.getElementById('featurePriority').value,
+          feature_description: document.getElementById('featureDescription').value,
+          benefits_use_cases: document.getElementById('featureBenefits').value,
+          to_email: 'ketroncode@gmail.com'
+        });
+
+        closeM('featureModal');
+        this.reset();
+        triggerToast('✨', 'Feature Suggested', 'Thank you! We love community feedback.');
+      } catch (err) {
+        alert('Could not send feature request. Direct Contact: ketroncode@gmail.com');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    /* ── DOWNLOAD BUTTON REDIRECT HANDLING ── */
+    function dlKetron(btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '⏳ Initializing...';
+      btn.disabled = true;
+      window.open('https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.O.O', '_blank');
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.disabled = false;
+      }, 1500);
+    }
+
+    function dlOvius(btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '⏳ Initializing...';
+      btn.disabled = true;
+      window.open('https://github.com/ketroncode-ctrl/KetronLabs/releases/tag/v1.0.0', '_blank');
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.disabled = false;
+      }, 1500);
+    }
+
+    /* ── OVI MEMORY NOTIFY FORM ── */
+    function omNotify(btn) {
+      const emailInput = document.getElementById('omEmail');
+      const email = emailInput.value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      btn.textContent = '✓ Subscribed';
+      btn.style.background = 'rgba(0, 217, 255, 0.08)';
+      btn.style.borderColor = 'var(--accent-cyan)';
+      btn.style.color = 'var(--accent-cyan)';
+      btn.disabled = true;
+      emailInput.disabled = true;
+      emailInput.style.opacity = '0.5';
+
+      triggerToast('🔔', 'Notification Saved', "We'll email you at " + email + " when Ovi Memory drops.");
+    }
+  </script>
+
+  <!-- Canvas Particle script -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 140 };
+
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 1.8 + 0.4;
+          this.speedX = (Math.random() - 0.5) * 0.35;
+          this.speedY = (Math.random() - 0.5) * 0.35;
+          this.baseOpacity = Math.random() * 0.4 + 0.15;
+          this.opacity = this.baseOpacity;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          // Wrap boundaries
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+
+          // Mouse proximity reaction
+          if (mouse.x && mouse.y) {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+              let force = (mouse.radius - distance) / mouse.radius;
+              this.opacity = Math.min(0.85, this.baseOpacity + force * 0.5);
+
+              // Move particles slightly away
+              this.x -= (dx / distance) * force * 1.2;
+              this.y -= (dy / distance) * force * 1.2;
+            } else {
+              if (this.opacity > this.baseOpacity) this.opacity -= 0.01;
+            }
+          }
+        }
+
+        draw() {
+          ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        particles = [];
+        const count = Math.min(75, Math.floor((canvas.width * canvas.height) / 16000));
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+      init();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 90) {
+              let alpha = (1 - dist / 90) * 0.12;
+              ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      canvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      canvas.parentElement.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      window.addEventListener('resize', init);
+    })();
+  </script>
+
+  <!-- Interactive Custom Cursor Tracker -->
+  <script>
+    (function () {
+      const cursor = document.getElementById('custom-cursor');
+      const follower = document.getElementById('custom-cursor-follower');
+
+      if (!cursor || !follower) return;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+      });
+
+      // Smooth lag effect for outline follower
+      function animateFollower() {
+        let dx = mouseX - followerX;
+        let dy = mouseY - followerY;
+
+        followerX += dx * 0.18;
+        followerY += dy * 0.18;
+
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      // Trigger scale-up on elements
+      const targetTags = 'a, button, input, select, textarea, .premium-card, .team-card, .download-card';
+      document.querySelectorAll(targetTags).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1.4)';
+          follower.style.borderColor = 'var(--accent-cyan)';
+          follower.style.backgroundColor = 'rgba(0, 217, 255, 0.04)';
+        });
+        el.addEventListener('mouseleave', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1)';
+          follower.style.borderColor = 'rgba(0, 217, 255, 0.25)';
+          follower.style.backgroundColor = 'transparent';
+        });
+      });
+    })();
+  </script>
+
 </body>
+
 </html>
