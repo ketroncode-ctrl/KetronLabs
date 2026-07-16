@@ -6,29 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO -->
-  <title>Ketron Labs — Ketron Code Editor &amp; Ovius Browser | Free Developer Tools</title>
+  <title>Ketron Labs — Agentic Code Editor with Pilot Mode &amp; Ovius Browser | Free Developer Tools</title>
   <meta name="description"
-    content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — an AI-powered IDE for Python, HTML, CSS &amp; JS — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
+    content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — a local-first Agentic IDE featuring Pilot Mode to autonomously write, edit, run, and test code — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
   <meta name="keywords"
-    content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron, code editor for beginners">
+    content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, agentic code editor, Pilot Mode, AI agent code editor, autonomous coding editor, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron">
   <meta name="author" content="Rithish S — Ketron Labs">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#3B82F6">
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Ketron Labs — Free Developer Tools | Ketron Code Editor &amp; Ovius Browser">
+  <meta property="og:title" content="Ketron Labs — Free Developer Tools | Agentic Code Editor &amp; Ovius Browser">
   <meta property="og:description"
-    content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers at every level. Made in India by Ketron Labs.">
+    content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers. Enable Pilot Mode to let the editor autonomously write, run, and test code.">
   <meta property="og:image" content="favicon.png">
   <meta property="og:url" content="https://ketronlabs.com">
   <meta property="og:site_name" content="Ketron Labs">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ketron Labs — Ketron Code Editor &amp; Ovius Browser">
+  <meta name="twitter:title" content="Ketron Labs — Agentic Code Editor &amp; Ovius Browser">
   <meta name="twitter:description"
-    content="Free, lightweight developer tools — AI-powered code editor and privacy-first browser. Download now from Ketron Labs.">
+    content="Free, lightweight developer tools — Agentic Code Editor with Pilot Mode and privacy-first browser. Download now from Ketron Labs.">
   <meta name="twitter:image" content="favicon.png">
 
   <!-- Favicon -->
@@ -873,6 +873,14 @@
 
     .product-layout.reverse {
       grid-template-columns: 1.1fr 1fr;
+    }
+
+    /* ── PILOT MODE GRID ── */
+    .pilot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: stretch;
     }
 
     .product-details {
@@ -2155,7 +2163,8 @@
             <span id="hero-static"></span><br>
             <span class="gword" id="hero-typed"></span><span class="type-cursor">|</span>
           </h1>
-          <p class="hero-subtitle">We build lightweight, highly-optimized developer tools and privacy-centric software
+          <p class="hero-subtitle">We build lightweight, highly-optimized agentic developer tools and privacy-centric
+            software
             designed to streamline productivity without requiring high-end hardware.</p>
           <div class="hero-ctas">
             <a href="#products" class="btn btn-primary btn-magnetic">
@@ -2225,24 +2234,34 @@
                 </div>
               </div>
 
-              <!-- KC Connect overlay simulator -->
+              <!-- Pilot Mode status simulator -->
               <div class="collab-overlay">
-                <div class="collab-header">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <div class="collab-header"
+                  style="color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    style="animation: pulseCyan 1.5s infinite alternate;">
+                    <circle cx="12" cy="12" r="9" />
+                    <circle cx="12" cy="12" r="3" />
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <line x1="1" y1="12" x2="23" y2="12" />
                   </svg>
-                  KC Connect
+                  PILOT ACTIVE
                 </div>
-                <div class="collab-user" style="margin-bottom: 6px;">
-                  <span class="user-avatar-dot"></span>
-                  <span>Rithish (Lead Dev)</span>
+                <div class="collab-user"
+                  style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
+                  <span class="user-avatar-dot" style="background:#10B981; box-shadow: 0 0 6px #10B981;"></span>
+                  <span>✓ Write main.py</span>
                 </div>
-                <div class="collab-user">
-                  <span class="user-avatar-dot" style="background:#3B82F6;"></span>
-                  <span>Developer #2</span>
+                <div class="collab-user"
+                  style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
+                  <span class="user-avatar-dot" style="background:#10B981; box-shadow: 0 0 6px #10B981;"></span>
+                  <span>✓ Compile code</span>
+                </div>
+                <div class="collab-user"
+                  style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
+                  <span class="user-avatar-dot"
+                    style="background:var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); animation: pulseCyan 1s infinite alternate;"></span>
+                  <span>⚡ Testing local suite...</span>
                 </div>
               </div>
             </div>
@@ -2250,10 +2269,10 @@
         </div>
 
         <div class="product-details rv delay-1">
-          <div class="section-label">Lightweight IDE</div>
+          <div class="section-label">Lightweight Code Editor with Agentic AI</div>
           <h3 class="section-title">Ketron Code Editor</h3>
-          <p class="section-desc">KC Editor is a premium development environment optimized to launch in seconds and run
-            smoothly on systems with only 4 GB RAM. Write Python, HTML, CSS, and JS seamlessly.</p>
+          <p class="section-desc">KC Editor is a lightweight Agentic IDE powered by the <strong style="color:var(--accent-cyan)">Gemini API</strong>. Enabled with Pilot Mode,
+            it can write, edit, compile, and test code autonomously. Runs smoothly even on 4 GB RAM systems — the AI agent requires an internet connection to call the Gemini API.</p>
 
           <div class="feature-list">
             <div class="feature-item">
@@ -2263,40 +2282,40 @@
                 </svg>
               </div>
               <div class="feature-text">
-                <h4>Ultra Performance</h4>
-                <p>Engineered for speed. Minimal RAM footprint allows coding without slowdowns on entry-level computers.
-                </p>
+                <h4>Autonomous Pilot Mode</h4>
+                <p>Describe your goal and let the editor write, edit, run, and test code on its own. Watch it build
+                  whole features line-by-line while you oversee the plan.</p>
               </div>
             </div>
 
             <div class="feature-item">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
                 </svg>
               </div>
               <div class="feature-text">
-                <h4>Integrated AI Assistant</h4>
-                <p>Get smart code completions and real-time error corrections inline while you write code.</p>
+                <h4>Self-Debugging Test Loop</h4>
+                <p>Ketron runs its own test suites, captures runtime execution errors from the compiler, and recursively
+                  edits the code until everything compiles perfectly.</p>
               </div>
             </div>
 
             <div class="feature-item">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                  <line x1="6" y1="6" x2="6.01" y2="6" />
+                  <line x1="6" y1="18" x2="6.01" y2="18" />
                 </svg>
               </div>
               <div class="feature-text">
-                <h4>Real-Time Collaboration</h4>
-                <p>Collaborate locally through KC Connect. Code, chat, and debug projects synchronously with your team.
-                </p>
+                <h4>Agentic AI Coding</h4>
+                <p>Powered by the Gemini API, Pilot Mode autonomously analyzes your project, writes and edits code, and
+                  helps build applications. It delivers agentic coding capabilities while keeping the editor lightweight
+                  and responsive.</p>
               </div>
             </div>
           </div>
@@ -2306,14 +2325,148 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Product 2: Ovius Browser -->
+  <div class="divider"></div>
+
+  <!-- ── PILOT MODE DEEP DIVE SECTION ── -->
+  <section id="pilot-mode" style="background: linear-gradient(180deg, #000000 0%, #050508 100%); overflow: hidden;">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="text-align: center; margin-bottom: 70px;">
+        <div class="section-label rv" style="justify-content: center;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="1" x2="12" y2="23"/><line x1="1" y1="12" x2="23" y2="12"/></svg>
+          Autonomous Execution
+        </div>
+        <h2 class="section-title rv delay-1">Inside <span>Pilot Mode</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto; max-width: 680px;">Ketron Code Editor's Pilot Mode is an AI coding agent powered by the <strong style="color:var(--accent-cyan)">Gemini API</strong>. It operates in an autonomous agentic loop — analyzing your project, writing code, running it locally, and self-correcting until your goal is achieved. An active internet connection is required to use Pilot Mode.</p>
+      </div>
+
+      <!-- Phase Cards -->
+      <div class="pilot-grid">
+
+        <!-- Phase 1 -->
+        <div class="premium-card rv delay-1">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">Phase 01 &mdash; Write &amp; Edit</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">Understands Your Codebase</h4>
+            <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">Tell Pilot your goal in plain English. It reads your project files, understands the module graph, and writes precise multi-file changes — never hallucinating unknown APIs or packages.</p>
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+              <span style="color:#6B7280;"># Goal set:</span><br>
+              <span style="color:#F472B6;">"Add a REST endpoint for user login"</span><br>
+              <span style="color:#6B7280;"># Writing: auth.py, routes.py updated...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="premium-card rv delay-2">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(0,217,255,0.08); border: 1px solid rgba(0,217,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 8px;">Phase 02 &mdash; Analyze &amp; Plan</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">Maps Your Entire Project</h4>
+            <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">Before writing a single line, Pilot reads every relevant file in your workspace, maps module dependencies, and builds a step-by-step implementation plan — so changes are always coherent and complete.</p>
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+              <span style="color:#6B7280;"># Reading: main.py, models.py, utils.py</span><br>
+              <span style="color:#60A5FA;">[Plan] Step 1 → create auth.py</span><br>
+              <span style="color:#60A5FA;">[Plan] Step 2 → patch routes.py:L48</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="premium-card rv delay-3">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">Phase 03 &mdash; Test &amp; Self-Debug</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">Fixes Its Own Mistakes</h4>
+            <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">If tests fail or exceptions are thrown, Pilot reads the full traceback, pinpoints the root cause, and surgically patches the code — looping autonomously until every assertion passes.</p>
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+              <span style="color:#EF4444;">&#10007; AssertionError at test_auth.py:38</span><br>
+              <span style="color:#6B7280;"># Tracing bug. Applying fix...</span><br>
+              <span style="color:#34D399;">&#10003; All 22 assertions passed.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Terminal Simulation -->
+      <div class="rv" style="margin-top: 60px;">
+        <div style="background: #010101; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.06);">
+          <!-- Terminal Topbar -->
+          <div style="background: #060606; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);">
+            <span class="mockup-dot red"></span>
+            <span class="mockup-dot yellow"></span>
+            <span class="mockup-dot green"></span>
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); margin-left: 10px;">ketron_pilot — zsh — 96x28</span>
+            <div style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent-cyan); background: rgba(0,217,255,0.06); padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(0,217,255,0.15);">
+              <span style="width: 5px; height: 5px; border-radius: 50%; background: #10B981; box-shadow: 0 0 5px #10B981; display: inline-block; animation: pulseGreen 2s ease-in-out infinite;"></span>
+              PILOT ACTIVE
+            </div>
+          </div>
+          <!-- Terminal Body -->
+          <div id="pilot-terminal" style="padding: 24px 28px; font-family: var(--font-mono); font-size: 0.79rem; line-height: 2.1; min-height: 230px; color: #D8DEE9;"></div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="rv" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius-md); overflow: hidden; margin-top: 50px; border: 1px solid var(--border);">
+        <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">Gemini</div>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">API Powered</div>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">3-Phase</div>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">Agentic Loop</div>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">Multi</div>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">File Editing</div>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">Auto</div>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">Self-Debugger</div>
+        </div>
+      </div>
+
+      <!-- Closing CTA -->
+      <div class="rv" style="margin-top: 70px; background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(0,217,255,0.03) 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: var(--radius-lg); padding: 60px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -80px; right: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(0,217,255,0.07) 0%, transparent 70%); pointer-events: none;"></div>
+        <div style="position: absolute; bottom: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%); pointer-events: none;"></div>
+        <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 14px;">Now Available in KC Editor v1.0</div>
+        <h3 style="font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--text-primary); margin-bottom: 14px; line-height: 1.2;">Ready to let your editor <span style="color: transparent; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text;">code for you?</span></h3>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto 32px; line-height: 1.7;">Ketron Code Editor is free and engineered to run on any machine. Add your Gemini API key, enable Pilot Mode, and build faster than ever before.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="#download" class="btn btn-primary btn-magnetic">Download KC Editor Free
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#products" class="btn btn-secondary">View All Features</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Product 2: Ovius Browser -->
+  <section id="ovius-browser" style="padding: 0;">
+    <div class="container">
       <div class="product-layout reverse">
         <div class="product-details rv delay-1">
           <div class="section-label">Privacy Browser</div>
           <h3 class="section-title">Ovius Browser</h3>
-          <p class="section-desc">A premium Qt WebEngine browser built with web creators in mind. Navigate privately,
-            block distractions automatically, and interact directly with markup.</p>
+          <p class="section-desc">A premium Qt WebEngine browser built with web creators in mind. Navigate privately, block distractions automatically, and interact directly with markup.</p>
 
           <div class="feature-list">
             <div class="feature-item cyan">
@@ -2325,11 +2478,9 @@
               </div>
               <div class="feature-text">
                 <h4>Privacy-First Engine</h4>
-                <p>Built-in ad blockers, cookie blockades, and anti-fingerprinting algorithms shield your surf trail.
-                </p>
+                <p>Built-in ad blockers, cookie blockades, and anti-fingerprinting algorithms shield your surf trail.</p>
               </div>
             </div>
-
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2341,11 +2492,9 @@
               </div>
               <div class="feature-text">
                 <h4>Isolated Multi-Profiles</h4>
-                <p>Keep your dev profiles, guest sessions, and personal logins separate with independent sandboxed data
-                  blocks.</p>
+                <p>Keep your dev profiles, guest sessions, and personal logins separate with independent sandboxed data blocks.</p>
               </div>
             </div>
-
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2355,8 +2504,7 @@
               </div>
               <div class="feature-text">
                 <h4>Ovius Pulse &amp; Search</h4>
-                <p>Directly modify website elements on file:// and localhost visually in the browser. Powered by native
-                  knowledge panels.</p>
+                <p>Directly modify website elements on file:// and localhost visually in the browser. Powered by native knowledge panels.</p>
               </div>
             </div>
           </div>
@@ -2384,16 +2532,13 @@
                 </div>
                 <div class="browser-view">
                   <div class="browser-card" style="margin-bottom: 12px;">
-                    <h4 style="font-family: var(--font-display); font-size: 0.9rem; color:#FFFFFF; margin-bottom: 4px;">
-                      Search Smarter.</h4>
-                    <p style="font-size: 0.75rem;">Ovius Search compiles knowledge boards and filters tracking variables
-                      instantly.</p>
+                    <h4 style="font-family: var(--font-display); font-size: 0.9rem; color:#FFFFFF; margin-bottom: 4px;">Search Smarter.</h4>
+                    <p style="font-size: 0.75rem;">Ovius Search compiles knowledge boards and filters tracking variables instantly.</p>
                   </div>
-
                   <div class="browser-toggle-bar">
                     <div class="browser-status-pill">
                       <strong>Ad Shield</strong>
-                      <span id="adblock-status">ACTIVE</span>
+                      <span id="adblock-status-2">ACTIVE</span>
                     </div>
                     <div class="browser-status-pill">
                       <strong>Sandbox</strong>
@@ -2705,12 +2850,13 @@
                 <div class="download-version">v1.0.0 · Stable Release</div>
               </div>
             </div>
-            <p class="download-desc">Lightweight AI code workspace with offline auto-completions, built-in debugger
-              terminals, and KC Connect sync channels.</p>
+            <p class="download-desc">Lightweight Agentic IDE featuring local Pilot Mode to autonomously write, compile,
+              run, and self-debug applications locally.</p>
             <div class="download-meta">
               <span class="download-tag">🖥️ Windows 10 / 11</span>
+              <span class="download-tag">🚀 Pilot Mode Agent</span>
               <span class="download-tag">📦 .exe Installer (~31MB)</span>
-              <span class="download-tag">✓ Checked Safe</span>
+              <span class="download-tag">✓ Offline Safe</span>
             </div>
           </div>
           <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="dlKetron(this)">
@@ -3027,13 +3173,14 @@
     (function () {
       const codeBlock = document.getElementById('hero-mockup-code');
       const lines = [
-        '<span class="comment"># Connect to network sync...</span>',
-        '<span class="kw">import</span> <span class="var">ketron_labs</span>',
-        '<span class="var">session</span> = <span class="var">ketron</span>.<span class="fn">Connect</span>()',
-        '<span class="var">session</span>.<span class="fn">join_lobby</span>(<span class="str">"kc_lobby_99"</span>)',
-        '<span class="var">session</span>.<span class="fn">enable_ai</span>()',
-        '<span class="comment"># Status: Synced in 0.08s</span>',
-        '<span class="var">session</span>.<span class="fn">start_collab</span>()'
+        '<span class="comment"># Activate autonomous coding...</span>',
+        '<span class="kw">import</span> <span class="var">ketron</span>',
+        '<span class="var">pilot</span> = <span class="var">ketron</span>.<span class="fn">Pilot</span>()',
+        '<span class="var">pilot</span>.<span class="fn">set_goal</span>(<span class="str">"build and test local api"</span>)',
+        '<span class="comment"># Agent: Scanning codebase... Done.</span>',
+        '<span class="comment"># Agent: Writing endpoints in app.py... Done.</span>',
+        '<span class="comment"># Agent: Running compiler & tests... All OK.</span>',
+        '<span class="var">pilot</span>.<span class="fn">deploy</span>()'
       ];
 
       let currentLine = 0;
@@ -3069,12 +3216,13 @@
     (function () {
       const visualCode = document.getElementById('visual-editor-code');
       const lines = [
-        '<span class="kw">def</span> <span class="fn">analyze_leak</span>(stream):',
-        '    <span class="kw">if</span> stream.<span class="var">is_active</span>:',
-        '        <span class="var">suggestions</span> = AI.<span class="fn">detect</span>(stream)',
-        '        <span class="kw">return</span> <span class="var">suggestions</span>',
-        '    <span class="kw">else</span>:',
-        '        <span class="kw">return</span> <span class="kw">None</span>'
+        '<span class="comment"># Goal: Create filter function</span>',
+        '<span class="kw">def</span> <span class="fn">quicksort</span>(arr):',
+        '    <span class="kw">if</span> len(arr) &lt;= <span class="var">1</span>: <span class="kw">return</span> arr',
+        '    pivot = arr[len(arr) // <span class="var">2</span>]',
+        '    <span class="comment"># [Agent] running compiler & tests...</span>',
+        '    <span class="comment"># Status: All 12 test assertions PASSED.</span>',
+        '    <span class="kw">return</span> quicksort([x <span class="kw">for</span> x <span class="kw">in</span> arr])'
       ];
       let html = '';
       lines.forEach((l, i) => {
@@ -3324,6 +3472,68 @@
 
       triggerToast('🔔', 'Notification Saved', "We'll email you at " + email + " when Ovi Memory drops.");
     }
+  </script>
+
+  <!-- Pilot Mode Terminal Animation -->
+  <script>
+    (function () {
+      const terminal = document.getElementById('pilot-terminal');
+      if (!terminal) return;
+
+      const lines = [
+        { text: '$ ketron pilot --goal "build secure login system"', color: '#D8DEE9', delay: 0 },
+        { text: '[Pilot] Analyzing workspace structure...', color: '#6B7280', delay: 700 },
+        { text: '[Pilot] Reading: main.py, routes.py, models.py', color: '#6B7280', delay: 1200 },
+        { text: '[Pilot] Phase 1 — Writing auth module...', color: '#60A5FA', delay: 1900 },
+        { text: '  ✓ Created: auth.py (JWT token handling)', color: '#34D399', delay: 2600 },
+        { text: '  ✓ Modified: routes.py (login endpoint added)', color: '#34D399', delay: 3100 },
+        { text: '[Pilot] Phase 2 — Compiling and running...', color: '#60A5FA', delay: 3700 },
+        { text: '$ python main.py', color: '#6B7280', delay: 4200 },
+        { text: '  ✓ Server started on localhost:5000 in 0.4s', color: '#34D399', delay: 4800 },
+        { text: '[Pilot] Phase 3 — Running test suite...', color: '#60A5FA', delay: 5300 },
+        { text: '  ✗ AssertionError: token expiry not validated (test_auth.py:52)', color: '#EF4444', delay: 5900 },
+        { text: '[Pilot] Tracing root cause... patch applied.', color: '#FBBF24', delay: 6600 },
+        { text: '[Pilot] Re-running tests...', color: '#6B7280', delay: 7300 },
+        { text: '  ✓ All 22 assertions passed. 0 failures.', color: '#34D399', delay: 8000 },
+        { text: '[Pilot] ✦ Goal completed successfully.', color: '#00D9FF', delay: 8800 },
+      ];
+
+      function startTerminal() {
+        terminal.innerHTML = '';
+        lines.forEach(({ text, color, delay }) => {
+          setTimeout(() => {
+            const div = document.createElement('div');
+            div.textContent = text;
+            div.style.color = color;
+            div.style.opacity = '0';
+            div.style.transform = 'translateY(4px)';
+            div.style.transition = 'all 0.35s ease';
+            terminal.appendChild(div);
+            setTimeout(() => {
+              div.style.opacity = '1';
+              div.style.transform = 'translateY(0)';
+            }, 40);
+            // Auto-scroll terminal
+            terminal.scrollTop = terminal.scrollHeight;
+          }, delay);
+        });
+
+        // Restart loop after all lines done
+        const total = lines[lines.length - 1].delay + 5000;
+        setTimeout(startTerminal, total);
+      }
+
+      // Start when section scrolls into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            startTerminal();
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(terminal);
+    })();
   </script>
 
   <!-- Canvas Particle script -->
