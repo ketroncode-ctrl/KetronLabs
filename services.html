@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>Ketron Labs — Professional Web Design &amp; Software Development Services</title>
+  <meta name="description"
+    content="High-performance web design and custom software development services from Ketron Labs. From Basic Web Design (from ₹8,000) and Advanced Web Design (from ₹15,000) to bespoke Software Development (from ₹50,000). Prices customizable to your needs.">
+  <meta name="keywords"
+    content="web design, custom software development, web development services, basic web design, advanced web design, software development, Ketron Labs, bespoke software, landing page design, full stack development, India web agency">
+  <meta name="author" content="Rithish S — Ketron Labs">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#3B82F6">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ketron Labs — Web Design &amp; Software Development Services">
+  <meta property="og:description"
+    content="Get custom, high-efficiency digital solutions. Services range from Basic &amp; Advanced Web Design to Enterprise Software Development. Pricing tailorable to your requirements.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://ketronlabs.com/services.html">
+  <meta property="og:site_name" content="Ketron Labs">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ketron Labs — Web Design &amp; Software Development Services">
+  <meta name="twitter:description"
+    content="Tailorable web design and bespoke software solutions. Get started today with Ketron Labs.">
+  <meta name="twitter:image" content="favicon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Colors */
+      --bg: #000000;
+      --bg-secondary: #090909;
+      --card: #111111;
+      --border: #222222;
+      --border-glow: rgba(59, 130, 246, 0.15);
+      --text-primary: #FFFFFF;
+      --text-secondary: #B5B5B5;
+      --accent-blue: #3B82F6;
+      --accent-cyan: #00D9FF;
+      --glow-blue: 0 0 25px rgba(59, 130, 246, 0.35);
+      --glow-cyan: 0 0 25px rgba(0, 217, 255, 0.35);
+
+      /* Fonts */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* UI Sizes */
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a,
+    button {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── DECORATIVE BACKGROUNDS ── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+      animation: gridShift 40s linear infinite;
+    }
+
+    @keyframes gridShift {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 60px 60px;
+      }
+    }
+
+    .aurora-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.08;
+      mix-blend-mode: screen;
+    }
+
+    .aurora-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+      top: -200px;
+      left: -200px;
+      animation: floatBlob1 25s ease-in-out infinite alternate;
+    }
+
+    .aurora-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      bottom: -150px;
+      right: -150px;
+      animation: floatBlob2 20s ease-in-out infinite alternate;
+    }
+
+    .aurora-3 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.45) 0%, transparent 70%);
+      top: 30%;
+      left: 25%;
+      animation: floatBlob3 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatBlob1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(150px, 100px) scale(1.2);
+      }
+    }
+
+    @keyframes floatBlob2 {
+      0% {
+        transform: translate(0, 0) scale(1.1);
+      }
+      100% {
+        transform: translate(-100px, -120px) scale(0.9);
+      }
+    }
+
+    @keyframes floatBlob3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(120px, -80px) scale(1.15);
+      }
+    }
+
+    /* ── CUSTOM INTERACTIVE CURSOR ── */
+    #custom-cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    #custom-cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0, 217, 255, 0.25);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, border-color 0.3s;
+    }
+
+    @media (pointer: coarse) {
+      #custom-cursor,
+      #custom-cursor-follower {
+        display: none !important;
+      }
+    }
+
+    /* ── SCROLL REVEAL CLASS ── */
+    .rv,
+    .rvl,
+    .rvr,
+    .rvs {
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .rv {
+      transform: translateY(30px);
+    }
+
+    .rvl {
+      transform: translateX(-40px);
+    }
+
+    .rvr {
+      transform: translateX(40px);
+    }
+
+    .rvs {
+      transform: scale(0.95);
+    }
+
+    .vis {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ── FLOATING NAVIGATION BAR ── */
+    nav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(9, 9, 9, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    nav.scrolled {
+      top: 12px;
+      padding: 10px 20px;
+      border-color: rgba(59, 130, 246, 0.25);
+      background: rgba(4, 4, 4, 0.85);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .nav-logo img {
+      height: 26px;
+      width: auto;
+      border-radius: 5px;
+      filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+    }
+
+    .nav-logo span {
+      color: var(--accent-cyan);
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.06);
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      margin-left: 5px;
+    }
+
+    .nav-status::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: pulseGreen 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGreen {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a.active {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-nav-action {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+
+    .btn-nav-action.bug {
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #F87171;
+    }
+
+    .btn-nav-action.bug:hover {
+      background: rgba(239, 68, 68, 0.15);
+      border-color: #EF4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-nav-action.feature {
+      background: rgba(59, 130, 246, 0.05);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      color: var(--accent-cyan);
+    }
+
+    .btn-nav-action.feature:hover {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: var(--accent-blue);
+      box-shadow: var(--glow-blue);
+      color: #FFFFFF;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 24px;
+      justify-content: center;
+      background: none;
+      border: none;
+      z-index: 1002;
+    }
+
+    .nav-toggle span {
+      width: 100%;
+      height: 2px;
+      background: #FFFFFF;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ── GENERAL COMPONENT STYLES ── */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 120px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-label::before {
+      content: '//';
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      color: transparent;
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── BUTTON SYSTEMS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #2563EB;
+      box-shadow: 0 4px 25px rgba(59, 130, 246, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-cyan {
+      background: transparent;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .btn-cyan:hover {
+      background: rgba(0, 217, 255, 0.08);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    .btn-purple {
+      background: transparent;
+      border: 1px solid #A855F7;
+      color: #C084FC;
+    }
+
+    .btn-purple:hover {
+      background: rgba(168, 85, 247, 0.08);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ── CONIC GRADIENT CARD BORDER ── */
+    .premium-card {
+      position: relative;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #A855F7 0%, var(--accent-cyan) 100%);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
+      z-index: 10;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feat-check {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 217, 255, 0.08);
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .plan-features-list.purple .feat-check {
+      background: rgba(168, 85, 247, 0.08);
+      border-color: rgba(168, 85, 247, 0.15);
+      color: #C084FC;
+    }
+
+    .plan-features-list.blue .feat-check {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.15);
+      color: #60A5FA;
+    }
+
+    .premium-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg,
+          transparent 30%,
+          var(--accent-blue) 45%,
+          var(--accent-cyan) 60%,
+          transparent 70%);
+      animation: rotateBorder 8s linear infinite;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .premium-card:hover {
+      border-color: transparent;
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+
+    .premium-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-content-wrap {
+      position: relative;
+      background: var(--card);
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      padding: 40px;
+    }
+
+    @keyframes rotateBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── CINEMATIC HERO SECTION ── */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 140px;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    .hero-canvas-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-system-status {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-system-status::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulseCyan 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseCyan {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 0.3;
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-title .gword {
+      color: transparent;
+      background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.2));
+    }
+
+    .type-cursor {
+      color: var(--accent-cyan);
+      font-weight: 100;
+      animation: cursorBlink 0.8s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 580px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Mockup Visual */
+    .hero-right-wrap {
+      display: flex;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .hero-showcase-wrapper {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transform-style: preserve-3d;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.08);
+      animation: floatMockup 6s ease-in-out infinite;
+      transition: transform 0.1s ease;
+    }
+
+    @keyframes floatMockup {
+      0%, 100% {
+        transform: translateY(0) rotateX(1deg) rotateY(1deg);
+      }
+      50% {
+        transform: translateY(-12px) rotateX(-1deg) rotateY(-1deg);
+      }
+    }
+
+    .mockup-header {
+      background: #060606;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mockup-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mockup-dot.red { background: #EF4444; }
+    .mockup-dot.yellow { background: #F59E0B; }
+    .mockup-dot.green { background: #10B981; }
+
+    .mockup-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+      text-align: center;
+      margin-right: 36px;
+      letter-spacing: 0.05em;
+    }
+
+    .mockup-body {
+      padding: 24px;
+      background: #020202;
+      min-height: 280px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #D8DEE9;
+    }
+
+    .mockup-body .kw { color: #F472B6; }
+    .mockup-body .fn { color: #60A5FA; }
+    .mockup-body .str { color: #34D399; }
+    .mockup-body .var { color: #FBBF24; }
+    .mockup-body .comment { color: #6B7280; font-style: italic; }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent-blue), transparent);
+    }
+
+    /* ── SERVICES / PRICING GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+      align-items: stretch;
+    }
+
+    .plan-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.08);
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .plan-badge.purple {
+      color: #C084FC;
+      background: rgba(168, 85, 247, 0.08);
+      border-color: rgba(168, 85, 247, 0.15);
+    }
+
+    .plan-badge.blue {
+      color: #60A5FA;
+      background: rgba(59, 130, 246, 0.08);
+      border-color: rgba(59, 130, 246, 0.15);
+    }
+
+    .plan-price-wrap {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .plan-price-lbl {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+
+    .plan-price {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .plan-price-sub {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .plan-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      min-height: 52px;
+    }
+
+    .plan-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 40px;
+      flex-grow: 1;
+    }
+
+    .plan-features-list li {
+      font-size: 0.85rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .plan-features-list li span {
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .plan-features-list.purple li span {
+      color: #C084FC;
+    }
+
+    .plan-features-list.blue li span {
+      color: #60A5FA;
+    }
+
+    /* ── FLEXIBLE PRICING DISCLAIMER ── */
+    .disclaimer-card {
+      margin-top: 80px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(0, 0, 0, 0.8) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .disclaimer-card::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      filter: blur(80px);
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .disclaimer-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      background: rgba(0, 217, 255, 0.06);
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .disclaimer-text h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .disclaimer-text p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── CALCULATOR & QUOTE REQUEST FORM ── */
+    .calculator-section {
+      background: #030303;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .calc-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+
+    .calc-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 15px;
+    }
+
+    .calc-control-group {
+      margin-bottom: 30px;
+    }
+
+    .calc-control-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    /* Slider styling */
+    .calc-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .calc-slider-wrap input[type="range"] {
+      flex-grow: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      background: linear-gradient(90deg, var(--accent-cyan) var(--slider-progress, 20%), var(--border) var(--slider-progress, 20%));
+      border-radius: 3px;
+      outline: none;
+      transition: background 0.1s ease;
+    }
+
+    .calc-slider-wrap input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent-cyan);
+      transition: transform 0.1s;
+    }
+
+    .calc-slider-wrap input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .calc-slider-val {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      width: 40px;
+      text-align: right;
+    }
+
+    /* Checkbox list */
+    .calc-check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .calc-check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      user-select: none;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .calc-check-item:hover {
+      border-color: rgba(0, 217, 255, 0.2);
+      background: rgba(0, 217, 255, 0.02);
+      transform: translateY(-2px);
+    }
+
+    .calc-check-item.active {
+      border-color: rgba(0, 217, 255, 0.4);
+      background: rgba(0, 217, 255, 0.05);
+      color: var(--text-primary);
+      box-shadow: 0 0 15px rgba(0, 217, 255, 0.06);
+    }
+
+    .calc-check-item input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    /* Realtime Price Display Card */
+    .calc-display-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      position: sticky;
+      top: 100px;
+    }
+
+    .calc-display-price-wrap {
+      margin: 30px 0;
+    }
+
+    .calc-display-price-symbol {
+      font-family: var(--font-mono);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      vertical-align: super;
+      margin-right: 4px;
+      text-shadow: 0 0 10px rgba(0, 217, 255, 0.3);
+    }
+
+    .calc-display-price {
+      font-family: var(--font-display);
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(135deg, #FFFFFF 40%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.2));
+      line-height: 1;
+      display: inline-block;
+      margin: 10px 0;
+    }
+
+    .calc-display-features {
+      list-style: none;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: left;
+      margin-bottom: 30px;
+    }
+
+    .calc-display-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .calc-display-features li::before {
+      content: '✓';
+      color: var(--accent-cyan);
+    }
+
+    /* Forms */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--accent-blue);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23B5B5B5' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    /* ── FOOTER STYLING ── */
+    footer {
+      background: #040404;
+      border-top: 1px solid var(--border);
+      padding: 80px 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand h4 span {
+      color: var(--accent-cyan);
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .footer-column h5 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-made-in span {
+      color: var(--accent-cyan);
+    }
+
+    /* ── PREMIUM MODALS STYLING ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-box {
+      background: #090909;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 540px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-box::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .modal-box::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--text-secondary);
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    /* ── TOAST NOTIFICATIONS ── */
+    .toast-notif {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #090909;
+      border: 1px solid var(--accent-cyan);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 3000;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), var(--glow-cyan);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-notif.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── RESPONSIVENESS ── */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .hero-right-wrap {
+        order: -1;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .calc-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .calc-display-card {
+        position: static;
+      }
+
+      .disclaimer-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 20px;
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      nav.mobile-active {
+        border-radius: var(--radius-lg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 24px;
+        background: #090909;
+      }
+
+      nav.mobile-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 16px;
+      }
+
+      nav.mobile-active .nav-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .calc-check-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 80px;
+    }
+
+    .stats-bar-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #1a1a1a;
+      border: 1px solid #1a1a1a;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: #080808;
+      padding: 36px 28px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .stat-item:hover { background: #0d0d0d; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(135deg, #fff 40%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-secondary);
+    }
+
+    /* ── PROCESS STEPS SECTION ── */
+    .process-section {
+      position: relative;
+      z-index: 2;
+      padding: 100px 0;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .process-connector {
+      position: absolute;
+      top: 38px;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,217,255,0.15) 20%, rgba(0,217,255,0.15) 80%, transparent);
+      z-index: 0;
+    }
+
+    .process-step {
+      background: #080808;
+      border: 1px solid #1a1a1a;
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .process-step:hover {
+      background: #0d0d0d;
+      border-color: rgba(0,217,255,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,217,255,0.04);
+    }
+
+    .process-number {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent-cyan);
+      background: rgba(0,217,255,0.06);
+      border: 1px solid rgba(0,217,255,0.12);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .process-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .process-step h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .process-step p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── HERO GLOW RING ── */
+    .hero-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,217,255,0.04);
+      pointer-events: none;
+      z-index: 0;
+      animation: ringPulse 6s ease-in-out infinite;
+    }
+
+    .hero-ring:nth-child(2) {
+      width: 700px; height: 700px;
+      border-color: rgba(59,130,246,0.03);
+      animation-delay: -2s;
+    }
+
+    .hero-ring:nth-child(3) {
+      width: 900px; height: 900px;
+      border-color: rgba(168,85,247,0.02);
+      animation-delay: -4s;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%,-50%) scale(1.03); }
+    }
+
+    /* Enhanced card top accent line */
+    .premium-card.card-cyan::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      z-index: 3;
+    }
+
+    .premium-card.card-purple::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #A855F7, transparent);
+      z-index: 3;
+    }
+
+    .premium-card.card-blue::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      z-index: 3;
+    }
+
+    /* Plan card icon */
+    .plan-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* CTA bottom card */
+    .services-cta-card {
+      margin-top: 80px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(0,0,0,0) 60%, rgba(0,217,255,0.03) 100%);
+      border: 1px solid #1e1e1e;
+      border-radius: var(--radius-lg);
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-cta-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+
+    .services-cta-card p {
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-connector { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .services-cta-card { padding: 40px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background visual layers -->
+  <div class="grid-bg"></div>
+  <div class="aurora-container">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+    <div class="aurora-blob aurora-3"></div>
+  </div>
+
+  <!-- Custom trailing cursor follower -->
+  <div id="custom-cursor"></div>
+  <div id="custom-cursor-follower"></div>
+
+  <!-- Floating Navigation Bar -->
+  <nav id="nav">
+    <a href="ketronlabs.html" class="nav-logo">
+      <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
+      Ketron <span>Labs</span>
+      <div class="nav-status">ONLINE</div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="ketronlabs.html#products">Products</a></li>
+      <li><a href="ketronlabs.html#about">About</a></li>
+      <li><a href="ketronlabs.html#team">Team</a></li>
+      <li><a href="ketronlabs.html#ovi-memory">Ovi Memory</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="ketronlabs.html#download">Download</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-nav-action bug" id="bugLink"> Bug</button>
+      <button class="btn-nav-action feature" id="featLink"> Feature</button>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Cinematic Hero Section -->
+  <section class="hero">
+    <canvas class="hero-canvas-bg" id="hero-canvas"></canvas>
+    <!-- Glow rings -->
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left rv">
+          <div class="hero-system-status">KETRON_LABS SERVICES · v1.0 · HIGH PERFORMANCE</div>
+          <h1 class="hero-title">
+            Bespoke Digital<br>
+            <span class="gword" id="hero-typed">Solutions.</span><span class="type-cursor">|</span>
+          </h1>
+          <p class="hero-subtitle">We design and engineer clean, highly-optimized websites, dashboards, and enterprise-grade software packages customized to run flawlessly on any system.</p>
+          <div class="hero-ctas">
+            <a href="#plans" class="btn btn-primary btn-magnetic">
+              View Plans
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a href="#quote" class="btn btn-secondary">Get Custom Quote</a>
+          </div>
+        </div>
+
+        <div class="hero-right-wrap rv delay-2">
+          <div class="hero-showcase-wrapper" id="hero-showcase">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">ketron_services.py</span>
+            </div>
+            <div class="mockup-body" id="hero-mockup-code">
+              <!-- Autotyping text is injected here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-indicator"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-bar-inner">
+        <div class="stat-item rv">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-item rv delay-1">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Service Tiers</div>
+        </div>
+        <div class="stat-item rv delay-2">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Custom Built</div>
+        </div>
+        <div class="stat-item rv delay-3">
+          <div class="stat-number">₹8K</div>
+          <div class="stat-label">Starting Price</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Plans Section -->
+  <section id="plans">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label rv" style="justify-content: center;">Bespoke Tiers</div>
+        <h2 class="section-title rv delay-1">Transparent Pricing. <span>Fully Customizable.</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">Select from our standard starter plans or customize them line-by-line depending on your technical layout specifications.</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Tier 1: Basic Web Design -->
+        <div class="premium-card card-cyan rv delay-1">
+          <div class="card-content-wrap" style="display: flex; flex-direction: column; min-height: 540px;">
+            <span class="plan-icon">🌐</span>
+            <div class="plan-badge">Basic Web Design</div>
+            <div class="plan-price-wrap">
+              <span class="plan-price-lbl">Starting From</span>
+              <span class="plan-price">₹8,000</span>
+              <span class="plan-price-sub">/ est</span>
+            </div>
+            <p class="plan-desc">Clean, optimized static landing pages and websites. Best suited for personal brands, small projects, and portfolios looking for rapid launch.</p>
+            <ul class="plan-features-list">
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Up to 4 Responsive Pages</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Semantic HTML5 Structure</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Standard Animation Sequences</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Contact Form Setup</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Basic SEO &amp; Speed Tweaks</li>
+            </ul>
+            <a href="#quote" onclick="selectPlan('basic')" class="btn btn-cyan" style="width: 100%; justify-content: center;">Choose Starter</a>
+          </div>
+        </div>
+
+        <!-- Tier 2: Advanced Web Design -->
+        <div class="premium-card card-purple rv delay-2">
+          <div class="popular-badge">MOST POPULAR</div>
+          <div class="card-content-wrap" style="display: flex; flex-direction: column; min-height: 540px;">
+            <span class="plan-icon">⚡</span>
+            <div class="plan-badge purple">Advanced Web Design</div>
+            <div class="plan-price-wrap">
+              <span class="plan-price-lbl">Starting From</span>
+              <span class="plan-price" style="color: #D8B4FE;">₹15,000</span>
+              <span class="plan-price-sub">/ est</span>
+            </div>
+            <p class="plan-desc">Highly interactive, bespoke web layouts featuring custom micro-animations, glassmorphism, dynamic forms, and content management boards.</p>
+            <ul class="plan-features-list purple">
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Up to 7 Customizable Pages</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Custom UI Transitions &amp; Micro-Animations</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> CMS &amp; Simple Blog Dashboard</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Advanced Analytics Integration</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Premium SEO Structuring</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 3 Months Technical Handover Support</li>
+            </ul>
+            <a href="#quote" onclick="selectPlan('advanced')" class="btn btn-purple" style="width: 100%; justify-content: center;">Choose Starter</a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Software Development -->
+        <div class="premium-card card-blue rv delay-3">
+          <div class="card-content-wrap" style="display: flex; flex-direction: column; min-height: 540px;">
+            <span class="plan-icon">🛠️</span>
+            <div class="plan-badge blue">Software Development</div>
+            <div class="plan-price-wrap">
+              <span class="plan-price-lbl">Starting From</span>
+              <span class="plan-price" style="color: #60A5FA;">₹50,000</span>
+              <span class="plan-price-sub">/ est</span>
+            </div>
+            <p class="plan-desc">Custom backend systems, desktop widgets, complex SaaS dashboards, databases, and optimized local-first tool setups built to scale.</p>
+            <ul class="plan-features-list blue">
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Custom Full-Stack Architectures</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Desktop Apps &amp; System Integration</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Secure Database Setup (SQL / NoSQL)</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Custom API Integration &amp; Security Protocols</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> Performance Benchmarks &amp; Load Tuning</li>
+              <li><span class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 1 Year Dedicated Maintenance Cycle</li>
+            </ul>
+            <a href="#quote" onclick="selectPlan('software')" class="btn btn-primary" style="width: 100%; justify-content: center;">Choose Starter</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer notice -->
+      <div class="disclaimer-card rv">
+        <div class="disclaimer-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+        </div>
+        <div class="disclaimer-text">
+          <h4>Pricing Adaptability Notice</h4>
+          <p>Please note that all pricing metrics detailed above represent <strong>minimum estimates</strong>. Pricing fluctuates and can be modified or tailored based strictly on pages, features, frameworks, databases, and complexity required for your target project launch.</p>
+        </div>
+      </div>
+      <!-- CTA Card -->
+      <div class="services-cta-card rv">
+        <h3>Not sure which plan is right for you?</h3>
+        <p>Tell us about your project and we'll recommend the best-fit tier with a tailored pricing estimate — no commitment needed.</p>
+        <a href="#quote" class="btn btn-primary">Start Your Free Consultation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- How We Work — Process Steps -->
+  <section class="process-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 10px;">
+        <div class="section-label rv" style="justify-content: center;">Workflow</div>
+        <h2 class="section-title rv delay-1">How We <span>Build With You.</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">A clear, collaborative process from first contact to final deployment.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-connector"></div>
+
+        <div class="process-step rv delay-1">
+          <div class="process-number">01</div>
+          <div class="process-icon">💬</div>
+          <h4>Discovery Call</h4>
+          <p>We discuss your goals, platform, audience, and design preferences to define the project scope clearly.</p>
+        </div>
+
+        <div class="process-step rv delay-2">
+          <div class="process-number">02</div>
+          <div class="process-icon">🎨</div>
+          <h4>Design & Prototype</h4>
+          <p>We create wireframes and mockups for your review. Nothing moves forward until you approve the direction.</p>
+        </div>
+
+        <div class="process-step rv delay-3">
+          <div class="process-number">03</div>
+          <div class="process-icon">⚙️</div>
+          <h4>Build & Integrate</h4>
+          <p>Our engineers write clean, performant code. Every integration, feature, and animation is handcrafted.</p>
+        </div>
+
+        <div class="process-step rv delay-4">
+          <div class="process-number">04</div>
+          <div class="process-icon">🚀</div>
+          <h4>Test & Deploy</h4>
+          <p>Thorough cross-device testing, speed optimization, then a smooth handover with documentation and support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Calculator & Form -->
+  <section id="quote" class="calculator-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label rv" style="justify-content: center;">Quote Architect</div>
+        <h2 class="section-title rv delay-1">Build Your <span>Service Quote</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto;">Select your core requirements to see a real-time minimum price calculation, then submit the details directly to our engineering queue.</p>
+      </div>
+
+      <div class="calc-layout">
+        <!-- Interactive Configurator -->
+        <div class="calc-box rv">
+          <h3 class="calc-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <line x1="9" y1="9" x2="15" y2="9" />
+              <line x1="9" y1="13" x2="15" y2="13" />
+              <line x1="9" y1="17" x2="15" y2="17" />
+            </svg>
+            Select Core Parameters
+          </h3>
+
+          <form id="quoteRequestForm">
+            <div class="calc-control-group">
+              <label for="projectType">Service Category</label>
+              <select id="projectType" onchange="calculatePrice()">
+                <option value="basic">Basic Web Design (Starts ₹8,000)</option>
+                <option value="advanced">Advanced Web Design (Starts ₹15,000)</option>
+                <option value="software">Custom Software Development (Starts ₹50,000)</option>
+              </select>
+            </div>
+
+            <div class="calc-control-group">
+              <label>Estimated Project Scale (Pages / Core Modules)</label>
+              <div class="calc-slider-wrap">
+                <input type="range" id="pageCount" min="1" max="30" value="5" oninput="updatePageSlider(this.value)">
+                <span class="calc-slider-val" id="pageCountVal">5</span>
+              </div>
+            </div>
+
+            <div class="calc-control-group">
+              <label>Desired Custom Features &amp; Integrations</label>
+              <div class="calc-check-grid">
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featResponsive" checked disabled>
+                  Responsive Layout (Included)
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featDatabase" onchange="calculatePrice()">
+                  Database Integration (+₹8,000)
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featAuth" onchange="calculatePrice()">
+                  User Auth / Login (+₹6,000)
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featCMS" onchange="calculatePrice()">
+                  CMS / Blog Admin Panel (+₹10,000)
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featAnimations" onchange="calculatePrice()">
+                  Premium Micro-Animations (+₹4,000)
+                </label>
+                <label class="calc-check-item">
+                  <input type="checkbox" id="featSupport" onchange="calculatePrice()">
+                  Extended Support Module (+₹5,000)
+                </label>
+              </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border); margin: 30px 0; padding-top: 20px;">
+              <h3 class="calc-title" style="border: none; margin-bottom: 15px; padding: 0;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                Contact &amp; Delivery Details
+              </h3>
+              
+              <div class="form-group">
+                <label for="clientName">Your Full Name</label>
+                <input type="text" id="clientName" required placeholder="Alexander G">
+              </div>
+
+              <div class="form-group">
+                <label for="clientEmail">Email Address</label>
+                <input type="email" id="clientEmail" required placeholder="client@company.com">
+              </div>
+
+              <div class="form-group">
+                <label for="clientPhone">Phone / WhatsApp Number</label>
+                <input type="tel" id="clientPhone" required placeholder="+91 ...">
+              </div>
+
+              <div class="form-group">
+                <label for="clientDesc">Project Scope &amp; Custom Requests</label>
+                <textarea id="clientDesc" required placeholder="Detail the layout rules, target systems, or references..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit">Submit Quote Request</button>
+          </form>
+        </div>
+
+        <!-- Sticky Price Display -->
+        <div class="calc-display-panel rv delay-2">
+          <div class="calc-display-card">
+            <span class="plan-badge">Real-Time Estimator</span>
+            
+            <div class="calc-display-price-wrap">
+              <div class="calc-price-label" style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 8px;">Estimated Minimum Price</div>
+              <div style="margin: 10px 0;">
+                <span class="calc-display-price-symbol">₹</span><span class="calc-display-price" id="priceDisplay">8,000</span>
+              </div>
+            </div>
+
+            <ul class="calc-display-features" id="summaryFeatures">
+              <li>Basic Web Design Starter</li>
+              <li>5 Pages/Modules</li>
+              <li>Responsive Layout</li>
+            </ul>
+
+            <p style="font-size: 0.72rem; color: var(--text-secondary); line-height: 1.5; margin-top: 20px;">
+              * Prices are estimated based on your input parameters. Final contracts may be adjusted following conceptual scope negotiation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>Ketron <span>Labs</span></h4>
+          <p>Building high-performance, lightweight, and privacy-first software ecosystems for creators and developers worldwide.</p>
+        </div>
+
+        <div class="footer-column">
+          <h5>Ecosystem</h5>
+          <ul class="footer-links">
+            <li><a href="ketronlabs.html#products">KC Editor</a></li>
+            <li><a href="ketronlabs.html#products">Ovius Browser</a></li>
+            <li><a href="ketronlabs.html#ovi-memory">Ovi Memory</a></li>
+            <li><a href="services.html">Services</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h5>Connect</h5>
+          <ul class="footer-links">
+            <li><a href="#" id="bugLink2">Report a Bug</a></li>
+            <li><a href="#" id="featLink2">Request Feature</a></li>
+            <li><a href="ketronlabs.html#team">Our Team</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Ketron Labs. All rights reserved.</div>
+        <div class="footer-made-in">Made in <span>India</span> · Designed for Everyone</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── PREMIUM MODALS ── -->
+  <!-- Bug Report Modal -->
+  <div class="modal-overlay" id="bugModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeM('bugModal')">✕</button>
+      <h3 class="modal-title">Report a Bug</h3>
+      <p class="modal-subtitle">Found an issue? Help us solve it. Provide detail and we'll fix it.</p>
+
+      <form id="bugForm">
+        <div class="form-group">
+          <label for="bugName">Your Name</label>
+          <input type="text" id="bugName" required placeholder="Rithish">
+        </div>
+        <div class="form-group">
+          <label for="bugEmail">Email Address</label>
+          <input type="email" id="bugEmail" required placeholder="name@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="bugPhone">Phone Number (Optional)</label>
+          <input type="tel" id="bugPhone" placeholder="+91 ...">
+        </div>
+        <div class="form-group">
+          <label for="bugProduct">Affected Product</label>
+          <select id="bugProduct" required>
+            <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
+            <option value="Ovius Browser">Ovius Browser</option>
+            <option value="Ovi Memory">Ovi Memory</option>
+            <option value="Website">Website / Infrastructure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bugTitle">Bug Title / Short Summary</label>
+          <input type="text" id="bugTitle" required placeholder="Editor crashes on file load">
+        </div>
+        <div class="form-group">
+          <label for="bugDiscovery">How did you find it?</label>
+          <input type="text" id="bugDiscovery" required placeholder="Opening large python scripts">
+        </div>
+        <div class="form-group">
+          <label for="bugDescription">Detailed Description</label>
+          <textarea id="bugDescription" required placeholder="Explain what happens..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bugSteps">Steps to Reproduce</label>
+          <textarea id="bugSteps" required placeholder="1. Open editor&#10;2. Drag file..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bugSolution">Suggested Solution (Optional)</label>
+          <textarea id="bugSolution" placeholder="Maybe increase stream buffers..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit Bug Report</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Feature Request Modal -->
+  <div class="modal-overlay" id="featureModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeM('featureModal')">✕</button>
+      <h3 class="modal-title">Suggest a Feature</h3>
+      <p class="modal-subtitle">Share your ideas to improve the Ketron Labs software ecosystem.</p>
+
+      <form id="featureForm">
+        <div class="form-group">
+          <label for="featureName">Your Name</label>
+          <input type="text" id="featureName" required placeholder="Rithish">
+        </div>
+        <div class="form-group">
+          <label for="featureEmail">Email Address</label>
+          <input type="email" id="featureEmail" required placeholder="name@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="featurePhone">Phone Number (Optional)</label>
+          <input type="tel" id="featurePhone" placeholder="+91 ...">
+        </div>
+        <div class="form-group">
+          <label for="featureProduct">Target Product</label>
+          <select id="featureProduct" required>
+            <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
+            <option value="Ovius Browser">Ovius Browser</option>
+            <option value="Ovi Memory">Ovi Memory</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featureTitle">Feature Idea Title</label>
+          <input type="text" id="featureTitle" required placeholder="Add terminal custom themes">
+        </div>
+        <div class="form-group">
+          <label for="featureCategory">Category</label>
+          <select id="featureCategory" required>
+            <option value="UI/Aesthetics">UI / Aesthetics</option>
+            <option value="Performance">Performance Boost</option>
+            <option value="AI Integration">AI Integration</option>
+            <option value="New Core Tool">New Core Tool</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featurePriority">Priority Level</label>
+          <select id="featurePriority" required>
+            <option value="Low">Low (Nice to have)</option>
+            <option value="Medium">Medium (Improves flow)</option>
+            <option value="High">High (Critical update)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="featureDescription">Feature Description</label>
+          <textarea id="featureDescription" required placeholder="Describe the idea in detail..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="featureBenefits">Expected Benefits &amp; Use Cases</label>
+          <textarea id="featureBenefits" required placeholder="How does this help developers?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast template -->
+  <div class="toast-notif" id="toastBox">
+    <div style="font-size: 1.5rem;" id="toastIcon">💡</div>
+    <div>
+      <h4 style="font-family: var(--font-display); font-size: 0.8rem; color:#FFFFFF; margin-bottom: 2px;"
+        id="toastTitle">Success</h4>
+      <p style="font-size: 0.72rem; color: var(--text-secondary);" id="toastMessage">Your form has been sent.</p>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <!-- JavaScript Setup -->
+  <script>
+    // Initialize EmailJS
+    emailjs.init('04ziz9-DFZ9_N2n7c');
+
+    /* ── SCROLL DETECTOR ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* ── SCROLL REVEALS ── */
+    const revealElements = document.querySelectorAll('.rv, .rvl, .rvr, .rvs');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => io.observe(el));
+
+    /* ── MOBILE NAV MENU TOGGLE ── */
+    const navToggle = document.getElementById('navToggle');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('mobile-active');
+    });
+
+    /* ── MODALS (OPEN / CLOSE) ── */
+    function openM(id) {
+      document.getElementById(id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeM(id) {
+      document.getElementById(id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('modal-overlay')) {
+        closeM(e.target.id);
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeM('bugModal');
+        closeM('featureModal');
+      }
+    });
+
+    // Binding links to modals
+    const modalPairs = [
+      ['bugLink', 'bugLink2', 'bugModal'],
+      ['featLink', 'featLink2', 'featureModal']
+    ];
+
+    modalPairs.forEach(([btnA, btnB, mId]) => {
+      const a = document.getElementById(btnA);
+      const b = document.getElementById(btnB);
+      if (a) a.addEventListener('click', (e) => { e.preventDefault(); openM(mId); });
+      if (b) b.addEventListener('click', (e) => { e.preventDefault(); openM(mId); });
+    });
+
+    /* ── TOAST MESSAGE SYSTEM ── */
+    const toastBox = document.getElementById('toastBox');
+    const toastIcon = document.getElementById('toastIcon');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMessage = document.getElementById('toastMessage');
+
+    function triggerToast(icon, title, message) {
+      toastIcon.textContent = icon;
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+
+      toastBox.classList.add('active');
+      setTimeout(() => {
+        toastBox.classList.remove('active');
+      }, 4000);
+    }
+
+    /* ── EMAILJS BUG & FEATURE SUBMISSIONS ── */
+    // Bug Report
+    document.getElementById('bugForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await emailjs.send('service_ajyouzl', 'template_atdfduq', {
+          from_name: document.getElementById('bugName').value,
+          from_email: document.getElementById('bugEmail').value,
+          phone: document.getElementById('bugPhone').value || 'N/A',
+          product: document.getElementById('bugProduct').value,
+          bug_title: document.getElementById('bugTitle').value,
+          discovery_method: document.getElementById('bugDiscovery').value,
+          bug_description: document.getElementById('bugDescription').value,
+          steps_to_reproduce: document.getElementById('bugSteps').value,
+          suggested_solution: document.getElementById('bugSolution').value || 'None',
+          to_email: 'ketronlabs@gmail.com'
+        });
+
+        closeM('bugModal');
+        this.reset();
+        triggerToast('🐛', 'Bug Report Submitted', "Thanks! We'll review the report soon.");
+      } catch (err) {
+        alert('Could not send bug report. Direct Contact: ketronlabs@gmail.com');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+
+    // Feature Request
+    document.getElementById('featureForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        await emailjs.send('service_ajyouzl', 'template_atdfduq', {
+          from_name: document.getElementById('featureName').value,
+          from_email: document.getElementById('featureEmail').value,
+          phone: document.getElementById('featurePhone').value || 'N/A',
+          product: document.getElementById('featureProduct').value,
+          feature_title: document.getElementById('featureTitle').value,
+          category: document.getElementById('featureCategory').value,
+          priority: document.getElementById('featurePriority').value,
+          feature_description: document.getElementById('featureDescription').value,
+          benefits_use_cases: document.getElementById('featureBenefits').value,
+          to_email: 'ketronlabs@gmail.com'
+        });
+
+        closeM('featureModal');
+        this.reset();
+        triggerToast('✨', 'Feature Suggested', 'Thank you! We love community feedback.');
+      } catch (err) {
+        alert('Could not send feature request. Direct Contact: ketronlabs@gmail.com');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+  <!-- Pricing Calculator logic script -->
+  <script>
+    const priceDisplay = document.getElementById('priceDisplay');
+    const summaryFeatures = document.getElementById('summaryFeatures');
+    const pageCountVal = document.getElementById('pageCountVal');
+    const pageCountInput = document.getElementById('pageCount');
+    const projectTypeSelect = document.getElementById('projectType');
+
+    // Addon elements
+    const dbCheck = document.getElementById('featDatabase');
+    const authCheck = document.getElementById('featAuth');
+    const cmsCheck = document.getElementById('featCMS');
+    const animCheck = document.getElementById('featAnimations');
+    const supportCheck = document.getElementById('featSupport');
+
+    const BASE_PRICES = {
+      basic: 8000,
+      advanced: 15000,
+      software: 50000
+    };
+
+    const BASE_PAGES = {
+      basic: 4,
+      advanced: 7,
+      software: 8
+    };
+
+    const SCALE_MULTIPLIERS = {
+      basic: 600,      // +600 per page
+      advanced: 1000,  // +1000 per page
+      software: 3000   // +3000 per page/module
+    };
+
+    function updatePageSlider(val) {
+      pageCountVal.textContent = val;
+      const percent = ((val - 1) / (30 - 1)) * 100;
+      pageCountInput.style.setProperty('--slider-progress', percent + '%');
+      calculatePrice();
+    }
+
+    function selectPlan(planKey) {
+      projectTypeSelect.value = planKey;
+      
+      // Auto-set page counts based on standard plan scopes
+      if (planKey === 'basic') {
+        pageCountInput.value = 4;
+        dbCheck.checked = false;
+        authCheck.checked = false;
+        cmsCheck.checked = false;
+        animCheck.checked = false;
+        supportCheck.checked = false;
+      } else if (planKey === 'advanced') {
+        pageCountInput.value = 7;
+        dbCheck.checked = false;
+        authCheck.checked = false;
+        cmsCheck.checked = true;
+        animCheck.checked = true;
+        supportCheck.checked = false;
+      } else if (planKey === 'software') {
+        pageCountInput.value = 8; // modules
+        dbCheck.checked = true;
+        authCheck.checked = true;
+        cmsCheck.checked = false;
+        animCheck.checked = false;
+        supportCheck.checked = true;
+      }
+      
+      pageCountVal.textContent = pageCountInput.value;
+      const percent = ((pageCountInput.value - 1) / (30 - 1)) * 100;
+      pageCountInput.style.setProperty('--slider-progress', percent + '%');
+      calculatePrice();
+      
+      // Scroll to calculator smooth
+      document.getElementById('quote').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function calculatePrice() {
+      const category = projectTypeSelect.value;
+      const pages = parseInt(pageCountInput.value);
+
+      let price = BASE_PRICES[category];
+      
+      // Add pages charge if selected pages exceed the base pages for the plan
+      const basePages = BASE_PAGES[category];
+      if (pages > basePages) {
+        price += (pages - basePages) * SCALE_MULTIPLIERS[category];
+      }
+
+      // Add features charge
+      const features = [];
+      
+      if (category === 'basic') {
+        features.push("Basic Web Design Starter");
+      } else if (category === 'advanced') {
+        features.push("Advanced Web Design Starter");
+      } else {
+        features.push("Custom Software Starter");
+      }
+
+      features.push(`${pages} Pages/Modules`);
+      features.push("Responsive Layout");
+
+      if (dbCheck.checked) {
+        if (category !== 'software') price += 8000;
+        features.push("Database Integration");
+      }
+      if (authCheck.checked) {
+        if (category !== 'software') price += 6000;
+        features.push("User Auth / Login");
+      }
+      if (cmsCheck.checked) {
+        if (category !== 'advanced') price += 10000;
+        features.push("CMS / Blog Admin Panel");
+      }
+      if (animCheck.checked) {
+        if (category !== 'advanced') price += 4000;
+        features.push("Premium Micro-Animations");
+      }
+      if (supportCheck.checked) {
+        if (category !== 'software') price += 5000;
+        features.push("Extended Support Module");
+      }
+
+      // Format price representation
+      priceDisplay.textContent = price.toLocaleString('en-IN');
+
+      // Update UI list summary
+      summaryFeatures.innerHTML = '';
+      features.forEach(f => {
+        const li = document.createElement('li');
+        li.textContent = f;
+        summaryFeatures.appendChild(li);
+      });
+
+      // Update checklist active styling states
+      const checks = [dbCheck, authCheck, cmsCheck, animCheck, supportCheck, document.getElementById('featResponsive')];
+      checks.forEach(chk => {
+        if (!chk) return;
+        const parent = chk.closest('.calc-check-item');
+        if (parent) {
+          parent.classList.toggle('active', chk.checked);
+        }
+      });
+    }
+
+    // EmailJS submission handler
+    document.getElementById('quoteRequestForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending Quote Request...';
+      submitBtn.disabled = true;
+
+      // Compile selected features string
+      const features = [];
+      if (dbCheck.checked) features.push("Database");
+      if (authCheck.checked) features.push("User Auth");
+      if (cmsCheck.checked) features.push("CMS Admin Panel");
+      if (animCheck.checked) features.push("Premium Animations");
+      if (supportCheck.checked) features.push("Extended Support");
+
+      try {
+        await emailjs.send('service_ajyouzl', 'template_atdfduq', {
+          from_name: document.getElementById('clientName').value,
+          from_email: document.getElementById('clientEmail').value,
+          phone: document.getElementById('clientPhone').value,
+          product: 'Services Custom Quote',
+          feature_title: `Service Tier: ${projectTypeSelect.value.toUpperCase()} / Estimated Price: ₹${priceDisplay.textContent}`,
+          category: 'Quote Estimate Request',
+          priority: 'High',
+          feature_description: `Scale: ${pageCountInput.value} Pages/Modules\nRequested Integrations: ${features.join(', ') || 'None'}\n\nClient Description: ${document.getElementById('clientDesc').value}`,
+          benefits_use_cases: 'Client would like to initiate service collaboration for this build.',
+          to_email: 'ketronlabs@gmail.com'
+        });
+
+        this.reset();
+        calculatePrice(); // reset display calculation
+        triggerToast('✉', 'Request Submitted', 'Thank you! We will get back to you with a formal quote.');
+      } catch (err) {
+        alert('Could not submit details automatically. Please contact us directly at ketronlabs@gmail.com');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Run initial calculation
+    const initialPercent = ((pageCountInput.value - 1) / (30 - 1)) * 100;
+    pageCountInput.style.setProperty('--slider-progress', initialPercent + '%');
+    calculatePrice();
+  </script>
+
+  <!-- Autotyping text animation for Hero mockup visual -->
+  <script>
+    (function () {
+      const codeBlock = document.getElementById('hero-mockup-code');
+      const lines = [
+        '<span class="comment"># Initialize service loader...</span>',
+        '<span class="kw">import</span> <span class="var">ketron_services</span>',
+        '<span class="var">agent</span> = <span class="var">ketron_services</span>.<span class="fn">DeveloperAgent</span>()',
+        '<span class="var">agent</span>.<span class="fn">set_tier</span>(<span class="str">"Advanced Web Design"</span>)',
+        '<span class="comment"># Status: 7 Pages, Responsive, Animations</span>',
+        '<span class="var">agent</span>.<span class="fn">estimate_min_price</span>()',
+        '<span class="comment"># Return: ₹15,000 INR (Minimum Estimate)</span>',
+        '<span class="var">agent</span>.<span class="fn">connect_to_client</span>(<span class="str">"negotiate"</span>)'
+      ];
+
+      let currentLine = 0;
+      function printLines() {
+        if (currentLine < lines.length) {
+          const div = document.createElement('div');
+          const numSpan = `<span style="color: #4C566A; margin-right: 15px; user-select: none; display: inline-block; width: 15px; text-align: right;">${currentLine + 1}</span>`;
+          div.innerHTML = numSpan + lines[currentLine];
+          div.style.opacity = '0';
+          div.style.transform = 'translateY(5px)';
+          div.style.transition = 'all 0.4s ease';
+          codeBlock.appendChild(div);
+
+          setTimeout(() => {
+            div.style.opacity = '1';
+            div.style.transform = 'translateY(0)';
+          }, 50);
+
+          currentLine++;
+          setTimeout(printLines, 1000);
+        } else {
+          setTimeout(() => {
+            codeBlock.innerHTML = '';
+            currentLine = 0;
+            printLines();
+          }, 6000);
+        }
+      }
+      printLines();
+    })();
+  </script>
+
+  <!-- Dynamic Typing Effect (Hero Heading) -->
+  <script>
+    (function () {
+      const line1 = "Bespoke Digital ";
+      const words = ['Solutions.', 'Products.', 'Layouts.', 'Systems.', 'Platforms.'];
+      const staticEl = document.getElementById('hero-static');
+      const typedEl = document.getElementById('hero-typed');
+
+      const SPEED_TYPE = 80;
+      const SPEED_DELETE = 40;
+      const PAUSE_AFTER = 2000;
+      const PAUSE_BEFORE = 400;
+
+      let wordIdx = 0;
+      let charIdx = 0;
+      let deleting = false;
+      let staticCharIdx = 0;
+
+      function typeWord() {
+        const currentWord = words[wordIdx];
+        if (!deleting) {
+          typedEl.textContent = currentWord.slice(0, charIdx + 1);
+          charIdx++;
+          if (charIdx === currentWord.length) {
+            deleting = true;
+            setTimeout(typeWord, PAUSE_AFTER);
+            return;
+          }
+        } else {
+          typedEl.textContent = currentWord.slice(0, charIdx - 1);
+          charIdx--;
+          if (charIdx === 0) {
+            deleting = false;
+            wordIdx = (wordIdx + 1) % words.length;
+            setTimeout(typeWord, PAUSE_BEFORE);
+            return;
+          }
+        }
+        setTimeout(typeWord, deleting ? SPEED_DELETE : SPEED_TYPE);
+      }
+      typeWord();
+    })();
+  </script>
+
+  <!-- Canvas Particle script -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 140 };
+
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 1.8 + 0.4;
+          this.speedX = (Math.random() - 0.5) * 0.35;
+          this.speedY = (Math.random() - 0.5) * 0.35;
+          this.baseOpacity = Math.random() * 0.4 + 0.15;
+          this.opacity = this.baseOpacity;
+        }
+
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+
+          // Wrap boundaries
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+
+          // Mouse proximity reaction
+          if (mouse.x && mouse.y) {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+              let force = (mouse.radius - distance) / mouse.radius;
+              this.opacity = Math.min(0.85, this.baseOpacity + force * 0.5);
+
+              this.x -= (dx / distance) * force * 1.2;
+              this.y -= (dy / distance) * force * 1.2;
+            } else {
+              if (this.opacity > this.baseOpacity) this.opacity -= 0.01;
+            }
+          }
+        }
+
+        draw() {
+          ctx.fillStyle = `rgba(0, 217, 255, ${this.opacity})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        particles = [];
+        const count = Math.min(75, Math.floor((canvas.width * canvas.height) / 16000));
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+      init();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            let dx = particles[i].x - particles[j].x;
+            let dy = particles[i].y - particles[j].y;
+            let dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 90) {
+              let alpha = (1 - dist / 90) * 0.12;
+              ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      canvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      canvas.parentElement.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      window.addEventListener('resize', init);
+    })();
+  </script>
+
+  <!-- Interactive Custom Cursor Tracker -->
+  <script>
+    (function () {
+      const cursor = document.getElementById('custom-cursor');
+      const follower = document.getElementById('custom-cursor-follower');
+
+      if (!cursor || !follower) return;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let followerX = 0;
+      let followerY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+      });
+
+      function animateFollower() {
+        let dx = mouseX - followerX;
+        let dy = mouseY - followerY;
+
+        followerX += dx * 0.18;
+        followerY += dy * 0.18;
+
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      const targetTags = 'a, button, input, select, textarea, .premium-card, .team-card, .download-card';
+      document.querySelectorAll(targetTags).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1.4)';
+          follower.style.borderColor = 'var(--accent-cyan)';
+          follower.style.backgroundColor = 'rgba(0, 217, 255, 0.04)';
+        });
+        el.addEventListener('mouseleave', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1)';
+          follower.style.borderColor = 'rgba(0, 217, 255, 0.25)';
+          follower.style.backgroundColor = 'transparent';
+        });
+      });
+    })();
+  </script>
+
+  <!-- 3D MOUSE PARALLAX ON HERO SHOWCASE & PANELS -->
+  <script>
+    (function () {
+      const showcase = document.getElementById('hero-showcase');
+      if (!showcase) return;
+      let raf;
+      document.addEventListener('mousemove', e => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          const cx = window.innerWidth / 2;
+          const cy = window.innerHeight / 2;
+          const dx = (e.clientX - cx) / cx;
+          const dy = (e.clientY - cy) / cy;
+          showcase.style.transform = `rotateY(${dx * 12}deg) rotateX(${-dy * 10}deg) translateY(-5px)`;
+        });
+      });
+
+      document.addEventListener('mouseleave', () => {
+        showcase.style.transform = 'translateY(0) rotateX(1deg) rotateY(1deg)';
+      });
+    })();
+
+    /* MAGNETIC BUTTON MICRO-ANIMATION */
+    document.querySelectorAll('.btn-magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+  </script>
+
+</body>
+
+</html>
