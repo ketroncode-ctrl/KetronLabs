@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>KC Editor Developer Documentation — Ketron Labs</title>
+  <meta name="description"
+    content="Developer documentation for KC Editor. Explore the hybrid Win32/WebView2 architecture, Pilot Mode AI systems, Ovius Pulse visual builder, and real-time Monaco synchronization.">
+  <meta name="author" content="Ketron Labs">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#3B82F6">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KC Editor Developer Documentation | Ketron Labs">
+  <meta property="og:description"
+    content="Deep dive into KC Editor internals: Hybrid Win32 container, autonomous Pilot Mode loop, and Ovius Pulse Visual Builder.">
+  <meta property="og:image" content="favicon.png">
+  <meta property="og:url" content="https://ketronlabs.com/docs.html">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #000000;
+      --bg-secondary: #08080b;
+      --card: #0d0d11;
+      --card-elevated: #13131a;
+      --border: #1e1e26;
+      --border-glow: rgba(59, 130, 246, 0.15);
+      --text-primary: #FFFFFF;
+      --text-secondary: #a1a1aa;
+      --text-muted: #52525b;
+      --accent-blue: #3B82F6;
+      --accent-cyan: #00D9FF;
+      --accent-violet: #7c6ef7;
+      --glow-blue: 0 0 25px rgba(59, 130, 246, 0.25);
+      --glow-cyan: 0 0 25px rgba(0, 217, 255, 0.25);
+
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    body {
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a,
+    button {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── DECORATIVE BACKGROUNDS ── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+    }
+
+    .aurora-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      opacity: 0.06;
+      mix-blend-mode: screen;
+    }
+
+    .aurora-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-violet) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+
+    .aurora-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+      bottom: -100px;
+      right: -100px;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    #custom-cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.08s ease;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    #custom-cursor-follower {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0, 217, 255, 0.2);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* ── FLOATING NAVIGATION BAR ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      z-index: 100;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    nav.scrolled {
+      background: rgba(4, 4, 6, 0.85);
+      border-color: var(--border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav-logo span {
+      color: var(--accent-cyan);
+    }
+
+    .nav-status {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: #10B981;
+      background: rgba(16, 185, 129, 0.1);
+      padding: 3px 8px;
+      border-radius: 100px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+    }
+
+    .nav-links a {
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text-primary);
+    }
+
+    .btn-nav-action {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: var(--bg);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      transition: all 0.3s;
+      box-shadow: var(--glow-cyan);
+    }
+
+    .btn-nav-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(0, 217, 255, 0.55);
+    }
+
+    /* ── LAYOUT ── */
+    .docs-container {
+      max-width: 1400px;
+      margin: 120px auto 80px;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 50px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── SIDE PANEL NAV ── */
+    .docs-sidebar {
+      position: sticky;
+      top: 110px;
+      height: calc(100vh - 150px);
+      overflow-y: auto;
+      padding-right: 20px;
+      border-right: 1px solid var(--border);
+    }
+
+    .docs-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .docs-sidebar::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .sidebar-section-title {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      margin-top: 24px;
+    }
+
+    .sidebar-section-title:first-child {
+      margin-top: 0;
+    }
+
+    .sidebar-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sidebar-links a {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      display: block;
+    }
+
+    .sidebar-links a:hover {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    .sidebar-links a.active {
+      color: var(--accent-cyan);
+      font-weight: 500;
+      border-left: 2px solid var(--accent-cyan);
+      padding-left: 8px;
+    }
+
+    /* ── CONTENT AREA ── */
+    .docs-content {
+      padding-bottom: 100px;
+    }
+
+    .doc-section {
+      padding-top: 60px;
+      margin-top: -60px;
+      margin-bottom: 70px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 50px;
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .doc-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    strong {
+      color: var(--text-primary);
+    }
+
+    /* ── PREMIUM CARDS ── */
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent-blue);
+    }
+
+    .info-card.cyan::before {
+      background: var(--accent-cyan);
+    }
+
+    .info-card.violet::before {
+      background: var(--accent-violet);
+    }
+
+    .info-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── CODE BLOCKS ── */
+    .code-header {
+      background: #09090c;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+      padding: 10px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .code-lang-label {
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    pre {
+      background: #040406;
+      border: 1px solid var(--border);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #edf2f7;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    pre::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    /* Syntax Highlighting */
+    .kw { color: #f43f5e; font-weight: 500; } /* Keyword */
+    .fn { color: #3b82f6; } /* Function */
+    .str { color: #10b981; } /* String */
+    .comment { color: #52525b; font-style: italic; } /* Comment */
+    .var { color: #a78bfa; } /* Variable */
+    .type { color: #22d3ee; } /* Class type */
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 40px 5%;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    footer span {
+      color: var(--accent-cyan);
+    }
+
+    /* ── RESPONSIVE DESIGN ── */
+    @media (max-width: 992px) {
+      .docs-container {
+        grid-template-columns: 1fr;
+        padding: 0 24px;
+      }
+
+      .docs-sidebar {
+        display: none; /* Mobile documentation simplifies navigation to links */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background visual layers -->
+  <div class="grid-bg"></div>
+  <div class="aurora-container">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+  </div>
+
+  <!-- Custom trailing cursor follower -->
+  <div id="custom-cursor"></div>
+  <div id="custom-cursor-follower"></div>
+
+  <!-- Floating Navigation Bar -->
+  <nav id="nav">
+    <a href="ketronlabs.html" class="nav-logo">
+      <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
+      Ketron <span>Labs</span>
+      <div class="nav-status">ONLINE</div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="ketronlabs.html">Home</a></li>
+      <li><a href="ketronlabs.html#products">Products</a></li>
+      <li><a href="docs.html" class="active">Docs</a></li>
+      <li><a href="services.html">Services</a></li>
+    </ul>
+
+    <a href="ketronlabs.html#download" class="btn-nav-action">Download Free</a>
+  </nav>
+
+  <!-- Docs Layout -->
+  <div class="docs-container">
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-section-title">Getting Started</div>
+      <ul class="sidebar-links">
+        <li><a href="#introduction" class="active">Introduction</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+      </ul>
+
+      <div class="sidebar-section-title">AI Engine</div>
+      <ul class="sidebar-links">
+        <li><a href="#pilot-mode">Pilot Mode Loop</a></li>
+        <li><a href="#gemini-api">Gemini REST Integration</a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Visual Designing</div>
+      <ul class="sidebar-links">
+        <li><a href="#ovius-pulse">Ovius Pulse Builder</a></li>
+        <li><a href="#monaco-sync">Bidirectional Sync</a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Diagnostics</div>
+      <ul class="sidebar-links">
+        <li><a href="#firewall-network">Firewall &amp; Networking</a></li>
+        <li><a href="#ui-customization">UI &amp; Customization</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+
+      <!-- Section: Introduction -->
+      <section id="introduction" class="doc-section">
+        <h2 class="doc-title">Introduction</h2>
+        <p class="doc-subtitle">KC Editor (Ketron Code Editor) is a premium, lightweight, local-first Agentic IDE built for developers who demand high performance without heavy hardware constraints.</p>
+        <p>Traditional IDEs are heavily bloated with background diagnostics, package caches, and telemetry that degrade execution on entry-level systems. KC Editor is engineered from the ground up to run seamlessly even on systems with <strong>4 GB of RAM</strong>. It manages this efficiency by running core UI and shell operations natively and deploying remote execution loops only when needed.</p>
+        
+        <div class="info-card violet">
+          <h4>Core Ideology</h4>
+          <p>The system is built on a "local-first, hybrid sandbox" ideology. All files are stored, compiled, and audited locally on your machine. External network cycles are reserved exclusively for AI completions via direct APIs.</p>
+        </div>
+      </section>
+
+      <!-- Section: Architecture -->
+      <section id="architecture" class="doc-section">
+        <h2 class="doc-title">Architecture</h2>
+        <p class="doc-subtitle">A hybrid structure blending standard desktop frameworks with robust browser controls for rendering files.</p>
+        <p>The IDE utilizes Python (Tkinter) for window layout management, styling themes, file diagnostics, and process compilers. To host code controls and visual workspace rendering, it embeds a custom WinForms parented WebView2 control wrapper.</p>
+        
+        <div class="code-header">
+          <span class="code-lang-label">Python (Win32 parenting patterns in ketron.py)</span>
+        </div>
+        <pre><code><span class="comment"># Excerpt of parenting handles directly to Tkinter frames</span>
+GWL_STYLE = -16
+WS_CHILD = 0x40000000
+WS_POPUP = 0x80000000
+WS_VISIBLE = 0x10000000
+
+<span class="comment"># Adjust control window style to be a child component</span>
+style = user32.GetWindowLongW(self.chwnd, GWL_STYLE)
+style = (style | WS_CHILD | WS_VISIBLE) & ~WS_POPUP
+user32.SetWindowLongW(self.chwnd, GWL_STYLE, style)</code></pre>
+
+        <p>Using the Win32 ctypes API, the system queries parent window IDs and calls <code>SetParent</code>, attaching the child WebView control's native window handle (<code>hwnd</code>) directly into the target Tkinter frame wrapper. This creates a zero-overhead window nesting hierarchy that renders Monaco Editor canvas side-by-side with preview viewports in a single window frame.</p>
+
+        <div class="info-card cyan">
+          <h4>Bundled Portable Python Distribution</h4>
+          <p>Unlike standard editors that depend on system-wide interpreter installations, KC Editor ships with a fully self-contained portable Python runtime environment inside the installation folder. This guarantees that compilation and execution operations remain isolated and stable without system configuration changes.</p>
+        </div>
+
+        <div class="info-card">
+          <h4>Local Code Completion via Jedi</h4>
+          <p>KC Editor leverages the <code>jedi</code> library locally to provide intelligent code autocompletion and static analysis without routing code blocks to external cloud servers, maintaining developer privacy.</p>
+        </div>
+      </section>
+
+      <!-- Section: Pilot Mode Loop -->
+      <section id="pilot-mode" class="doc-section">
+        <h2 class="doc-title">Pilot Mode Loop</h2>
+        <p class="doc-subtitle">Pilot Mode operates in an autonomous developer loop to write, run, and self-correct files until goals are met.</p>
+        <p>When the developer triggers Pilot Mode, the AI agent performs a structured multi-phase execution process:</p>
+        <div class="info-card">
+          <h4>Phase 01: Analyze &amp; Plan</h4>
+          <p>Reads the directory structure, loads relevant file contexts, maps internal dependencies, and draws up a structured Implementation Plan (saved to the workspace).</p>
+        </div>
+        <div class="info-card cyan">
+          <h4>Phase 02: Write &amp; Edit</h4>
+          <p>Surgically edits the files, patching lines of code and inserting new modules without disrupting unrelated code elements.</p>
+        </div>
+        <div class="info-card violet">
+          <h4>Phase 03: Test &amp; Self-Debug</h4>
+          <p>Automatically triggers execution commands. If compilation errors, traceback logs, or testing assertion failures are encountered, Pilot captures these errors, analyzes them, and recursively loops back to edit the code until all assertions pass.</p>
+        </div>
+      </section>
+
+      <!-- Section: Gemini REST Integration -->
+      <section id="gemini-api" class="doc-section">
+        <h2 class="doc-title">Gemini REST Integration</h2>
+        <p class="doc-subtitle">Engineered to bypass bulky SDK packages by interacting directly with the Gemini REST API.</p>
+        <p>To keep the IDE lightweight and easy to distribute, the codebase handles all model requests using standard Python network libraries (<code>urllib.request</code> and <code>json</code>) directly interfacing with Google Generative Language REST endpoints. There are no secondary library dependencies.</p>
+        
+        <div class="code-header">
+          <span class="code-lang-label">Python (API handler snippet)</span>
+        </div>
+        <pre><code><span class="kw">def</span> <span class="fn">_gemini_rest_request</span>(api_key, path, payload=None, timeout=20, method="GET"):
+    query = urllib.parse.urlencode({"key": api_key})
+    url = f"https://generativelanguage.googleapis.com/v1beta{path}?{query}"
+    
+    request = urllib.request.Request(url, data=data, headers=headers, method=method)
+    with urllib.request.urlopen(request, timeout=timeout) <span class="kw">as</span> response:
+        <span class="kw">return</span> json.loads(response.read().decode("utf-8"))</code></pre>
+
+        <p>The editor falls back through a sequence of flash models (e.g., <code>gemini-2.5-flash</code>, <code>gemini-2.0-flash</code>, <code>gemini-1.5-flash</code>) to guarantee low latency. User configurations are saved locally in the user profile directory under <code>~/.ketron_ai_config.json</code>.</p>
+      </section>
+
+      <!-- Section: Ovius Pulse Builder -->
+      <section id="ovius-pulse" class="doc-section">
+        <h2 class="doc-title">Ovius Pulse Visual Builder</h2>
+        <p class="doc-subtitle">Ovius Pulse is a visual canvas builder bundled inside the editor, facilitating rapid layout prototyping.</p>
+        <p>When the Ovius Pulse workspace is opened, the editor retrieves the active HTML file, analyzes its markup, and launches a visual drag-and-drop workspace in an embedded WebView2 container. To render relative file-based files properly inside the sandbox, Ovius Pulse executes several pre-rendering routines:</p>
+        
+        <div class="info-card cyan">
+          <h4>Asset Rewriting &amp; Path Resolution</h4>
+          <p>All relative paths inside HTML tags (such as <code>&lt;img src="img.png"&gt;</code>) are parsed and converted to absolute <code>file://</code> URLs so assets render correctly inside the sandboxed iframe container.</p>
+        </div>
+        <div class="info-card">
+          <h4>Styles &amp; Script Inlining</h4>
+          <p>Linked external stylesheets and custom JS files are read from the disk and dynamically injected inline inside the visual canvas sandbox, maintaining styles without launching local servers.</p>
+        </div>
+      </section>
+
+      <!-- Section: Bidirectional Sync -->
+      <section id="monaco-sync" class="doc-section">
+        <h2 class="doc-title">Bidirectional Sync</h2>
+        <p class="doc-subtitle">The editor maintains Monaco as the single source of truth, syncing edits dynamically back and forth.</p>
+        <p>To avoid race conditions and file-conflict states, KC Editor manages synchronization using an asynchronous queue with minimal diff updates:</p>
+        
+        <div class="info-card violet">
+          <h4>Minimal-Span Diffing Algorithm</h4>
+          <p>When you edit elements on the Ovius Pulse visual canvas, the visual builder serializes the updated DOM and sends the text back to Python. Python diffs the new DOM against the Monaco document buffer, calculates the smallest span of character changes, and performs a single atomic transaction inside Monaco. This ensures that the developer's cursor position, scroll state, and undo stack history remain completely unaffected.</p>
+        </div>
+        
+        <p>Conversely, text edits in Monaco automatically trigger a modification hook, pushing changes directly back to update the Ovius Pulse preview canvas instantly.</p>
+      </section>
+
+      <!-- Section: Firewall & Networking -->
+      <section id="firewall-network" class="doc-section">
+        <h2 class="doc-title">Firewall &amp; Networking</h2>
+        <p class="doc-subtitle">Diagnostics tools built to audit network parameters and ensure local collaboration pathways remain clear.</p>
+        <p>For collaborative development operations, KC Editor contains network probing blocks that establish connection parameters and test local port states. These processes are guided by local user profile configurations:</p>
+        <ul>
+          <li><strong>Welcome Flag:</strong> <code>~/AppData/Local/KetronCodeEditor/welcome_seen.json</code> verifies if the welcome wizard has run.</li>
+          <li><strong>Firewall Permissions:</strong> <code>~/AppData/Local/KetronCodeEditor/firewall_permission.json</code> audits attempts to open local socket endpoints, alerting developers if OS firewalls block collaboration ports.</li>
+        </ul>
+      </section>
+
+      <!-- Section: UI & Customization -->
+      <section id="ui-customization" class="doc-section">
+        <h2 class="doc-title">UI &amp; Customization</h2>
+        <p class="doc-subtitle">Premium layout elements customization incorporating Win32 visual themes.</p>
+        <p>The editor implements custom Window decorators on Windows operating systems. It uses the <code>dwmapi.dll</code> library to apply dark themes directly onto top-level Tkinter and WinForms frames, styling window borders and captions to integrate seamlessly with the Obsidian Noir dark mode styling palette.</p>
+        
+        <div class="code-header">
+          <span class="code-lang-label">Python (Native title attribute calls in ketron.py)</span>
+        </div>
+        <pre><code><span class="comment"># Immersive dark mode toggle for Win32 frame decorators</span>
+import ctypes
+dwmapi = ctypes.windll.dwmapi
+DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+dwmapi.DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ctypes.byref(ctypes.c_int(1)), 4)</code></pre>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>© 2026 Ketron Labs. All rights reserved. Developer portal built for <span>Everyone</span>.</div>
+  </footer>
+
+  <!-- Script for interactivity -->
+  <script>
+    /* ── SCROLL DETECTOR ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* ── SIDEBAR LINK ACTIVE TRACKING ── */
+    const sections = document.querySelectorAll('section[id]');
+    const sidebarLinks = document.querySelectorAll('.docs-sidebar a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = s.getAttribute('id');
+        }
+      });
+
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    /* ── CUSTOM CURSOR FOLLOW EFFECT ── */
+    (function () {
+      const cursor = document.getElementById('custom-cursor');
+      const follower = document.getElementById('custom-cursor-follower');
+      if (!cursor || !follower) return;
+
+      let mouseX = 0, mouseY = 0;
+      let followerX = 0, followerY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+      });
+
+      function animateFollower() {
+        let dx = mouseX - followerX;
+        let dy = mouseY - followerY;
+        followerX += dx * 0.18;
+        followerY += dy * 0.18;
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      // Scaler hooks
+      document.querySelectorAll('a, button, pre').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1.4)';
+          follower.style.backgroundColor = 'rgba(0, 217, 255, 0.03)';
+        });
+        el.addEventListener('mouseleave', () => {
+          follower.style.transform = 'translate(-50%, -50%) scale(1)';
+          follower.style.backgroundColor = 'transparent';
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
