@@ -1550,6 +1550,10 @@
       .calc-check-grid {
         grid-template-columns: 1fr;
       }
+
+      .card-content-wrap {
+        padding: 20px;
+      }
     }
 
     /* ── STATS BAR ── */
@@ -2383,6 +2387,13 @@
     const navToggle = document.getElementById('navToggle');
     navToggle.addEventListener('click', () => {
       nav.classList.toggle('mobile-active');
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('#nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('mobile-active');
+      });
     });
 
     /* ── MODALS (OPEN / CLOSE) ── */
