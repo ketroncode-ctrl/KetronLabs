@@ -263,6 +263,27 @@
       box-shadow: 0 0 35px rgba(0, 217, 255, 0.55);
     }
 
+    /* Mobile Nav Toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 24px;
+      justify-content: center;
+      background: none;
+      border: none;
+      z-index: 1002;
+    }
+
+    .nav-toggle span {
+      width: 100%;
+      height: 2px;
+      background: #FFFFFF;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
     /* ── LAYOUT ── */
     .docs-container {
       max-width: 1400px;
@@ -337,6 +358,7 @@
     /* ── CONTENT AREA ── */
     .docs-content {
       padding-bottom: 100px;
+      min-width: 0;
     }
 
     .doc-section {
@@ -500,6 +522,48 @@
         display: none; /* Mobile documentation simplifies navigation to links */
       }
     }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 12px 20px;
+        height: 64px;
+      }
+
+      .nav-links,
+      .btn-nav-action {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      /* Mobile Menu overlay state */
+      nav.mobile-active {
+        border-radius: var(--radius-lg);
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        gap: 24px;
+        padding: 24px;
+        background: #090909;
+        border: 1px solid var(--border);
+      }
+
+      nav.mobile-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 16px;
+      }
+
+      nav.mobile-active .btn-nav-action {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 
@@ -518,20 +582,26 @@
 
   <!-- Floating Navigation Bar -->
   <nav id="nav">
-    <a href="index.html" class="nav-logo">
+    <a href="ketronlabs.html" class="nav-logo">
       <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
       Ketron <span>Labs</span>
       <div class="nav-status">ONLINE</div>
     </a>
 
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="index.html#products">Products</a></li>
+      <li><a href="ketronlabs.html">Home</a></li>
+      <li><a href="ketronlabs.html#products">Products</a></li>
       <li><a href="docs.html" class="active">Docs</a></li>
       <li><a href="services.html">Services</a></li>
     </ul>
 
-    <a href="index.html#download" class="btn-nav-action">Download Free</a>
+    <a href="ketronlabs.html#download" class="btn-nav-action">Download Free</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- Docs Layout -->
@@ -543,12 +613,14 @@
       <ul class="sidebar-links">
         <li><a href="#introduction" class="active">Introduction</a></li>
         <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#portable-env">Portable Environment</a></li>
       </ul>
 
       <div class="sidebar-section-title">AI Engine</div>
       <ul class="sidebar-links">
         <li><a href="#pilot-mode">Pilot Mode Loop</a></li>
         <li><a href="#gemini-api">Gemini REST Integration</a></li>
+        <li><a href="#local-autocomplete">Local Autocomplete (Jedi)</a></li>
       </ul>
 
       <div class="sidebar-section-title">Visual Designing</div>
@@ -557,10 +629,16 @@
         <li><a href="#monaco-sync">Bidirectional Sync</a></li>
       </ul>
 
-      <div class="sidebar-section-title">Diagnostics</div>
+      <div class="sidebar-section-title">Collaboration &amp; Tools</div>
+      <ul class="sidebar-links">
+        <li><a href="#kc-connect">KC Connect (Collaboration)</a></li>
+        <li><a href="#integrated-terminal">Integrated Terminal</a></li>
+      </ul>
+
+      <div class="sidebar-section-title">Diagnostics &amp; Themes</div>
       <ul class="sidebar-links">
         <li><a href="#firewall-network">Firewall &amp; Networking</a></li>
-        <li><a href="#ui-customization">UI &amp; Customization</a></li>
+        <li><a href="#ui-customization">Win32 Captions &amp; Themes</a></li>
       </ul>
     </aside>
 
@@ -601,14 +679,17 @@ user32.SetWindowLongW(self.chwnd, GWL_STYLE, style)</code></pre>
 
         <p>Using the Win32 ctypes API, the system queries parent window IDs and calls <code>SetParent</code>, attaching the child WebView control's native window handle (<code>hwnd</code>) directly into the target Tkinter frame wrapper. This creates a zero-overhead window nesting hierarchy that renders Monaco Editor canvas side-by-side with preview viewports in a single window frame.</p>
 
-        <div class="info-card cyan">
-          <h4>Bundled Portable Python Distribution</h4>
-          <p>Unlike standard editors that depend on system-wide interpreter installations, KC Editor ships with a fully self-contained portable Python runtime environment inside the installation folder. This guarantees that compilation and execution operations remain isolated and stable without system configuration changes.</p>
-        </div>
+      </section>
 
-        <div class="info-card">
-          <h4>Local Code Completion via Jedi</h4>
-          <p>KC Editor leverages the <code>jedi</code> library locally to provide intelligent code autocompletion and static analysis without routing code blocks to external cloud servers, maintaining developer privacy.</p>
+      <!-- Section: Portable Environment -->
+      <section id="portable-env" class="doc-section">
+        <h2 class="doc-title">Portable Environment</h2>
+        <p class="doc-subtitle">KC Editor ships with a self-contained runtime environment to ensure maximum stability and zero-configuration setups.</p>
+        <p>A major friction point for new developers is establishing interpreter paths, setting environment variables, and downloading secondary packages. KC Editor solves this by shipping a fully self-contained portable Python runtime within the editor's installation directory. The editor isolates all runtime processes to this local directory:</p>
+        
+        <div class="info-card cyan">
+          <h4>No Interpreter Conflicts</h4>
+          <p>The compiler and terminal commands spawn scripts specifically referencing the local interpreter. This ensures that even if you have existing Python interpreters, virtual environments, or system paths, KC Editor execution routines remain fully isolated and won't conflict with or affect your main operating system configurations.</p>
         </div>
       </section>
 
@@ -651,6 +732,18 @@ user32.SetWindowLongW(self.chwnd, GWL_STYLE, style)</code></pre>
         <p>The editor falls back through a sequence of flash models (e.g., <code>gemini-2.5-flash</code>, <code>gemini-2.0-flash</code>, <code>gemini-1.5-flash</code>) to guarantee low latency. User configurations are saved locally in the user profile directory under <code>~/.ketron_ai_config.json</code>.</p>
       </section>
 
+      <!-- Section: Local Autocomplete (Jedi) -->
+      <section id="local-autocomplete" class="doc-section">
+        <h2 class="doc-title">Local Autocomplete (Jedi)</h2>
+        <p class="doc-subtitle">Local code intelligence powered by Jedi, performing static analysis without cloud connections.</p>
+        <p>In keeping with the local-first security philosophy, code completions and suggestions do not rely on sending code buffers to cloud servers. KC Editor integrates the <code>jedi</code> library locally. The Python background process indexes active file handles, maps import trees, and queries docstrings instantly to populate the Monaco completion popup as you type:</p>
+        
+        <div class="info-card">
+          <h4>Zero Latency &amp; 100% Offline</h4>
+          <p>Since the autocompletion engine executes entirely in the local background loop, it functions with zero network latency and works fully offline. Complete support for Python packages, built-in functions, and user-defined class functions is maintained without transmitting sensitive code metadata.</p>
+        </div>
+      </section>
+
       <!-- Section: Ovius Pulse Builder -->
       <section id="ovius-pulse" class="doc-section">
         <h2 class="doc-title">Ovius Pulse Visual Builder</h2>
@@ -681,6 +774,35 @@ user32.SetWindowLongW(self.chwnd, GWL_STYLE, style)</code></pre>
         <p>Conversely, text edits in Monaco automatically trigger a modification hook, pushing changes directly back to update the Ovius Pulse preview canvas instantly.</p>
       </section>
 
+      <!-- Section: KC Connect (Collaboration) -->
+      <section id="kc-connect" class="doc-section">
+        <h2 class="doc-title">KC Connect (Real-Time Collaboration)</h2>
+        <p class="doc-subtitle">A peer-to-peer real-time collaborative workspace enabling multiple developers to build together.</p>
+        <p>KC Connect is the real-time collaboration engine built natively into KC Editor. It allows multiple developers to join a single shared coding session to read and edit project files concurrently:</p>
+        
+        <div class="info-card cyan">
+          <h4>Real-Time Synchronization</h4>
+          <p>Edits, selection coordinates, and cursor states are synchronized instantly across connection lines. The engine broadcasts events through local network ports, updating editor contents with visual cursor followers for every active collaborator.</p>
+        </div>
+        
+        <div class="info-card violet">
+          <h4>In-App Communication</h4>
+          <p>Collaborators can communicate directly inside the workspace window via built-in developer chat, ensuring teams align on tasks and implementation plans without leaving the coding interface.</p>
+        </div>
+      </section>
+
+      <!-- Section: Integrated Terminal -->
+      <section id="integrated-terminal" class="doc-section">
+        <h2 class="doc-title">Integrated Terminal</h2>
+        <p class="doc-subtitle">Run compilers, execute tests, and manage system operations directly from the editor canvas.</p>
+        <p>KC Editor includes an integrated terminal emulator that interacts directly with your operating system's shell (e.g. Powershell, CMD on Windows, or zsh, bash on macOS/Linux):</p>
+        
+        <div class="info-card">
+          <h4>Subprocess Spawning &amp; Output Streaming</h4>
+          <p>When you run code or enter a shell command, the terminal module spawns isolated subprocesses, streams stdout and stderr output in real time to the terminal canvas, and monitors exit codes to feed debugger processes.</p>
+        </div>
+      </section>
+
       <!-- Section: Firewall & Networking -->
       <section id="firewall-network" class="doc-section">
         <h2 class="doc-title">Firewall &amp; Networking</h2>
@@ -692,20 +814,37 @@ user32.SetWindowLongW(self.chwnd, GWL_STYLE, style)</code></pre>
         </ul>
       </section>
 
-      <!-- Section: UI & Customization -->
+      <!-- Section: UI & Customization (Win32 Captions & Themes) -->
       <section id="ui-customization" class="doc-section">
-        <h2 class="doc-title">UI &amp; Customization</h2>
-        <p class="doc-subtitle">Premium layout elements customization incorporating Win32 visual themes.</p>
-        <p>The editor implements custom Window decorators on Windows operating systems. It uses the <code>dwmapi.dll</code> library to apply dark themes directly onto top-level Tkinter and WinForms frames, styling window borders and captions to integrate seamlessly with the Obsidian Noir dark mode styling palette.</p>
+        <h2 class="doc-title">Win32 Captions &amp; Themes</h2>
+        <p class="doc-subtitle">Premium layout elements customization incorporating native Win32 API calls.</p>
+        <p>To deliver a premium, native feel on Windows OS, the editor implements immersive theme customization hooks. It directly calls functions from Windows system DLLs (<code>dwmapi.dll</code> and <code>user32.dll</code>) using Python's built-in <code>ctypes</code> module. This bypasses the default OS title decorator limits, applying a custom dark caption style onto top-level Tkinter and WinForms frames:</p>
         
         <div class="code-header">
-          <span class="code-lang-label">Python (Native title attribute calls in ketron.py)</span>
+          <span class="code-lang-label">Python (DWM Immersive Dark Mode in ketron.py)</span>
         </div>
-        <pre><code><span class="comment"># Immersive dark mode toggle for Win32 frame decorators</span>
+        <pre><code><span class="comment"># Enable dark frame borders on Win32 parent frames</span>
 import ctypes
 dwmapi = ctypes.windll.dwmapi
 DWMWA_USE_IMMERSIVE_DARK_MODE = 20
 dwmapi.DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ctypes.byref(ctypes.c_int(1)), 4)</code></pre>
+
+        <p>Additionally, the editor manages embedded components using native Win32 window parenting handle modifications:</p>
+        <div class="code-header">
+          <span class="code-lang-label">Python (Win32 SetParent nesting in ketron.py)</span>
+        </div>
+        <pre><code><span class="comment"># Win32 parenting constants</span>
+GWL_STYLE = -16
+WS_CHILD = 0x40000000
+WS_VISIBLE = 0x10000000
+WS_POPUP = 0x80000000
+
+<span class="comment"># Reparent child window to local Tkinter frame</span>
+user32 = ctypes.windll.user32
+style = user32.GetWindowLongW(child_hwnd, GWL_STYLE)
+style = (style | WS_CHILD | WS_VISIBLE) &amp; ~WS_POPUP
+user32.SetWindowLongW(child_hwnd, GWL_STYLE, style)
+user32.SetParent(child_hwnd, parent_hwnd)</code></pre>
       </section>
 
     </main>
@@ -722,6 +861,19 @@ dwmapi.DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ctypes.byref(c
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    /* ── MOBILE NAV MENU TOGGLE ── */
+    const navToggle = document.getElementById('navToggle');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('mobile-active');
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('#nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('mobile-active');
+      });
     });
 
     /* ── SIDEBAR LINK ACTIVE TRACKING ── */
