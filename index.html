@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary SEO -->
   <title>Ketron Labs — Agentic Code Editor with Pilot Mode &amp; Ovius Browser | Free Developer Tools</title>
-  <meta name="description"
-    content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — a local-first Agentic IDE featuring Pilot Mode to autonomously write, edit, run, and test code — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
-  <meta name="keywords"
-    content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, agentic code editor, Pilot Mode, AI agent code editor, autonomous coding editor, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron">
+  <meta name="description" content="Ketron Labs builds free, lightweight developer tools made in India. Download Ketron Code Editor — a local-first Agentic IDE featuring Pilot Mode to autonomously write, edit, run, and test code — and Ovius Browser, a privacy-first browser with built-in ad blocking. 100% free, no accounts needed.">
+  <meta name="keywords" content="Ketron Code Editor, download Ketron Code Editor, Ketron Code Editor download, KC Editor, download KC Editor, KC Editor download, Ovius Browser, download Ovius Browser, Ovius Browser download, Ketron Labs, KetronLabs, agentic code editor, Pilot Mode, AI agent code editor, autonomous coding editor, free code editor, AI code editor, lightweight IDE, Python editor, privacy browser, developer tools India, free IDE, Ketron">
   <meta name="author" content="Rithish S — Ketron Labs">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#3B82F6">
@@ -18,8 +14,7 @@
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ketron Labs — Free Developer Tools | Agentic Code Editor &amp; Ovius Browser">
-  <meta property="og:description"
-    content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers. Enable Pilot Mode to let the editor autonomously write, run, and test code.">
+  <meta property="og:description" content="Download Ketron Code Editor and Ovius Browser — free, lightweight tools built for developers. Enable Pilot Mode to let the editor autonomously write, run, and test code.">
   <meta property="og:image" content="favicon.png">
   <meta property="og:url" content="https://ketronlabs.com">
   <meta property="og:site_name" content="Ketron Labs">
@@ -27,8 +22,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ketron Labs — Agentic Code Editor &amp; Ovius Browser">
-  <meta name="twitter:description"
-    content="Free, lightweight developer tools — Agentic Code Editor with Pilot Mode and privacy-first browser. Download now from Ketron Labs.">
+  <meta name="twitter:description" content="Free, lightweight developer tools — Agentic Code Editor with Pilot Mode and privacy-first browser. Download now from Ketron Labs.">
   <meta name="twitter:image" content="favicon.png">
 
   <!-- Favicon -->
@@ -36,10 +30,8 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
   <style>
     /* ── RESET & VARIABLES ── */
@@ -261,8 +253,8 @@
       top: 24px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 1200px;
+      width: 95%;
+      max-width: 1400px;
       z-index: 1000;
       display: flex;
       justify-content: space-between;
@@ -1664,6 +1656,184 @@
       padding-bottom: 8px;
     }
 
+    /* ── FOUNDER SPOTLIGHT ── */
+    .founder-spotlight {
+      max-width: 1000px;
+      margin: 0 auto 60px;
+    }
+
+    .founder-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 50px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg,
+          transparent 35%,
+          var(--accent-blue) 45%,
+          var(--accent-cyan) 55%,
+          transparent 65%);
+      animation: rotateBorder 12s linear infinite;
+      z-index: 1;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .founder-card:hover {
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 217, 255, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .founder-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .founder-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .founder-avatar-wrap {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: var(--bg-secondary);
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.2);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+
+    .founder-card:hover .founder-avatar-wrap {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow-cyan);
+    }
+
+    .founder-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .founder-card:hover .founder-avatar-wrap img {
+      transform: scale(1.08);
+    }
+
+    .founder-avatar-ph {
+      font-size: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .founder-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+      border: 1px solid rgba(0, 217, 255, 0.15);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      text-shadow: 0 0 6px rgba(0, 217, 255, 0.3);
+    }
+
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .founder-meta {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    .founder-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .founder-bio {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .founder-quote {
+      position: relative;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-primary);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 8px 0 8px 16px;
+      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.015);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .quote-icon {
+      flex-shrink: 0;
+      margin-top: 3px;
+      opacity: 0.8;
+    }
+
+    /* Mentors Grid layout */
+    .mentors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Responsive styling for founder spotlight */
+    @media (max-width: 768px) {
+      .founder-card {
+        padding: 30px 24px;
+      }
+      .founder-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .mentors-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* ── DOWNLOADS SECTION ── */
     .download-grid {
       display: grid;
@@ -2167,6 +2337,410 @@
         justify-content: center;
       }
     }
+
+    /* ── WORKSPACE TOUR SECTION ── */
+    .workspace-tour-section {
+      background: linear-gradient(180deg, #050508 0%, #000000 100%);
+      overflow: hidden;
+    }
+
+    .tour-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Left Sidebar Navigation */
+    .tour-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tour-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: left;
+    }
+
+    .tour-nav-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(59, 130, 246, 0.2);
+      transform: translateX(4px);
+    }
+
+    .tour-nav-item.active {
+      background: rgba(59, 130, 246, 0.05);
+      border-color: rgba(59, 130, 246, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(59, 130, 246, 0.05);
+    }
+
+    .tour-nav-num {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .tour-nav-item.active .tour-nav-num {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+    }
+
+    .tour-nav-text h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+      transition: color 0.3s;
+    }
+
+    .tour-nav-item.active h4 {
+      color: var(--text-primary);
+    }
+
+    .tour-nav-text p {
+      font-size: 0.72rem;
+      color: #6B7280;
+      transition: color 0.3s;
+    }
+
+    .tour-nav-item.active p {
+      color: var(--accent-blue);
+    }
+
+    /* Right Showcase Mockup Window */
+    .tour-display {
+      width: 100%;
+    }
+
+    .tour-window {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(59, 130, 246, 0.05);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tour-window-header {
+      background: #060606;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tour-window-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      flex-grow: 1;
+      text-align: center;
+      margin-left: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .tour-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.06);
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(0, 217, 255, 0.15);
+    }
+
+    .tour-status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 6px var(--accent-cyan);
+    }
+
+    .tour-view-wrapper {
+      position: relative;
+      width: 100%;
+      background: #020202;
+    }
+
+    .tour-images-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .tour-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .tour-img.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    /* Zoom / Expand Indicator */
+    .tour-zoom-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .tour-images-container:hover .tour-zoom-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tour-zoom-btn:hover {
+      background: var(--accent-cyan);
+      color: #000000;
+      border-color: var(--accent-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* Auto-play Playbar */
+    .tour-playbar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: 3;
+    }
+
+    .tour-playbar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    /* Bottom Info Card */
+    .tour-info-card {
+      padding: 30px 40px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0) 100%);
+      border-top: 1px solid var(--border);
+    }
+
+    .tour-info-tags {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tour-tag {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      background: rgba(0, 217, 255, 0.05);
+      border: 1px solid rgba(0, 217, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .tour-info-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .tour-info-desc {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* Lightbox Modal */
+    .tour-lightbox-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .tour-lightbox-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.6;
+    }
+
+    .lightbox-prev:hover, .lightbox-next:hover {
+      opacity: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .lightbox-prev { left: 40px; }
+    .lightbox-next { right: 40px; }
+
+    .lightbox-content {
+      max-width: 85%;
+      max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: var(--radius-md);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: scale(0.97);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tour-lightbox-modal.active .lightbox-content img {
+      transform: scale(1);
+    }
+
+    .lightbox-caption {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #FFFFFF;
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+      .tour-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .tour-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 12px;
+        gap: 12px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .tour-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tour-nav-item {
+        flex: 0 0 240px;
+        scroll-snap-align: start;
+        padding: 12px 16px;
+      }
+
+      .tour-nav-item:hover {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-prev, .lightbox-next {
+        width: 44px;
+        height: 44px;
+      }
+      .lightbox-prev { left: 15px; }
+      .lightbox-next { right: 15px; }
+      .tour-info-card {
+        padding: 20px 24px;
+      }
+    }
   </style>
 </head>
 
@@ -2180,11 +2754,11 @@
   </div>
 
   <!-- Custom trailing cursor follower -->
-  <div id="custom-cursor"></div>
-  <div id="custom-cursor-follower"></div>
+  <div id="custom-cursor" style="left: 643px; top: 25px;"></div>
+  <div id="custom-cursor-follower" style="left: 643px; top: 25px; transform: translate(-50%, -50%) scale(1); border-color: rgba(0, 217, 255, 0.25); background-color: transparent;"></div>
 
   <!-- Floating Navigation Bar -->
-  <nav id="nav">
+  <nav id="nav" class="">
     <a href="#" class="nav-logo">
       <img src="favicon.png" alt="Ketron Labs" onerror="this.style.display='none'">
       Ketron <span>Labs</span>
@@ -2192,7 +2766,8 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="#products">Products</a></li>
+      <li><a href="#products" class="">Products</a></li>
+      <li><a href="#workspace-tour">Tour</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#ovi-memory">Ovi Memory</a></li>
@@ -2215,15 +2790,15 @@
 
   <!-- Cinematic Hero Section -->
   <section class="hero">
-    <canvas class="hero-canvas-bg" id="hero-canvas"></canvas>
+    <canvas class="hero-canvas-bg" id="hero-canvas" width="743" height="931"></canvas>
 
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-left rv">
+        <div class="hero-left rv vis">
           <div class="hero-system-status">SYSTEM BOOT · KETRON_LABS v2.0 · INDIA</div>
           <h1 class="hero-title">
-            <span id="hero-static"></span><br>
-            <span class="gword" id="hero-typed"></span><span class="type-cursor">|</span>
+            <span id="hero-static">Tools built for </span><br>
+            <span class="gword" id="hero-typed">Developers.</span><span class="type-cursor" style="animation: auto ease 0s 1 normal none running none; opacity: 0.4;">|</span>
           </h1>
           <p class="hero-subtitle">We build lightweight, highly-optimized agentic developer tools and privacy-centric
             software
@@ -2232,25 +2807,22 @@
             <a href="#products" class="btn btn-primary btn-magnetic">
               Explore Products
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
             </a>
             <a href="#download" class="btn btn-secondary">↓ Download Free</a>
           </div>
         </div>
 
-        <div class="hero-right-wrap rv delay-2">
-          <div class="hero-showcase-wrapper" id="hero-showcase">
+        <div class="hero-right-wrap rv delay-2 vis">
+          <div class="hero-showcase-wrapper" id="hero-showcase" style="transform: translateY(0px) rotateX(1deg) rotateY(1deg);">
             <div class="mockup-header">
               <span class="mockup-dot red"></span>
               <span class="mockup-dot yellow"></span>
               <span class="mockup-dot green"></span>
               <span class="mockup-title">ketron_labs.py</span>
             </div>
-            <div class="mockup-body" id="hero-mockup-code">
-              <!-- Autotyping text is injected here -->
-            </div>
+            <div class="mockup-body" id="hero-mockup-code"><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="comment"># Activate autonomous coding...</span></div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="kw">import</span> <span class="var">ketron</span></div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="var">pilot</span> = <span class="var">ketron</span>.<span class="fn">Pilot</span>()</div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="var">pilot</span>.<span class="fn">set_goal</span>(<span class="str">"build and test local api"</span>)</div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="comment"># Agent: Scanning codebase... Done.</span></div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="comment"># Agent: Writing endpoints in app.py... Done.</span></div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="comment"># Agent: Running compiler &amp; tests... All OK.</span></div><div style="opacity: 1; transform: translateY(0px); transition: 0.4s;"><span class="var">pilot</span>.<span class="fn">deploy</span>()</div></div>
           </div>
         </div>
       </div>
@@ -2268,61 +2840,53 @@
   <section id="products">
     <div class="container">
       <div style="text-align: center; margin-bottom: 80px;">
-        <div class="section-label rv" style="justify-content: center;">Our Products</div>
-        <h2 class="section-title rv delay-1">Build fast. <span>Browse private.</span></h2>
-        <p class="section-desc rv delay-2" style="margin: 0 auto;">Two premium applications engineered from scratch to
+        <div class="section-label rv vis" style="justify-content: center;">Our Products</div>
+        <h2 class="section-title rv delay-1 vis">Build fast. <span>Browse private.</span></h2>
+        <p class="section-desc rv delay-2 vis" style="margin: 0 auto;">Two premium applications engineered from scratch to
           bridge the gap between development and surfing.</p>
       </div>
 
       <!-- Product 1: KC Editor (Ketron Code Editor) -->
       <div class="product-layout" style="margin-bottom: 120px;">
-        <div class="product-visual-panel rv lvr">
+        <div class="product-visual-panel rv lvr vis">
           <div class="premium-card glow-blue">
             <div class="card-content-wrap">
               <div class="workspace-window">
                 <div class="workspace-tabs">
                   <div class="workspace-tab active">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
                     </svg>
                     main.py
                   </div>
                   <div class="workspace-tab">index.html</div>
                   <div class="workspace-tab">styles.css</div>
                 </div>
-                <div class="workspace-code" id="visual-editor-code">
-                  <!-- Coding lines anim -->
-                </div>
+                <div class="workspace-code" id="visual-editor-code"><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 0ms;" class="code-line vis"><span class="comment"># Goal: Create filter function</span></div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 150ms;" class="code-line vis"><span class="kw">def</span> <span class="fn">quicksort</span>(arr):</div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 300ms;" class="code-line vis">    <span class="kw">if</span> len(arr) &lt;= <span class="var">1</span>: <span class="kw">return</span> arr</div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 450ms;" class="code-line vis">    pivot = arr[len(arr) // <span class="var">2</span>]</div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 600ms;" class="code-line vis">    <span class="comment"># [Agent] running compiler &amp; tests...</span></div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 750ms;" class="code-line vis">    <span class="comment"># Status: All 12 test assertions PASSED.</span></div><div style="opacity: 0; transform: translateY(4px); transition: all 0.3s; transition-delay: 900ms;" class="code-line vis">    <span class="kw">return</span> quicksort([x <span class="kw">for</span> x <span class="kw">in</span> arr])</div></div>
               </div>
 
               <!-- Pilot Mode status simulator -->
               <div class="collab-overlay">
-                <div class="collab-header"
-                  style="color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    style="animation: pulseCyan 1.5s infinite alternate;">
-                    <circle cx="12" cy="12" r="9" />
-                    <circle cx="12" cy="12" r="3" />
-                    <line x1="12" y1="1" x2="12" y2="23" />
-                    <line x1="1" y1="12" x2="23" y2="12" />
+                <div class="collab-header" style="color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: pulseCyan 1.5s infinite alternate;">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <line x1="1" y1="12" x2="23" y2="12"></line>
                   </svg>
                   PILOT ACTIVE
                 </div>
-                <div class="collab-user"
-                  style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
+                <div class="collab-user" style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
                   <span class="user-avatar-dot" style="background:#10B981; box-shadow: 0 0 6px #10B981;"></span>
                   <span>✓ Write main.py</span>
                 </div>
-                <div class="collab-user"
-                  style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
+                <div class="collab-user" style="margin-bottom: 6px; font-family: var(--font-mono); font-size: 0.7rem; color: #10B981;">
                   <span class="user-avatar-dot" style="background:#10B981; box-shadow: 0 0 6px #10B981;"></span>
                   <span>✓ Compile code</span>
                 </div>
-                <div class="collab-user"
-                  style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
-                  <span class="user-avatar-dot"
-                    style="background:var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); animation: pulseCyan 1s infinite alternate;"></span>
+                <div class="collab-user" style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-cyan);">
+                  <span class="user-avatar-dot" style="background:var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); animation: pulseCyan 1s infinite alternate;"></span>
                   <span>⚡ Testing local suite...</span>
                 </div>
               </div>
@@ -2330,17 +2894,16 @@
           </div>
         </div>
 
-        <div class="product-details rv delay-1">
+        <div class="product-details rv delay-1 vis">
           <div class="section-label">Lightweight Code Editor with Agentic AI</div>
           <h3 class="section-title">Ketron Code Editor</h3>
-          <p class="section-desc">KC Editor is a lightweight Agentic IDE featuring local Pilot Mode for autonomous coding and Ovius Pulse — an integrated visual website builder. Powered by the <strong
-              style="color:var(--accent-cyan)">Gemini API</strong>, it lets you edit code textually and visually with bidirectional real-time synchronization. Runs smoothly even on 4 GB RAM systems.</p>
+          <p class="section-desc">KC Editor is a lightweight Agentic IDE featuring local Pilot Mode for autonomous coding and Ovius Pulse — an integrated visual website builder. Powered by the <strong style="color:var(--accent-cyan)">Gemini API</strong>, it lets you edit code textually and visually with bidirectional real-time synchronization. Runs smoothly even on 4 GB RAM systems.</p>
 
           <div class="feature-list">
             <div class="feature-item">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2353,8 +2916,8 @@
             <div class="feature-item">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2367,10 +2930,10 @@
             <div class="feature-item">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-                  <line x1="6" y1="6" x2="6.01" y2="6" />
-                  <line x1="6" y1="18" x2="6.01" y2="18" />
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2384,7 +2947,7 @@
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2412,10 +2975,10 @@
       <div style="text-align: center; margin-bottom: 70px;">
         <div class="section-label rv" style="justify-content: center;">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="9" />
-            <circle cx="12" cy="12" r="3" />
-            <line x1="12" y1="1" x2="12" y2="23" />
-            <line x1="1" y1="12" x2="23" y2="12" />
+            <circle cx="12" cy="12" r="9"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <line x1="1" y1="12" x2="23" y2="12"></line>
           </svg>
           Autonomous Execution
         </div>
@@ -2431,26 +2994,21 @@
 
         <!-- Phase 1 -->
         <div class="premium-card rv delay-1">
-          <div class="card-content-wrap"
-            style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
-            <div
-              style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
               </svg>
             </div>
-            <div
-              style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">
-              Phase 01 &mdash; Write &amp; Edit</div>
-            <h4
-              style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">
+              Phase 01 — Write &amp; Edit</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
               Understands Your Codebase</h4>
             <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">Tell Pilot your
               goal in plain English. It reads your project files, understands the module graph, and writes precise
               multi-file changes — never hallucinating unknown APIs or packages.</p>
-            <div
-              style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
               <span style="color:#6B7280;"># Goal set:</span><br>
               <span style="color:#F472B6;">"Add a REST endpoint for user login"</span><br>
               <span style="color:#6B7280;"># Writing: auth.py, routes.py updated...</span>
@@ -2460,28 +3018,23 @@
 
         <!-- Phase 2 -->
         <div class="premium-card rv delay-2">
-          <div class="card-content-wrap"
-            style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
-            <div
-              style="width: 46px; height: 46px; border-radius: 10px; background: rgba(0,217,255,0.08); border: 1px solid rgba(0,217,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(0,217,255,0.08); border: 1px solid rgba(0,217,255,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                <line x1="11" y1="8" x2="11" y2="14" />
-                <line x1="8" y1="11" x2="14" y2="11" />
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
               </svg>
             </div>
-            <div
-              style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 8px;">
-              Phase 02 &mdash; Analyze &amp; Plan</div>
-            <h4
-              style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 8px;">
+              Phase 02 — Analyze &amp; Plan</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
               Maps Your Entire Project</h4>
             <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">Before writing
               a single line, Pilot reads every relevant file in your workspace, maps module dependencies, and builds a
               step-by-step implementation plan — so changes are always coherent and complete.</p>
-            <div
-              style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
               <span style="color:#6B7280;"># Reading: main.py, models.py, utils.py</span><br>
               <span style="color:#60A5FA;">[Plan] Step 1 → create auth.py</span><br>
               <span style="color:#60A5FA;">[Plan] Step 2 → patch routes.py:L48</span>
@@ -2491,29 +3044,24 @@
 
         <!-- Phase 3 -->
         <div class="premium-card rv delay-3">
-          <div class="card-content-wrap"
-            style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
-            <div
-              style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+          <div class="card-content-wrap" style="padding: 32px; min-height: 310px; display: flex; flex-direction: column;">
+            <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
               </svg>
             </div>
-            <div
-              style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">
-              Phase 03 &mdash; Test &amp; Self-Debug</div>
-            <h4
-              style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
+            <div style="font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-blue); margin-bottom: 8px;">
+              Phase 03 — Test &amp; Self-Debug</div>
+            <h4 style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 12px;">
               Fixes Its Own Mistakes</h4>
             <p style="font-size: 0.83rem; line-height: 1.7; color: var(--text-secondary); flex-grow: 1;">If tests fail
               or exceptions are thrown, Pilot reads the full traceback, pinpoints the root cause, and surgically patches
               the code — looping autonomously until every assertion passes.</p>
-            <div
-              style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
-              <span style="color:#EF4444;">&#10007; AssertionError at test_auth.py:38</span><br>
+            <div style="margin-top: 20px; background: #020202; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; font-family: var(--font-mono); font-size: 0.7rem; line-height: 1.9;">
+              <span style="color:#EF4444;">✗ AssertionError at test_auth.py:38</span><br>
               <span style="color:#6B7280;"># Tracing bug. Applying fix...</span><br>
-              <span style="color:#34D399;">&#10003; All 22 assertions passed.</span>
+              <span style="color:#34D399;">✓ All 22 assertions passed.</span>
             </div>
           </div>
         </div>
@@ -2522,27 +3070,21 @@
 
       <!-- Live Terminal Simulation -->
       <div class="rv" style="margin-top: 60px;">
-        <div
-          style="background: #010101; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.06);">
+        <div style="background: #010101; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px rgba(59,130,246,0.06);">
           <!-- Terminal Topbar -->
-          <div
-            style="background: #060606; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);">
+          <div style="background: #060606; padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);">
             <span class="mockup-dot red"></span>
             <span class="mockup-dot yellow"></span>
             <span class="mockup-dot green"></span>
-            <span
-              style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); margin-left: 10px;">ketron_pilot
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); margin-left: 10px;">ketron_pilot
               — zsh — 96x28</span>
-            <div
-              style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent-cyan); background: rgba(0,217,255,0.06); padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(0,217,255,0.15);">
-              <span
-                style="width: 5px; height: 5px; border-radius: 50%; background: #10B981; box-shadow: 0 0 5px #10B981; display: inline-block; animation: pulseGreen 2s ease-in-out infinite;"></span>
+            <div style="margin-left: auto; display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent-cyan); background: rgba(0,217,255,0.06); padding: 3px 10px; border-radius: 100px; border: 1px solid rgba(0,217,255,0.15);">
+              <span style="width: 5px; height: 5px; border-radius: 50%; background: #10B981; box-shadow: 0 0 5px #10B981; display: inline-block; animation: pulseGreen 2s ease-in-out infinite;"></span>
               PILOT ACTIVE
             </div>
           </div>
           <!-- Terminal Body -->
-          <div id="pilot-terminal"
-            style="padding: 24px 28px; font-family: var(--font-mono); font-size: 0.79rem; line-height: 2.1; min-height: 230px; color: #D8DEE9;">
+          <div id="pilot-terminal" style="padding: 24px 28px; font-family: var(--font-mono); font-size: 0.79rem; line-height: 2.1; height: 450px; overflow-y: auto; color: #D8DEE9;">
           </div>
         </div>
       </div>
@@ -2550,71 +3092,182 @@
       <!-- Stats Row -->
       <div class="rv pilot-stats-grid">
         <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
-          <div
-            style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
             Gemini</div>
-          <div
-            style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
             API Powered</div>
         </div>
         <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
-          <div
-            style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
             3-Phase</div>
-          <div
-            style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
             Agentic Loop</div>
         </div>
         <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
-          <div
-            style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
             Multi</div>
-          <div
-            style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
             File Editing</div>
         </div>
         <div style="background: var(--bg-secondary); padding: 28px; text-align: center;">
-          <div
-            style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 4px;">
             Auto</div>
-          <div
-            style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary);">
             Self-Debugger</div>
         </div>
       </div>
 
       <!-- Closing CTA -->
-      <div class="rv"
-        style="margin-top: 70px; background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(0,217,255,0.03) 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: var(--radius-lg); padding: 60px; text-align: center; position: relative; overflow: hidden;">
-        <div
-          style="position: absolute; top: -80px; right: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(0,217,255,0.07) 0%, transparent 70%); pointer-events: none;">
+      <div class="rv" style="margin-top: 70px; background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(0,217,255,0.03) 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: var(--radius-lg); padding: 60px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -80px; right: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(0,217,255,0.07) 0%, transparent 70%); pointer-events: none;">
         </div>
-        <div
-          style="position: absolute; bottom: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%); pointer-events: none;">
+        <div style="position: absolute; bottom: -60px; left: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%); pointer-events: none;">
         </div>
-        <div
-          style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 14px;">
+        <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 14px;">
           Now Available in KC Editor v1.0</div>
-        <h3
-          style="font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--text-primary); margin-bottom: 14px; line-height: 1.2;">
-          Ready to let your editor <span
-            style="color: transparent; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text;">code
+        <h3 style="font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 700; color: var(--text-primary); margin-bottom: 14px; line-height: 1.2;">
+          Ready to let your editor <span style="color: transparent; background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); -webkit-background-clip: text; background-clip: text;">code
             for you?</span></h3>
-        <p
-          style="font-size: 0.95rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto 32px; line-height: 1.7;">
+        <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 520px; margin: 0 auto 32px; line-height: 1.7;">
           Ketron Code Editor is free and engineered to run on any machine. Add your Gemini API key, enable Pilot Mode,
           and build faster than ever before.</p>
         <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
           <a href="#download" class="btn btn-primary btn-magnetic">Download KC Editor Free
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
+              <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </a>
           <a href="#products" class="btn btn-secondary">View All Features</a>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Workspace Tour / Gallery Section -->
+  <section id="workspace-tour" class="workspace-tour-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 70px;">
+        <div class="section-label rv" style="justify-content: center;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+          Visual Interface
+        </div>
+        <h2 class="section-title rv delay-1">Explore the <span>KC Workspace</span></h2>
+        <p class="section-desc rv delay-2" style="margin: 0 auto; max-width: 680px;">Take a detailed tour through the onboarding wizard, project management startup board, visual page builders, and autonomous code execution environments of Ketron Code Editor.</p>
+      </div>
+
+      <div class="tour-layout rv">
+        <!-- Sidebar Navigation (left) -->
+        <div class="tour-nav">
+          <div class="tour-nav-item active" data-index="0">
+            <span class="tour-nav-num">01</span>
+            <div class="tour-nav-text">
+              <h4>Welcome Wizard</h4>
+              <p>Minimalist onboarding</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="1">
+            <span class="tour-nav-num">02</span>
+            <div class="tour-nav-text">
+              <h4>Gemini API Key</h4>
+              <p>Secure AI integration</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="2">
+            <span class="tour-nav-num">03</span>
+            <div class="tour-nav-text">
+              <h4>Setup Completed</h4>
+              <p>Ready to boot IDE</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="3">
+            <span class="tour-nav-num">04</span>
+            <div class="tour-nav-text">
+              <h4>Startup Board</h4>
+              <p>Project dashboard</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="4">
+            <span class="tour-nav-num">05</span>
+            <div class="tour-nav-text">
+              <h4>Ovius Pulse</h4>
+              <p>Visual page builder</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="5">
+            <span class="tour-nav-num">06</span>
+            <div class="tour-nav-text">
+              <h4>Workspace Canvas</h4>
+              <p>Advanced code editor</p>
+            </div>
+          </div>
+          <div class="tour-nav-item" data-index="6">
+            <span class="tour-nav-num">07</span>
+            <div class="tour-nav-text">
+              <h4>Pilot Mode Terminal</h4>
+              <p>Autonomous AI loops</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase Area (right) -->
+        <div class="tour-display">
+          <!-- Glassmorphic Window Mockup -->
+          <div class="tour-window glow-blue">
+            <div class="tour-window-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="tour-window-title" id="tour-window-title">KC Editor — Onboarding Wizard</span>
+              <div class="tour-status-badge">
+                <span class="tour-status-dot"></span>
+                <span id="tour-status-text">STEP 1/7</span>
+              </div>
+            </div>
+            
+            <div class="tour-view-wrapper">
+              <div class="tour-images-container" id="tour-images-container">
+                <!-- All images preloaded for instant transitions -->
+                <img src="welcomescreen.png" class="tour-img active" alt="Welcome Wizard Onboarding" data-index="0">
+                <img src="welcomeapi.png" class="tour-img" alt="Gemini API Key Configuration" data-index="1">
+                <img src="welcomelast.png" class="tour-img" alt="Setup Completed Screen" data-index="2">
+                <img src="KCstart.png" class="tour-img" alt="Startup Board Dashboard" data-index="3">
+                <img src="maineditor.png" class="tour-img" alt="Ovius Pulse Visual Builder" data-index="4">
+                <img src="editorcode.png" class="tour-img" alt="Workspace Canvas Code Editor" data-index="5">
+                <img src="pilotmode.png" class="tour-img" alt="Pilot Mode Terminal" data-index="6">
+                
+                <!-- Zoom Expand Overlay Button -->
+                <button class="tour-zoom-btn" id="tour-zoom-btn" aria-label="Expand Screenshot">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"></path>
+                  </svg>
+                  <span>Click to Expand</span>
+                </button>
+              </div>
+
+              <!-- Interactive Progress Playbar -->
+              <div class="tour-playbar">
+                <div class="tour-playbar-fill" id="tour-playbar-fill"></div>
+              </div>
+            </div>
+
+            <!-- Description Card Overlay -->
+            <div class="tour-info-card">
+              <div class="tour-info-tags" id="tour-info-tags">
+                <span class="tour-tag">Onboarding</span>
+                <span class="tour-tag">Local-First</span>
+              </div>
+              <h3 class="tour-info-title" id="tour-info-title">Welcome Onboarding Wizard</h3>
+              <p class="tour-info-desc" id="tour-info-desc">A clean, modern onboarding flow that welcomes you to the local-first coding workspace. Zero accounts or logins required to get started.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2634,8 +3287,8 @@
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2647,10 +3300,10 @@
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2662,8 +3315,8 @@
             <div class="feature-item cyan">
               <div class="feature-icon-wrap">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
               </div>
               <div class="feature-text">
@@ -2688,8 +3341,8 @@
                   <span class="mockup-dot green"></span>
                   <div class="browser-address">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
                     https://oviussearch.com
                   </div>
@@ -2791,26 +3444,44 @@
           development environments.</p>
       </div>
 
-      <div class="team-grid">
-        <!-- Rithish S -->
+      <!-- Founder Spotlight -->
+      <div class="founder-spotlight rv">
+        <div class="founder-card">
+          <div class="founder-content">
+            <div class="founder-left">
+              <div class="founder-avatar-wrap">
+                <img src="me.png" alt="Rithish S" onerror="this.outerHTML='&lt;div class=&quot;founder-avatar-ph&quot;&gt;👤&lt;/div&gt;'">
+              </div>
+              <div class="founder-name-wrap">
+                <span class="founder-badge">Founder &amp; Lead Architect</span>
+                <h3 class="founder-name">Rithish S</h3>
+                <div class="founder-meta">15-Year-Old Developer &amp; Tech Pioneer · India</div>
+              </div>
+            </div>
+            
+            <div class="founder-right">
+              <p class="founder-bio">Rithish S is a visionary 15-year-old software developer and lead architect from India, committed to democratizing coding workflows. Driven by a deep passion for system design, he engineered both the Ketron Code Editor and Ovius Browser from scratch with a local-first philosophy. By optimizing these tools to run efficiently on standard consumer hardware, Rithish aims to eliminate technical barriers, making high-performance agentic coding accessible to creators worldwide.</p>
+              <div class="founder-quote">
+                <svg class="quote-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5">
+                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2H4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2c0 2.5-1 4-3 5.5v1.5zM14 21c3 0 7-1 7-8V5c0-1.25-.75-2-2-2h-4c-1.25 0-2 .75-2 2v6c0 1.25.75 2 2 2h2c0 2.5-1 4-3 5.5v1.5z"></path>
+                </svg>
+                <span>"Our mission is to eliminate artificial barriers and hardware limitations in software development, enabling developers to turn their logic into reality without friction."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advisory & Mentors -->
+      <div style="text-align: center; margin-top: 60px; margin-bottom: 30px;">
+        <div class="section-label rv" style="justify-content: center; font-size: 0.68rem; opacity: 0.85;">Advisory &amp; Mentorship</div>
+      </div>
+
+      <div class="mentors-grid">
+        <!-- Dr. Jagadish Kumar -->
         <div class="team-card rv delay-1">
           <div class="team-avatar-wrap">
-            <img src="me.png" alt="Rithish S" onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>👤</div>'">
-          </div>
-          <h3 class="team-name">Rithish S</h3>
-          <div class="team-role">Founder &amp; Lead Architect</div>
-          <p class="team-bio">A 15-year-old software developer from India. Driven by his passion for coding, Rithish
-            built both Ketron Code Editor and Ovius Browser to make programming accessible and lightweight for
-            beginners.</p>
-          <div class="team-quote">"We want to remove complexity and hardware limits, letting creators focus purely on
-            logic."</div>
-        </div>
-
-        <!-- Dr. Jagadish Kumar -->
-        <div class="team-card rv delay-2">
-          <div class="team-avatar-wrap">
-            <img src="Dr.jagathish.png" alt="Dr. Jagadish Kumar"
-              onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>🎓</div>'">
+            <img src="Dr.jagathish.png" alt="Dr. Jagadish Kumar" onerror="this.outerHTML='&lt;div class=&quot;team-avatar-ph&quot;&gt;🎓&lt;/div&gt;'">
           </div>
           <h3 class="team-name">Dr. Jagadish Kumar</h3>
           <div class="team-role">Coding Mentor &amp; Assistant Professor</div>
@@ -2821,10 +3492,9 @@
         </div>
 
         <!-- Dr. Theodore Immanuel -->
-        <div class="team-card rv delay-3">
+        <div class="team-card rv delay-2">
           <div class="team-avatar-wrap">
-            <img src="Dr.Theo.png" alt="Dr. Theodore Immanuel"
-              onerror="this.outerHTML='<div class=&quot;team-avatar-ph&quot;>🏫</div>'">
+            <img src="Dr.Theo.png" alt="Dr. Theodore Immanuel" onerror="this.outerHTML='&lt;div class=&quot;team-avatar-ph&quot;&gt;🏫&lt;/div&gt;'">
           </div>
           <h3 class="team-name">Dr. Theodore Immanuel</h3>
           <div class="team-role">CEO &amp; Educational Visionary</div>
@@ -2848,13 +3518,9 @@
             COMING SOON
           </div>
         </div>
-        <div class="rv delay-2"
-          style="display: inline-flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 24px; vertical-align: middle; width: 100%;">
-          <img src="ovmemlogo.png" alt="Ovi Memory" class="om-logo"
-            style="margin: 0; height: 96px; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.45));"
-            onerror="this.style.display='none'">
-          <h2 class="section-title"
-            style="margin: 0; padding: 0; line-height: 1; font-size: clamp(2.5rem, 5.5vw, 4.4rem); font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #FFFFFF 40%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));">
+        <div class="rv delay-2" style="display: inline-flex; align-items: center; justify-content: center; gap: 24px; margin-bottom: 24px; vertical-align: middle; width: 100%;">
+          <img src="ovmemlogo.png" alt="Ovi Memory" class="om-logo" style="margin: 0; height: 96px; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.45));" onerror="this.style.display='none'">
+          <h2 class="section-title" style="margin: 0; padding: 0; line-height: 1; font-size: clamp(2.5rem, 5.5vw, 4.4rem); font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #FFFFFF 40%, #C084FC 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));">
             Ovi Memory</h2>
         </div>
         <p class="section-desc rv delay-3" style="margin: 0 auto;">Your unified, local-first database. Save, discover,
@@ -2867,9 +3533,9 @@
           <div class="compare-card">
             <h3 class="compare-title">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="15" y1="9" x2="9" y2="15" />
-                <line x1="9" y1="9" x2="15" y2="15" />
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
               </svg>
               Fragmented Notes
             </h3>
@@ -3009,8 +3675,7 @@
         <div class="download-card editor-dl rv lvr">
           <div>
             <div class="download-header">
-              <img src="ketron2.png" alt="KC Editor" class="download-logo"
-                onerror="this.outerHTML='<div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;>💻</div>'">
+              <img src="ketron2.png" alt="KC Editor" class="download-logo" onerror="this.outerHTML='&lt;div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;&gt;💻&lt;/div&gt;'">
               <div class="download-title-wrap">
                 <h3>Ketron Code Editor</h3>
                 <div class="download-version">v1.0.0 · Stable Release</div>
@@ -3034,8 +3699,7 @@
         <div class="download-card browser-dl rv rvr">
           <div>
             <div class="download-header">
-              <img src="no_bg.png" alt="Ovius Browser" class="download-logo"
-                onerror="this.outerHTML='<div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;>🌐</div>'">
+              <img src="no_bg.png" alt="Ovius Browser" class="download-logo" onerror="this.outerHTML='&lt;div class=&quot;download-logo&quot; style=&quot;font-size: 2rem;&quot;&gt;🌐&lt;/div&gt;'">
               <div class="download-title-wrap">
                 <h3>Ovius Browser</h3>
                 <div class="download-version">v1.0.0 · Stable Release</div>
@@ -3068,11 +3732,11 @@
       <form id="bugForm">
         <div class="form-group">
           <label for="bugName">Your Name</label>
-          <input type="text" id="bugName" required placeholder="Rithish">
+          <input type="text" id="bugName" required="" placeholder="Rithish">
         </div>
         <div class="form-group">
           <label for="bugEmail">Email Address</label>
-          <input type="email" id="bugEmail" required placeholder="name@domain.com">
+          <input type="email" id="bugEmail" required="" placeholder="name@domain.com">
         </div>
         <div class="form-group">
           <label for="bugPhone">Phone Number (Optional)</label>
@@ -3080,7 +3744,7 @@
         </div>
         <div class="form-group">
           <label for="bugProduct">Affected Product</label>
-          <select id="bugProduct" required>
+          <select id="bugProduct" required="">
             <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
             <option value="Ovius Browser">Ovius Browser</option>
             <option value="Ovi Memory">Ovi Memory</option>
@@ -3089,19 +3753,20 @@
         </div>
         <div class="form-group">
           <label for="bugTitle">Bug Title / Short Summary</label>
-          <input type="text" id="bugTitle" required placeholder="Editor crashes on file load">
+          <input type="text" id="bugTitle" required="" placeholder="Editor crashes on file load">
         </div>
         <div class="form-group">
           <label for="bugDiscovery">How did you find it?</label>
-          <input type="text" id="bugDiscovery" required placeholder="Opening large python scripts">
+          <input type="text" id="bugDiscovery" required="" placeholder="Opening large python scripts">
         </div>
         <div class="form-group">
           <label for="bugDescription">Detailed Description</label>
-          <textarea id="bugDescription" required placeholder="Explain what happens..."></textarea>
+          <textarea id="bugDescription" required="" placeholder="Explain what happens..."></textarea>
         </div>
         <div class="form-group">
           <label for="bugSteps">Steps to Reproduce</label>
-          <textarea id="bugSteps" required placeholder="1. Open editor&#10;2. Drag file..."></textarea>
+          <textarea id="bugSteps" required="" placeholder="1. Open editor
+2. Drag file..."></textarea>
         </div>
         <div class="form-group">
           <label for="bugSolution">Suggested Solution (Optional)</label>
@@ -3122,11 +3787,11 @@
       <form id="featureForm">
         <div class="form-group">
           <label for="featureName">Your Name</label>
-          <input type="text" id="featureName" required placeholder="Rithish">
+          <input type="text" id="featureName" required="" placeholder="Rithish">
         </div>
         <div class="form-group">
           <label for="featureEmail">Email Address</label>
-          <input type="email" id="featureEmail" required placeholder="name@domain.com">
+          <input type="email" id="featureEmail" required="" placeholder="name@domain.com">
         </div>
         <div class="form-group">
           <label for="featurePhone">Phone Number (Optional)</label>
@@ -3134,7 +3799,7 @@
         </div>
         <div class="form-group">
           <label for="featureProduct">Target Product</label>
-          <select id="featureProduct" required>
+          <select id="featureProduct" required="">
             <option value="KC Editor">KC Editor (Ketron Code Editor)</option>
             <option value="Ovius Browser">Ovius Browser</option>
             <option value="Ovi Memory">Ovi Memory</option>
@@ -3142,11 +3807,11 @@
         </div>
         <div class="form-group">
           <label for="featureTitle">Feature Idea Title</label>
-          <input type="text" id="featureTitle" required placeholder="Add terminal custom themes">
+          <input type="text" id="featureTitle" required="" placeholder="Add terminal custom themes">
         </div>
         <div class="form-group">
           <label for="featureCategory">Category</label>
-          <select id="featureCategory" required>
+          <select id="featureCategory" required="">
             <option value="UI/Aesthetics">UI / Aesthetics</option>
             <option value="Performance">Performance Boost</option>
             <option value="AI Integration">AI Integration</option>
@@ -3155,7 +3820,7 @@
         </div>
         <div class="form-group">
           <label for="featurePriority">Priority Level</label>
-          <select id="featurePriority" required>
+          <select id="featurePriority" required="">
             <option value="Low">Low (Nice to have)</option>
             <option value="Medium">Medium (Improves flow)</option>
             <option value="High">High (Critical update)</option>
@@ -3163,11 +3828,11 @@
         </div>
         <div class="form-group">
           <label for="featureDescription">Feature Description</label>
-          <textarea id="featureDescription" required placeholder="Describe the idea in detail..."></textarea>
+          <textarea id="featureDescription" required="" placeholder="Describe the idea in detail..."></textarea>
         </div>
         <div class="form-group">
           <label for="featureBenefits">Expected Benefits &amp; Use Cases</label>
-          <textarea id="featureBenefits" required placeholder="How does this help developers?"></textarea>
+          <textarea id="featureBenefits" required="" placeholder="How does this help developers?"></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
       </form>
@@ -3178,8 +3843,7 @@
   <div class="toast-notif" id="toastBox">
     <div style="font-size: 1.5rem;" id="toastIcon">💡</div>
     <div>
-      <h4 style="font-family: var(--font-display); font-size: 0.8rem; color:#FFFFFF; margin-bottom: 2px;"
-        id="toastTitle">Success</h4>
+      <h4 style="font-family: var(--font-display); font-size: 0.8rem; color:#FFFFFF; margin-bottom: 2px;" id="toastTitle">Success</h4>
       <p style="font-size: 0.72rem; color: var(--text-secondary);" id="toastMessage">Your form has been sent.</p>
     </div>
   </div>
@@ -3427,7 +4091,7 @@
 
         <div class="services-promo-ctas">
           <a href="services.html" class="btn-services-cta primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
             Explore Services
           </a>
           <a href="services.html#quote" class="btn-services-cta ghost">
@@ -3488,31 +4152,53 @@
     // Initialize EmailJS
     emailjs.init('04ziz9-DFZ9_N2n7c');
 
-    /* ── SCROLL DETECTOR ── */
+    /* ── SCROLL DETECTOR & ACTIVE STATE HANDLER ── */
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    /* ── NAV LINK ACTIVE STATES ── */
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
 
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        const top = s.offsetTop - 180;
-        if (window.scrollY >= top) {
-          current = s.getAttribute('id');
-        }
-      });
+    let sectionOffsets = [];
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
-          link.classList.add('active');
-        }
-      });
+    function calculateOffsets() {
+      sectionOffsets = Array.from(sections).map(s => ({
+        id: s.getAttribute('id'),
+        top: s.offsetTop - 180
+      }));
+    }
+
+    calculateOffsets();
+    window.addEventListener('resize', calculateOffsets);
+    window.addEventListener('load', calculateOffsets);
+
+    let scrollScheduled = false;
+
+    window.addEventListener('scroll', () => {
+      if (!scrollScheduled) {
+        scrollScheduled = true;
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+
+          // Toggle scrolled class
+          nav.classList.toggle('scrolled', scrollY > 40);
+
+          // Toggle active links
+          let current = '';
+          for (let i = 0; i < sectionOffsets.length; i++) {
+            if (scrollY >= sectionOffsets[i].top) {
+              current = sectionOffsets[i].id;
+            }
+          }
+
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+              link.classList.add('active');
+            }
+          });
+
+          scrollScheduled = false;
+        });
+      }
     });
 
     /* ── SCROLL REVEALS (INTERSECTION OBSERVER) ── */
@@ -3973,6 +4659,7 @@
   <script>
     (function () {
       const canvas = document.getElementById('hero-canvas');
+      if (!canvas || !canvas.parentElement) return;
       const ctx = canvas.getContext('2d');
       let particles = [];
       let mouse = { x: null, y: null, radius: 140 };
@@ -4122,7 +4809,7 @@
       animateFollower();
 
       // Trigger scale-up on elements
-      const targetTags = 'a, button, input, select, textarea, .premium-card, .team-card, .download-card';
+      const targetTags = 'a, button, input, select, textarea, .premium-card, .founder-card, .team-card, .download-card';
       document.querySelectorAll(targetTags).forEach(el => {
         el.addEventListener('mouseenter', () => {
           follower.style.transform = 'translate(-50%, -50%) scale(1.4)';
@@ -4138,6 +4825,285 @@
     })();
   </script>
 
-</body>
+  <!-- Workspace Tour Gallery Interactivity Script -->
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const tourData = [
+        {
+          title: "Welcome Onboarding Wizard",
+          windowTitle: "KC Editor — Welcome Setup",
+          desc: "A clean, modern onboarding wizard that welcomes developers to a local-first workspace. Designed to work immediately with zero signups, email verifications, or cloud subscriptions.",
+          tags: ["Onboarding", "Local-First", "Privacy"],
+          statusText: "STEP 1/7"
+        },
+        {
+          title: "Secure Gemini API Config",
+          windowTitle: "KC Editor — AI API Key setup",
+          desc: "Seamless integration with Google Gemini. Enter your private API key to power Pilot Mode. Your key remains stored locally and securely on your system.",
+          tags: ["Gemini API", "Local Storage", "Encryption"],
+          statusText: "STEP 2/7"
+        },
+        {
+          title: "Onboarding Finalization",
+          windowTitle: "KC Editor — Setup Complete",
+          desc: "The final step of the onboarding wizard completes initialization of the local workspace directory, setting up the local runtime compilation environment.",
+          tags: ["Ready", "Fast Boot", "Zero Configuration"],
+          statusText: "STEP 3/7"
+        },
+        {
+          title: "Startup Project Dashboard",
+          windowTitle: "KC Editor — Welcome Dashboard",
+          desc: "Launch your next project instantly. Open existing workspace folders, create files from templates, view execution logs, or quickly run commands with keyboard shortcuts.",
+          tags: ["Dashboard", "Keyboard Navigation", "Recents"],
+          statusText: "STEP 4/7"
+        },
+        {
+          title: "Ovius Pulse Visual Builder",
+          windowTitle: "KC Editor — Ovius Pulse Builder",
+          desc: "Design responsive web layouts visually with live drag-and-drop mechanics. Watch the code update instantly in real-time behind the scenes, offering true two-way sync.",
+          tags: ["Visual Builder", "Bidirectional Sync", "WYSIWYG"],
+          statusText: "STEP 5/7"
+        },
+        {
+          title: "Advanced Coding Workspace",
+          windowTitle: "KC Editor — main.py",
+          desc: "A high-performance workspace featuring custom themes, syntax highlighting, integrated terminal, file tree explorer, and collapsable visual tools panel.",
+          tags: ["Code Editor", "Integrated Terminal", "Customizable"],
+          statusText: "STEP 6/7"
+        },
+        {
+          title: "Autonomous Pilot Mode Execution",
+          windowTitle: "KC Editor — Pilot Mode Active",
+          desc: "Watch the AI agent autonomously code, compile, run local testing packages, inspect stack traces on compiler errors, and recursively patch code until complete.",
+          tags: ["Pilot Mode", "Self-Debugging", "AI Developer Agent"],
+          statusText: "STEP 7/7"
+        }
+      ];
 
-</html>
+      let activeIndex = 0;
+      const autoplayDuration = 7000; // 7 seconds per slide
+      let progressTime = 0;
+      let isPaused = false;
+      let progressTimer = null;
+
+      // DOM Elements
+      const navItems = document.querySelectorAll('.tour-nav-item');
+      const tourImages = document.querySelectorAll('.tour-img');
+      const windowTitle = document.getElementById('tour-window-title');
+      const statusText = document.getElementById('tour-status-text');
+      const infoTags = document.getElementById('tour-info-tags');
+      const infoTitle = document.getElementById('tour-info-title');
+      const infoDesc = document.getElementById('tour-info-desc');
+      const playbarFill = document.getElementById('tour-playbar-fill');
+      const imagesContainer = document.getElementById('tour-images-container');
+      const zoomBtn = document.getElementById('tour-zoom-btn');
+
+      // Lightbox Elements
+      const lightbox = document.getElementById('tour-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxPrev = document.getElementById('lightbox-prev');
+      const lightboxNext = document.getElementById('lightbox-next');
+
+      if (!navItems.length || !tourImages.length || !windowTitle || !statusText || !infoTags || !infoTitle || !infoDesc || !playbarFill || !imagesContainer || !zoomBtn || !lightbox || !lightboxImg || !lightboxCaption || !lightboxClose || !lightboxPrev || !lightboxNext) {
+        return;
+      }
+
+      // Function to switch slides
+      function switchSlide(index) {
+        if (index < 0) index = tourData.length - 1;
+        if (index >= tourData.length) index = 0;
+
+        activeIndex = index;
+        progressTime = 0;
+        playbarFill.style.width = '0%';
+
+        // Update Nav Menu
+        navItems.forEach((item, idx) => {
+          if (idx === index) {
+            item.classList.add('active');
+            // Scroll nav item into view if in mobile layout (only scroll container horizontally, not the window)
+            const container = item.parentElement;
+            if (container && window.innerWidth <= 991) {
+              const itemLeft = item.offsetLeft;
+              const itemWidth = item.offsetWidth;
+              const containerWidth = container.offsetWidth;
+              container.scrollTo({
+                left: itemLeft - (containerWidth / 2) + (itemWidth / 2),
+                behavior: 'smooth'
+              });
+            }
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        // Update Images
+        tourImages.forEach((img, idx) => {
+          if (idx === index) {
+            img.classList.add('active');
+          } else {
+            img.classList.remove('active');
+          }
+        });
+
+        // Update Text Info
+        const data = tourData[index];
+        windowTitle.textContent = data.windowTitle;
+        statusText.textContent = data.statusText;
+        infoTitle.textContent = data.title;
+        infoDesc.textContent = data.desc;
+
+        // Update Tags
+        infoTags.innerHTML = '';
+        data.tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'tour-tag';
+          span.textContent = tag;
+          infoTags.appendChild(span);
+        });
+
+        // If Lightbox is open, update it too
+        if (lightbox.classList.contains('active')) {
+          updateLightbox();
+        }
+      }
+
+      // Start progress timer
+      function startTimer() {
+        if (progressTimer) clearInterval(progressTimer);
+        
+        progressTimer = setInterval(() => {
+          if (!isPaused) {
+            progressTime += 30;
+            const percentage = Math.min((progressTime / autoplayDuration) * 100, 100);
+            playbarFill.style.width = percentage + '%';
+
+            if (progressTime >= autoplayDuration) {
+              switchSlide(activeIndex + 1);
+            }
+          }
+        }, 30);
+      }
+
+      // Event Listeners for Nav Clicks
+      navItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          switchSlide(index);
+          isPaused = true; // Pause autoplay once user manually interacts
+        });
+      });
+
+      // Pause on hover
+      imagesContainer.addEventListener('mouseenter', () => {
+        isPaused = true;
+      });
+
+      imagesContainer.addEventListener('mouseleave', () => {
+        // Only resume if lightbox is not active
+        if (!lightbox.classList.contains('active')) {
+          isPaused = false;
+        }
+      });
+
+      // Lightbox Functions
+      function openLightbox() {
+        isPaused = true;
+        updateLightbox();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Lock background scroll
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        isPaused = false;
+      }
+
+      function updateLightbox() {
+        const activeImgSrc = tourImages[activeIndex].getAttribute('src');
+        lightboxImg.setAttribute('src', activeImgSrc);
+        lightboxCaption.textContent = tourData[activeIndex].title + " — " + tourData[activeIndex].desc;
+      }
+
+      // Open Lightbox Trigger
+      imagesContainer.addEventListener('click', openLightbox);
+      zoomBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openLightbox();
+      });
+
+      // Close Lightbox Trigger
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      // Navigation within Lightbox
+      lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        switchSlide(activeIndex - 1);
+      });
+
+      lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        switchSlide(activeIndex + 1);
+      });
+
+      // Keyboard Controls
+      window.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowRight') switchSlide(activeIndex + 1);
+          if (e.key === 'ArrowLeft') switchSlide(activeIndex - 1);
+        }
+      });
+
+      // Custom Follower Interaction
+      const follower = document.getElementById('custom-cursor-follower');
+      if (follower) {
+        document.querySelectorAll('.tour-nav-item, #tour-images-container, .lightbox-prev, .lightbox-next, .lightbox-close').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            follower.style.transform = 'translate(-50%, -50%) scale(1.4)';
+            follower.style.borderColor = 'var(--accent-cyan)';
+            follower.style.backgroundColor = 'rgba(0, 217, 255, 0.04)';
+          });
+          el.addEventListener('mouseleave', () => {
+            follower.style.transform = 'translate(-50%, -50%) scale(1)';
+            follower.style.borderColor = 'rgba(0, 217, 255, 0.25)';
+            follower.style.backgroundColor = 'transparent';
+          });
+        });
+      }
+
+      // Start the autoplay loop
+      startTimer();
+    });
+  </script>
+
+  <!-- High-Fidelity Lightbox Modal -->
+  <div id="tour-lightbox" class="tour-lightbox-modal">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous Screenshot">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next Screenshot">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Expanded View">
+      <div class="lightbox-caption" id="lightbox-caption">Screenshot Caption</div>
+    </div>
+  </div>
+
+</body></html>
